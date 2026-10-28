@@ -1,11 +1,11 @@
-=== Ultimate Responsive Image Slider ===
+﻿=== Ultimate Responsive Image Slider ===
 Contributors: awordpresslife, razipathhan, hanif0991, muhammadshahid, fkfaisalkhan007, sharikkhan007, zishlife, FARAZFRANK
 Author: FARAZFRANK
 Tags: slider, image slider, responsive slider, photo gallery, carousel
-Requires at least: 4.0
-Tested up to: 7.0.3
+Requires at least: 4.9
+Tested up to: 7.1
 Requires PHP: 7.0
-Stable tag: 3.5.19
+Stable tag: 3.5.20
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: ultimate-responsive-image-slider
@@ -312,6 +312,16 @@ Visit our [upgrade page](http://wpfrank.com/account/signup/ultimate-responsive-i
 
 == Changelog ==
 
+= 3.5.20 =
+* Enhancement: Added seamless database version tracking and upgrade migration hooks for future updates.
+* Fix: Resolved Slide Title and Description overlapping issue with dynamic flexbox stacking.
+* Fix: Resolved bullets pagination gap, alignment, and hover styling.
+* Fix: Enforced crisp square slide borders.
+* Fix: Eliminated theme layout and container width conflicts with native slider loading.
+* Fix: Corrected title contrast visibility and color picker defaults.
+* Compatibility: Fully backward compatible with existing v3.5.19 sliders.
+* Release date: October 28, 2026
+
 = 3.5.19 =
 **Security Update**: Fixed all plugin check errors and warnings
 * Enhanced plugin security
@@ -388,6 +398,9 @@ Visit our [upgrade page](http://wpfrank.com/account/signup/ultimate-responsive-i
 For the complete changelog of earlier versions, please visit our [website](http://wpfrank.com/).
 
 == Upgrade Notice ==
+
+= 3.5.20 =
+Important update: Title/description layout overlap fix, bullets navigation styling improvements, and theme layout conflict resolution. 100% backward compatible.
 
 = 3.5.19 =
 Major README optimization update with enhanced descriptions, comprehensive FAQ, and improved SEO. Recommended for better plugin visibility.

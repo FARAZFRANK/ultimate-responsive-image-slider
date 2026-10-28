@@ -1,6 +1,6 @@
-# Ultimate Responsive Image Slider
+﻿# Ultimate Responsive Image Slider
 
-[![Version](https://img.shields.io/badge/version-v3.5.19-blue.svg)](https://github.com/FARAZFRANK/ultimate-responsive-image-slider)
+[![Version](https://img.shields.io/badge/version-v3.5.20-blue.svg)](https://github.com/FARAZFRANK/ultimate-responsive-image-slider)
 [![WordPress](https://img.shields.io/badge/WordPress-4.0%20--%206.8%2B-21759b.svg)](https://wordpress.org/plugins/ultimate-responsive-image-slider/)
 [![PHP](https://img.shields.io/badge/PHP-7.0%2B-777bb4.svg)](https://www.php.net/)
 [![License](https://img.shields.io/badge/license-GPLv2%20or%20later-green.svg)](https://www.gnu.org/licenses/gpl-2.0.html)
@@ -201,7 +201,16 @@ The plugin comes localized and translation-ready. Included translation files:
 
 ## 📝 Changelog
 
-### **v3.5.19** *(Current Release)*
+### **v3.5.20** *(Current Release - October 28, 2026)*
+- 🔄 **Database Version Tracking**: Added automated DB versioning (`uris_plugin_version`, `uris_db_version`) and upgrade migration hooks for future updates.
+- 📐 **Overlap Fix**: Resolved Slide Title and Description collision on multi-line text using dynamic unified flexbox layout.
+- 🔘 **Navigation Dots & Bullets**: Fixed pagination dots gap, alignment, and hover styling.
+- 🎨 **Visual Styling**: Corrected slide title background opacity and contrast visibility.
+- ⏹️ **Sharp Slide Corners**: Enforced crisp 0px border radius on slide images and masks.
+- 🌐 **Theme Layout Harmony**: Eliminated outer wrapper conflicts, restoring full native theme width and exact slider sizing.
+- 🛡️ **100% Backward Compatibility**: Verified and seamless upgrade from v3.5.19 for 30,000+ active installations.
+
+### **v3.5.19**
 - 🔒 **Security Hardening**: Resolved all WordPress Plugin Check notices and warnings.
 - 🛡️ Enhanced input sanitization and output escaping.
 - 🚀 Verified compatibility up to WordPress 6.8+.

@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 class WPFURIS_Product_Menu {

@@ -21,3 +21,5 @@ desktop.ini
 *.log
 *.tmp
 *.bak
+screenshots/*.png
+migration_test_screens/

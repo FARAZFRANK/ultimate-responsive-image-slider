@@ -224,7 +224,7 @@ Simply copy the slider shortcode `[URIS id=123]` (replace 123 with your slider I
 Yes! Ultimate Slider is 100% responsive and mobile-friendly. It automatically adapts to all screen sizes, including desktop, tablet, and mobile devices. The slider also supports touch-enabled swipe navigation for mobile users.
 
 = Can I add unlimited slides to a slider? =
-Absolutely! You can add as many image slides as you want to each slider. There are no limitations on the number of slides in the free version.
+Absolutely! You can add as many image slides as you want to each slider. The free version has no limit on the number of slides.
 
 = Can I create multiple sliders? =
 Yes! You can create unlimited sliders with different settings and use them on different pages or posts throughout your website.
@@ -232,8 +232,8 @@ Yes! You can create unlimited sliders with different settings and use them on di
 = Will this plugin work with my WordPress theme? =
 Yes, Ultimate Slider is compatible with all WordPress themes that follow WordPress coding standards. It works seamlessly with popular themes and page builders like Elementor, Divi, Beaver Builder, and Gutenberg.
 
-= Is this plugin compatible top WordPress themes? =
-Yes! Ultimate Responsive Image Slider is 100% compatible and tested with the popular WordPress themes (including WordPress default Twenty-series themes). It runs smoothly without CSS or layout conflicts across:
+= Is this plugin compatible with top WordPress themes? =
+Yes! Ultimate Responsive Image Slider is 100% compatible and tested with popular WordPress themes (including WordPress default Twenty-series themes). It runs smoothly without CSS or layout conflicts across:
 1. Astra
 2. OceanWP
 3. GeneratePress
@@ -339,7 +339,7 @@ Visit our [upgrade page](http://wpfrank.com/account/signup/ultimate-responsive-i
 6. **Slider with Text Overlay** - Add compelling captions, titles, or descriptions directly on your slides for better storytelling
 7. **Carousel with Thumbnail Navigation** - Navigate through slides using clickable thumbnail previews for enhanced user experience
 8. **Intuitive Image Uploader** - Easily upload and manage images via WordPress Media Library with drag-and-drop functionality
-9. **Comprehensive Settings Options** - Customize every aspect of your sliders including transitions, speed, colors, and navigation styles
+9. **Comprehensive Settings Options** - Customize every aspect of your sliders, including transitions, speed, colors, and navigation styles
 10. **Easy Shortcode Generation** - Copy shortcodes directly from the dashboard and paste anywhere on your site
 
 == Changelog ==
@@ -400,7 +400,7 @@ Visit our [upgrade page](http://wpfrank.com/account/signup/ultimate-responsive-i
 
 = 3.5.13 =
 * Added lazy loading tag for slide image optimization (improves page speed)
-* Note: Lazy loading not supported by Safari browser
+* Note: Lazy loading is not supported by the Safari browser
 * Added 7 new language translations:
   - Arabic (ar)
   - Chinese (zh_CN)
@@ -461,7 +461,7 @@ Security update: Fixes WPScan vulnerability. Please update as soon as possible.
 
 **Why Choose Ultimate Slider?**
 
-With over 1.5 million downloads and a 4.5-star rating, Ultimate Slider has become the trusted choice for WordPress users worldwide. Whether you're a beginner or an experienced developer, our plugin offers the perfect balance of simplicity and power.
+With over 1.5 million downloads and a 4.5-star rating, Ultimate Slider is a trusted choice for WordPress users worldwide. Whether you're a beginner or an experienced developer, our plugin offers the perfect balance of simplicity and power.
 
 **Key Advantages:**
 - No coding skills required

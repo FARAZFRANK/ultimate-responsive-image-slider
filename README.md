@@ -190,13 +190,9 @@ The plugin comes localized and translation-ready. Included translation files:
 
 ## 🖼️ Screenshots & Previews
 
-| Header / Hero Slider | Thumbnail Carousel Navigation |
+| Header Slider Example | Inline Slider Within Content |
 | :---: | :---: |
-| ![Header Slider](assets/img/preview/slider-width.png) | ![Thumbnail Slider](assets/img/preview/thumbnail-position.png) |
-
-| Navigation & Controls | Slide Titles & Overlays |
-| :---: | :---: |
-| ![Navigation](assets/img/preview/show-navigation-arrow.png) | ![Text Overlay](assets/img/preview/display-slide-title.png) |
+| ![Header Slider Example](screenshots/screenshot-1.jpg) | ![Inline Slider Within Content](screenshots/screenshot-2.jpg) |
 
 ---
 

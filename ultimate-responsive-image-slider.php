@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 /**
@@ -1051,4 +1051,3 @@ function uris_scripts() {
 // URIS Shortcode
 require_once("shortcode.php");
 require_once('products.php');
-?>

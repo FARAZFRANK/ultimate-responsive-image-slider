@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 class WPFURIS_Product_Menu {
@@ -57,4 +57,3 @@ class WPFURIS_Product_Menu {
 	}
 }
 add_action( 'admin_menu' , array( 'WPFURIS_Product_Menu', 'create_menu' ) );
-?>

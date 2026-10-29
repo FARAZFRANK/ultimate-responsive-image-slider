@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 wp_enqueue_style( 'uris-feature-notice-css', URIS_PLUGIN_URL . 'assets/css/uris-feature-notice.css', array(), '1.2', 'all' );

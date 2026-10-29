@@ -1,4 +1,4 @@
-﻿# Ultimate Responsive Image Slider
+# Ultimate Responsive Image Slider
 
 [![Version](https://img.shields.io/badge/version-v3.5.20-blue.svg)](https://github.com/FARAZFRANK/ultimate-responsive-image-slider)
 [![WordPress](https://img.shields.io/badge/WordPress-4.0%20--%206.8%2B-21759b.svg)](https://wordpress.org/plugins/ultimate-responsive-image-slider/)

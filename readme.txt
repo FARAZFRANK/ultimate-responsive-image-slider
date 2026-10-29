@@ -1,4 +1,4 @@
-﻿=== Ultimate Responsive Image Slider ===
+=== Ultimate Responsive Image Slider ===
 Contributors: awordpresslife, razipathhan, hanif0991, muhammadshahid, fkfaisalkhan007, sharikkhan007, zishlife
 Author: FARAZFRANK
 Tags: slider, image slider, responsive slider, photo gallery, carousel

@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 add_shortcode( 'URIS', 'Wpfrank_URIS_Shortcode' );

@@ -1,5 +1,5 @@
 ﻿=== Ultimate Responsive Image Slider ===
-Contributors: awordpresslife, razipathhan, hanif0991, muhammadshahid, fkfaisalkhan007, sharikkhan007, zishlife, FARAZFRANK
+Contributors: awordpresslife, razipathhan, hanif0991, muhammadshahid, fkfaisalkhan007, sharikkhan007, zishlife
 Author: FARAZFRANK
 Tags: slider, image slider, responsive slider, photo gallery, carousel
 Requires at least: 4.9
@@ -231,6 +231,26 @@ Yes! You can create unlimited sliders with different settings and use them on di
 
 = Will this plugin work with my WordPress theme? =
 Yes, Ultimate Slider is compatible with all WordPress themes that follow WordPress coding standards. It works seamlessly with popular themes and page builders like Elementor, Divi, Beaver Builder, and Gutenberg.
+
+= Is this plugin compatible top WordPress themes? =
+Yes! Ultimate Responsive Image Slider is 100% compatible and tested with the popular WordPress themes (including WordPress default Twenty-series themes). It runs smoothly without CSS or layout conflicts across:
+1. Astra
+2. OceanWP
+3. GeneratePress
+4. Kadence
+5. Neve
+6. Hello Elementor
+7. Divi
+8. Avada
+9. Blocksy
+10. Sydney
+11. Flatsome
+12. Hestia
+13. ColorMag
+14. Enfold
+15. Zakra
+
+Whether your theme is a lightweight block theme, multipurpose builder theme, or WooCommerce storefront, the slider conforms cleanly to your page containers and layout widths.
 
 = Is the plugin compatible with page builders? =
 Yes! Ultimate Slider works perfectly with all major page builders, including:

@@ -22,6 +22,7 @@
 - [Configuration & Settings](#-configuration--settings)
 - [Supported Languages](#-supported-languages)
 - [Screenshots & Previews](#-screenshots--previews)
+- [Frequently Asked Questions](#-frequently-asked-questions)
 - [Changelog](#-changelog)
 - [Contributing](#-contributing)
 - [License](#-license)
@@ -196,6 +197,31 @@ The plugin comes localized and translation-ready. Included translation files:
 | Navigation & Controls | Slide Titles & Overlays |
 | :---: | :---: |
 | ![Navigation](assets/img/preview/show-navigation-arrow.png) | ![Text Overlay](assets/img/preview/display-slide-title.png) |
+
+---
+
+
+## ❓ Frequently Asked Questions
+
+### Is this plugin compatible with the top 15 WordPress themes?
+Yes! Ultimate Responsive Image Slider is 100% compatible and tested with the top 15 popular WordPress themes (excluding default WordPress Twenty-series themes). It runs smoothly without CSS or layout conflicts across:
+1. **Astra**
+2. **OceanWP**
+3. **GeneratePress**
+4. **Kadence**
+5. **Neve**
+6. **Hello Elementor**
+7. **Divi**
+8. **Avada**
+9. **Blocksy**
+10. **Sydney**
+11. **Flatsome**
+12. **Hestia**
+13. **ColorMag**
+14. **Enfold**
+15. **Zakra**
+
+Whether your theme is a lightweight block theme, multipurpose builder theme, or WooCommerce storefront, the slider conforms cleanly to your page containers and layout widths.
 
 ---
 

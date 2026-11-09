@@ -21,5 +21,9 @@ desktop.ini
 *.log
 *.tmp
 *.bak
+.playwright-mcp/
 screenshots/*.png
+screenshots/*/*.png
+screenshots/sliders_info.json
 migration_test_screens/
+MIGRATION_TESTING_REPORT.md

@@ -1,1053 +1,148 @@
 <?php
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
-
-/**
- * Plugin Name:       Ultimate Responsive Image Slider
- * Plugin URI:        http://wpfrank.com/
- * Description:	  Add unlimited image slides using Ultimate Responsive Image Slider in any Page and Post content to give an attractive mode to represent contents.
- * Version:           3.5.20
- * Requires at least: 4.9
- * Requires PHP:      7.0
- * Author:            FARAZFRANK
- * Author URI:        https://profiles.wordpress.org/farazfrank/
- * License:           GPL v2 or later
- * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:       ultimate-responsive-image-slider
- * Domain Path:       /languages
-
-Ultimate Responsive Image Slider is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 2 of the License, or any later version.
-
-Ultimate Responsive Image Slider is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with Ultimate Responsive Image Slider. If not, see http://www.gnu.org/licenses/gpl-2.0.html.
+/*
+Plugin Name: Ultimate Responsive Image Slider
+Plugin URI:  https://wpfrank.com/
+Description: Ultimate Responsive Image Slider is a fully responsive WordPress image slider plugin with clean touch navigation, thumbnail carousel, and full backward compatibility.
+Version:     4.0.0
+Author:      WP Frank
+Author URI:  https://wpfrank.com/
+Text Domain: ultimate-responsive-image-slider
+Domain Path: /languages
+License:     GPL2
 */
+ 
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+ 
+/**
+ * Constant Variables
+ */
+define( "URIS_TD", "ultimate-responsive-image-slider" );
+define( "URIS_PLUGIN_URL", plugin_dir_url(__FILE__) );
+define( "URIS_PLUGIN_DIR_PATH", plugin_dir_path(__FILE__) );
+define( "URIS_PLUGIN_VER", "4.0.0" );
 
-//Constant Variable
-define("URIS_PLUGIN_URL", plugin_dir_url(__FILE__));
-define("URIS_PLUGIN_VER", '3.5.20');
-
-// Apply default settings on activation
-register_activation_hook( __FILE__, 'uris_default_settings_pro' );
-function uris_default_settings_pro() {
-	$DefaultSettingsProArray = serialize( array(
-		//layout 3 settings
-		"WRIS_L3_Slide_Title"			=> 0,
-		"WRIS_L3_Show_Slide_Title"		=> 0,
-		"WRIS_L3_Show_Slide_Desc"		=> 0,
-		"WRIS_L3_Auto_Slideshow"		=> 1,
-		"WRIS_L3_Transition"			=> 1,
-		"WRIS_L3_Transition_Speed"		=> 5000,
-		"WRIS_L3_Sliding_Arrow"			=> 1,
-		"WRIS_L3_Slider_Navigation"		=> 1,
-		"WRIS_L3_Navigation_Button"		=> 1,
-		"WRIS_L3_Slider_Width"			=> "1000",
-		"WRIS_L3_Slider_Height"			=> "500",
-		"WRIS_L3_Font_Style"			=> "Arial",
-		"WRIS_L3_Title_Color"			=> "#FFFFFF",
-		"WRIS_L3_Slider_Scale_Mode"		=> "cover",
-		"WRIS_L3_Slider_Auto_Scale"		=> 1,
-		"WRIS_L3_Title_BgColor"			=> "#FFFFFF",
-		"WRIS_L3_Desc_Color"			=> "#000000",
-		"WRIS_L3_Desc_BgColor"			=> "#FFFFFF",
-		"WRIS_L3_Navigation_Color"		=> "#000000",
-		"WRIS_L3_Fullscreeen"			=> 1,
-		"WRIS_L3_Custom_CSS"			=> "",
-		'WRIS_L3_Slide_Order'			=> "ASC",
-		'WRIS_L3_Navigation_Position'	=> "bottom",
-		'WRIS_L3_Slide_Distance'		=> 5,
-		'WRIS_L3_Thumbnail_Style'		=> "border",
-		'WRIS_L3_Thumbnail_Width'		=> 120,
-		'WRIS_L3_Thumbnail_Height'		=> 120,
-		'WRIS_L3_Width'					=> "custom",
-		'WRIS_L3_Height'					=> "custom",
-		'WRIS_L3_Navigation_Bullets_Color' => "#000000",
-		'WRIS_L3_Navigation_Pointer_Color' => "#000000",
-	));
-	add_option("WRIS_Settings", $DefaultSettingsProArray);
-
-	// Also record initial version on activation
-	if ( ! get_option( 'uris_plugin_version' ) ) {
-		update_option( 'uris_plugin_version', URIS_PLUGIN_VER );
-		update_option( 'uris_db_version', '1.0.0' );
-		update_option( 'uris_initial_version', URIS_PLUGIN_VER );
-		update_option( 'uris_install_date', current_time( 'mysql' ) );
-	}
+// Compatibility aliases for shared components
+if ( ! defined( 'RISP_PLUGIN_URL' ) ) {
+	define( 'RISP_PLUGIN_URL', URIS_PLUGIN_URL );
+}
+if ( ! defined( 'RISP_PLUGIN_DIR_PATH' ) ) {
+	define( 'RISP_PLUGIN_DIR_PATH', URIS_PLUGIN_DIR_PATH );
+}
+if ( ! defined( 'RISP_PLUGIN_VER' ) ) {
+	define( 'RISP_PLUGIN_VER', URIS_PLUGIN_VER );
+}
+if ( ! defined( 'RIS_PLUGIN_URL' ) ) {
+	define( 'RIS_PLUGIN_URL', URIS_PLUGIN_URL );
+}
+if ( ! defined( 'RIS_PLUGIN_DIR_PATH' ) ) {
+	define( 'RIS_PLUGIN_DIR_PATH', URIS_PLUGIN_DIR_PATH );
 }
 
-// Track Version & Handle Upgrades across versions (works on activations, manual updates, and auto-updates)
-add_action( 'plugins_loaded', 'uris_check_version_and_updates', 5 );
-function uris_check_version_and_updates() {
-	$installed_ver = get_option( 'uris_plugin_version', '' );
-	if ( $installed_ver === URIS_PLUGIN_VER ) {
+// Add or update plugin version & run migration
+register_activation_hook( __FILE__, 'wpfrank_uris_activate' );
+function wpfrank_uris_activate(){
+	$uris_new_version = URIS_PLUGIN_VER;
+	// Default to '0' so installs that never stored a version still migrate.
+	$uris_previous_version = get_option("wpfrank_uris_current_version", '0');
+
+	update_option("wpfrank_uris_previous_version", $uris_previous_version);
+
+	// Make the dedicated capabilities real capabilities of the administrator role.
+	if ( function_exists( 'uris_grant_admin_capabilities' ) ) {
+		uris_grant_admin_capabilities();
+	}
+
+	// Run migration from legacy v3.5.19 format if needed
+	if ( version_compare( (string)$uris_previous_version, '4.0.0', '<' ) ) {
+		require_once URIS_PLUGIN_DIR_PATH . 'includes/migration.php';
+		if ( function_exists( 'uris_run_migration' ) ) {
+			uris_run_migration();
+		}
+	}
+
+	// Stored only after the migration finished: on failure the next request retries.
+	update_option("wpfrank_uris_current_version", $uris_new_version);
+	update_option( 'uris_migration_attempts', 0 );
+}
+
+// Automatic check on plugin update
+add_action( 'admin_init', 'wpfrank_uris_check_version_update' );
+function wpfrank_uris_check_version_update() {
+	$current_version = get_option( 'wpfrank_uris_current_version', '1.0.0' );
+
+	if ( ! version_compare( (string) $current_version, URIS_PLUGIN_VER, '<' ) ) {
 		return;
 	}
 
-	$has_legacy_data = ( get_option( 'WRIS_Settings', false ) !== false );
-	$previous_ver = ! empty( $installed_ver ) ? $installed_ver : ( $has_legacy_data ? '3.5.19' : 'fresh_install' );
-
-	$history = get_option( 'uris_version_history', array() );
-	if ( ! is_array( $history ) ) {
-		$history = array();
+	// Bounded retries: one deterministically broken slider must not run the
+	// whole batch on every admin request.
+	$attempts = (int) get_option( 'uris_migration_attempts', 0 );
+	if ( $attempts >= 3 ) {
+		return;
 	}
-	$history[] = array(
-		'from' => $previous_ver,
-		'to'   => URIS_PLUGIN_VER,
-		'date' => current_time( 'mysql' ),
-	);
 
-	// Trigger upgrade routines
-	uris_run_upgrade_routines( $previous_ver, URIS_PLUGIN_VER );
+	update_option( 'wpfrank_uris_previous_version', $current_version );
 
-	// Save updated options in DB
-	update_option( 'uris_plugin_version', URIS_PLUGIN_VER );
-	update_option( 'uris_db_version', '1.0.0' );
-	update_option( 'uris_previous_version', $previous_ver );
-	update_option( 'uris_last_update_date', current_time( 'mysql' ) );
-	update_option( 'uris_version_history', $history );
+	require_once URIS_PLUGIN_DIR_PATH . 'includes/migration.php';
+	$migrated = function_exists( 'uris_run_migration' ) ? uris_run_migration() : true;
 
-	if ( ! get_option( 'uris_initial_version' ) ) {
-		update_option( 'uris_initial_version', $has_legacy_data ? '3.5.19' : URIS_PLUGIN_VER );
-		update_option( 'uris_install_date', current_time( 'mysql' ) );
+	if ( ! $migrated ) {
+		update_option( 'uris_migration_attempts', $attempts + 1 );
+		return;
+	}
+
+	update_option( 'uris_migration_attempts', 0 );
+	update_option( 'wpfrank_uris_current_version', URIS_PLUGIN_VER );
+}
+
+// Core requires
+require_once( URIS_PLUGIN_DIR_PATH . 'includes/defaults.php' );
+require_once( URIS_PLUGIN_DIR_PATH . 'includes/class-urisp-fonts.php' );
+if ( function_exists( 'urisp_fonts' ) ) {
+	urisp_fonts();
+}
+require_once( URIS_PLUGIN_DIR_PATH . 'includes/dynamic-source.php' );
+require_once( URIS_PLUGIN_DIR_PATH . 'includes/slide-loader.php' );
+require_once( URIS_PLUGIN_DIR_PATH . 'includes/elementor-widget.php' );
+require_once( URIS_PLUGIN_DIR_PATH . 'includes/gutenberg-block.php' );
+require_once( URIS_PLUGIN_DIR_PATH . 'init.php' );
+require_once( URIS_PLUGIN_DIR_PATH . 'shortcode.php' );
+
+/**
+ * Registers (once) the single set of frontend handles used by the shortcode,
+ * the Gutenberg block and the Elementor widget.
+ */
+function uris_register_frontend_assets() {
+	$ver = defined( 'URIS_PLUGIN_VER' ) ? URIS_PLUGIN_VER : '4.0.0';
+	$js_file = URIS_PLUGIN_DIR_PATH . 'assets/js/jquery.sliderPro.js';
+	$js_ver  = file_exists( $js_file ) ? filemtime( $js_file ) : $ver;
+	$fe_css  = URIS_PLUGIN_DIR_PATH . 'assets/css/urisp-frontend.css';
+	$fe_ver  = file_exists( $fe_css ) ? filemtime( $fe_css ) : $ver;
+	$mod_css = URIS_PLUGIN_DIR_PATH . 'assets/css/urisp-modern.css';
+	$mod_ver = file_exists( $mod_css ) ? filemtime( $mod_css ) : $ver;
+
+	if ( ! wp_script_is( 'wpfrank-uris-jquery-sliderPro-js', 'registered' ) ) {
+		wp_register_script('wpfrank-uris-jquery-sliderPro-js', URIS_PLUGIN_URL . 'assets/js/jquery.sliderPro.js', array('jquery'), $js_ver, true);
+	}
+	if ( ! wp_style_is( 'wpfrank-uris-slider-pro-min-css', 'registered' ) ) {
+		wp_register_style('wpfrank-uris-slider-pro-min-css', URIS_PLUGIN_URL . 'assets/css/slider-pro.min.css', array(), $ver);
+	}
+	if ( ! wp_style_is( 'wpfrank-uris-frontend-css', 'registered' ) ) {
+		wp_register_style('wpfrank-uris-frontend-css', URIS_PLUGIN_URL . 'assets/css/urisp-frontend.css', array(), $fe_ver);
+	}
+	if ( ! wp_style_is( 'wpfrank-uris-modern-css', 'registered' ) ) {
+		wp_register_style('wpfrank-uris-modern-css', URIS_PLUGIN_URL . 'assets/css/urisp-modern.css', array(), $mod_ver);
+	}
+	if ( ! wp_style_is( 'wpfrank-uris-skins-css', 'registered' ) ) {
+		wp_register_style('wpfrank-uris-skins-css', URIS_PLUGIN_URL . 'assets/css/urisp-skins.css', array(), $ver);
 	}
 }
 
 /**
- * Migration & Upgrade Routines Runner
- * Hook into this for future major version migrations (e.g. v4.0.0)
+ * CSS and JS scripts for Free URIS Frontend
  */
-function uris_run_upgrade_routines( $from_version, $to_version ) {
-	do_action( 'uris_upgrade_routine', $from_version, $to_version );
+function uris_frontend_scripts() {
+	wp_enqueue_script('jquery');
+	uris_register_frontend_assets();
 }
-
-// Add settings link on Plugins page
-function uris_plugin_action_links($links) {
-	$ris_pro_link = ('<a href="http://wpfrank.com/demo/ultimate-responsive-image-slider-pro/" target="_blank">Try Pro</a>');
-	array_unshift($links, $ris_pro_link);
-	$ris_settings_link = ('<a href="edit.php?post_type=ris_gallery">Settings</a>');
-	array_unshift($links, $ris_settings_link);
-	return $links;
-}
-$uris_plugin_name = plugin_basename(__FILE__);
-add_filter("plugin_action_links_$uris_plugin_name", 'uris_plugin_action_links' );
-
-// Slider Text Widget Support
-add_filter( 'widget_text', 'do_shortcode' );
-
-class URIS {
-
-	private static $instance;
-	private $admin_thumbnail_size = 150;
-	private $thumbnail_size_w = 150;
-	private $thumbnail_size_h = 150;
-	var $counter;
-
-	public static function forge() {
-		if (!isset(self::$instance)) {
-			$className = __CLASS__;
-			self::$instance = new $className;
-		}
-		return self::$instance;
-	}
-
-	private function __construct() {
-		$this->counter = 0;
-		// image crop function
-		add_image_size('rpg_gallery_admin_thumb', $this->admin_thumbnail_size, $this->admin_thumbnail_size, true);
-		add_image_size('rpg_gallery_thumb', $this->thumbnail_size_w, $this->thumbnail_size_h, true);
-		// Translate plugin
-		add_action('plugins_loaded', array(&$this, 'URIS_Translate'), 1);
-		// CPT Function
-		add_action('init', array(&$this, 'ResponsiveImageSlider'),1);
-		// generate meta box function
-		add_action('add_meta_boxes', array(&$this, 'add_all_ris_meta_boxes'));
-		add_action('admin_init', array(&$this, 'add_all_ris_meta_boxes'), 1);
-		// meta box setting save function
-		add_action('save_post', array(&$this, 'add_image_meta_box_save'), 9, 1);
-		add_action('save_post', array(&$this, 'ris_settings_meta_save'), 9, 1);
-		// add new slide function
-		add_action('wp_ajax_uris_get_thumbnail', array(&$this, 'ajax_get_thumbnail_uris'));
-
-		// only for admin dashboard clone slider ajax JS
-		add_action( 'admin_enqueue_scripts', array(&$this, 'uris_scripts'));
-		
-		//clone slider ajax call back, its required localize ajax object
-		add_action('wp_ajax_uris_clone_slider', array(&$this, 'uris_clone_slider'));
-	}
-
-	/**
-	 * Scripts and styles should not be registered or enqueued until the wp_enqueue_scripts, admin_enqueue_scripts, or login_enqueue_scripts hooks. 
-	 */
-	public function uris_scripts() {
-		wp_enqueue_script( 'ajax-script', URIS_PLUGIN_URL. 'assets/js/uris-ajax-script.js', array('jquery'), URIS_PLUGIN_VER, true);
-		wp_localize_script( 'ajax-script', 'uris_ajax_object', array(
-			'ajax_url' => admin_url( 'admin-ajax.php' ),
-			'nonce' => wp_create_nonce( 'uris-ajax-nonce' )
-		));
-	}
-	
-	//Clone slider call back
-	public function uris_clone_slider() {
-
-		if ( current_user_can( 'manage_options' ) ) {
-		    if ( isset( $_POST['uris_clone_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['uris_clone_nonce'] ) ), 'uris_clone_nonce' ) ) {
-			   $ursi_clone_post_id = isset( $_POST['ursi_clone_post_id'] ) ? sanitize_text_field( wp_unslash( $_POST['ursi_clone_post_id'] ) ) : '';
-
-			   // Validate post ID
-			   if ( !get_post_status( $ursi_clone_post_id ) || get_post_type( $ursi_clone_post_id ) !== 'ris_gallery' ) {
-				  wp_die( 'Invalid post ID or type' );
-			   }
-
-			   // Get and set data
-			   $post_title = get_the_title( $ursi_clone_post_id ) . " - Clone";
-			   $post_type = 'ris_gallery';
-			   $post_status = 'publish';
-
-			   // Get slide details and settings
-			   $post_post_meta = get_post_meta( $ursi_clone_post_id, 'ris_all_photos_details', true );
-			   $WRIS_Gallery_Settings_Key = "WRIS_Gallery_Settings_" . $ursi_clone_post_id;
-			   $post_post_settings = get_post_meta( $ursi_clone_post_id, $WRIS_Gallery_Settings_Key, true );
-
-			   // Prepare cloning array
-			   $uris_cloning_post_array = array(
-				  'post_title' => $post_title,
-				  'post_type' => $post_type,
-				  'post_status' => $post_status,
-				  'meta_input' => array(
-					 'ris_all_photos_details' => $post_post_meta,
-				  ),
-			   );
-
-			   // Insert cloned post and check for errors
-			   $cloned_post_id = wp_insert_post( $uris_cloning_post_array );
-			   if ( is_wp_error( $cloned_post_id ) || $cloned_post_id === 0 ) {
-				  wp_die( esc_html( 'Error cloning post: ' . ( is_wp_error( $cloned_post_id ) ? $cloned_post_id->get_error_message() : 'Unknown error' ) ) );
-			   }
-
-			   // Add settings meta
-			   add_post_meta( $cloned_post_id, "WRIS_Gallery_Settings_" . $cloned_post_id, $post_post_settings );
-
-			   // Return success response
-			   wp_send_json_success( array( 'cloned_post_id' => $cloned_post_id ) );
-		    }
-		    wp_die( 'Nonce verification failed' );
-		}
-	}
-	
-	/**
-	 * Translate Plugin
-	 */
-	public function URIS_Translate() {
-		// phpcs:ignore PluginCheck.CodeAnalysis.DiscouragedFunctions.load_plugin_textdomainFound
-		load_plugin_textdomain( 'ultimate-responsive-image-slider', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
-	}
-
-	// Register Custom Post Type
-	public function ResponsiveImageSlider() {
-		if ( current_user_can( 'manage_options' ) ) {
-			$uris_labels = array(
-				'name' => 'Ultimate Responsive Image Slider',
-				'singular_name' => 'Ultimate Responsive Image Slider',
-				'add_new' => __( 'Add New Slider', 'ultimate-responsive-image-slider' ),
-				'add_new_item' => __( 'Add New Slider', 'ultimate-responsive-image-slider' ),
-				'edit_item' => __( 'Edit Slider', 'ultimate-responsive-image-slider' ),
-				'new_item' => __( 'New Slider', 'ultimate-responsive-image-slider' ),
-				'view_item' => __( 'View Slider', 'ultimate-responsive-image-slider' ),
-				'search_items' => __( 'Search Slider', 'ultimate-responsive-image-slider' ),
-				'not_found' => __( 'No Slider found', 'ultimate-responsive-image-slider' ),
-				'not_found_in_trash' => __( 'No Slider Found in Trash', 'ultimate-responsive-image-slider' ),
-				'parent_item_colon' => __( 'Parent Slider:', 'ultimate-responsive-image-slider' ),
-				'all_items' => __( 'All Sliders', 'ultimate-responsive-image-slider' ),
-				'menu_name' => 'UR Image Slider',
-			);
-			$args = array(
-				'labels' => $uris_labels,
-				'hierarchical' => false,
-				'supports' => array( 'title'),
-				'public' => false,
-				'show_ui' => true,
-				'show_in_menu' => true,
-				'menu_position' => 10,
-				'menu_icon' => 'dashicons-format-gallery',
-				'show_in_nav_menus' => false,
-				'publicly_queryable' => false,
-				'exclude_from_search' => true,
-				'has_archive' => true,
-				'query_var' => true,
-				'can_export' => true,
-				'rewrite' => false,
-			);
-			register_post_type( 'ris_gallery', $args );
-			add_filter( 'manage_edit-ris_gallery_columns', array(&$this, 'ris_gallery_columns' )) ;
-			add_action( 'manage_ris_gallery_posts_custom_column', array(&$this, 'ris_gallery_manage_columns' ), 10, 2 );
-		}
-	}
-
-	function ris_gallery_columns( $columns ){
-		$columns = array(
-			'cb' => '<input type="checkbox" />',
-			'title' => __( 'UR Image Slider Title', 'ultimate-responsive-image-slider' ),
-			'shortcode' => __( 'Slider Shortcode', 'ultimate-responsive-image-slider' ),
-			'date' => __( 'Date', 'ultimate-responsive-image-slider' )
-		);
-		return $columns;
-	}
-
-	function ris_gallery_manage_columns( $column, $post_id ){
-		global $post;
-		switch( $column ) {
-			case 'shortcode' :
-				$allowed_shortcode = array('input' => array( 'type' => array(), 'value' => array(), 'readonly' => array() ));
-				echo wp_kses('<input type="text" value="[URIS id='.$post_id.']" readonly="readonly" />', $allowed_shortcode);
-			break;
-			default :
-			break;
-		}
-	}
-
-	public function add_all_ris_meta_boxes() {
-		add_meta_box( __('Add Slides', 'ultimate-responsive-image-slider'), __('Add Slides', 'ultimate-responsive-image-slider'), array(&$this, 'ris_generate_add_image_meta_box_function'), 'ris_gallery', 'normal', 'low' );
-		add_meta_box( __('Configure Settings', 'ultimate-responsive-image-slider'), __('Configure Settings', 'ultimate-responsive-image-slider'), array(&$this, 'ris_settings_meta_box_function'), 'ris_gallery', 'normal', 'low');
-		add_meta_box( 'Upgrade To Pro Plugin', 'Upgrade To Pro Plugin', array(&$this, 'ris_upgrade_to_pro_meta_box_function'), 'ris_gallery', 'normal', 'low');
-		add_meta_box ( __('Slider Shortcode', 'ultimate-responsive-image-slider'), __('Slider Shortcode', 'ultimate-responsive-image-slider'), array(&$this, 'ris_shotcode_meta_box_function'), 'ris_gallery', 'side', 'low');
-		add_meta_box ( __('Try My New Slider Plugin', 'ultimate-responsive-image-slider'), __('Try My New Slider Plugin', 'ultimate-responsive-image-slider'), array(&$this, 'ris_new_plugin_meta_box_function'), 'ris_gallery', 'side', 'low');
-		add_meta_box('Show US Some Love & Rate Us', 'Show US Some Love & Rate Us', array(&$this, 'uris_Rate_us_meta_box_function'), 'ris_gallery', 'side', 'low');
-	}
-
-	//Rate Us Meta Box
-	public function uris_Rate_us_meta_box_function() { ?>
-		<style>
-		.urisp-rate-us span.dashicons {
-			width: 30px;
-			height: 30px;
-		}
-		.urisp-rate-us span.dashicons-star-filled:before {
-			content: "\f155";
-			font-size: 30px;
-		}
-		.wpf_uris_fivestar{
-			width: 80%;
-		}
-		a.wpf_fs_btn {
-			text-decoration: none;
-			background-color: #d72323;
-			padding-left: 20px;
-			padding-right: 20px;
-			border-radius: 5px;
-			color: #fff;
-			padding-top: 8px;
-			padding-bottom: 8px;
-		}
-		a:focus, a:hover {
-			color: #fff !important;
-			text-decoration: none !important;
-		}
-		</style>
-		<div align="center">
-			<p>Please Review & Rate Us On WordPress</p>
-			<a class="upgrade-to-pro-demo urisp-rate-us" style=" text-decoration: none; height: 40px; width: 40px;" href="https://wordpress.org/support/plugin/ultimate-responsive-image-slider/reviews/#new-post" target="_blank">
-				<img loading="lazy" class="wpf_uris_fivestar" src="<?php echo esc_url( URIS_PLUGIN_URL . 'assets/img/5star.jpg' ); ?>">
-			</a>
-		</div>
-		<div class="upgrade-to-pro" style="text-align:center;margin-bottom:10px;margin-top:10px;">
-			<a href="https://wordpress.org/support/plugin/ultimate-responsive-image-slider/reviews/#new-post" target="_blank" class="wpf_fs_btn">RATE US</a>
-		</div>
-		<?php
-	}
-
-	//Upgrade To Meta Box
-	public function ris_upgrade_to_pro_meta_box_function() { ?>
-		<div class="welcome-panel-column" id="wpfrank-action-metabox">
-			<h4>Unlock More Features in Ultimate Responsive Image Slider Pro</h4>
-			<p>5 Design Layouts, Transition Effect, Color Customizations, 500+ Google Fonts For Slide Title & Description, Slides Ordering, Link On Slides, 2 Light Box Style, Various Slider Control Settings</p>
-			<a class="button button-primary button-hero load-customize hide-if-no-customize wpfrank-action-button" target="_blank" href="http://wpfrank.com/demo/ultimate-responsive-image-slider-pro/">Check Pro Plugin Demo</a>
-			<a class="button button-primary button-hero load-customize hide-if-no-customize wpfrank-action-button" target="_blank" href="http://wpfrank.com/account/signup/ultimate-responsive-image-slider-pro">Buy Pro Plugin $35</a>
-			<h4>Also Try My New Slider Plugin</h4>
-			<a class="button button-primary button-hero load-customize hide-if-no-customize wpfrank-action-button" target="_blank" href="https://wordpress.org/plugins/slider-factory/">Slider Factory</a>
-		</div>
-		<?php
-	}
-
-	/**
-	 * This function display Add New Image interface
-	 * Also loads all saved gallery photos into photo gallery
-	 */
-	public function ris_generate_add_image_meta_box_function($post) { ?>
-		<div id="uris-container" class="uris-container">
-			<input type="hidden" id="uris-save-action" name="uris-save-action" value="uris-save-settings">
-			<?php wp_nonce_field( 'uris_save_action', 'uris_save_nonce' ); ?>
-			<ul id="uris-slides-container" class="clearfix SortSlides">
-				<?php
-				/* load all slide into dashboard */
-				$URIS_All_Slide_Ids = get_post_meta( $post->ID, 'ris_all_photos_details', true);
-				if ( is_string( $URIS_All_Slide_Ids ) ) {
-					$URIS_All_Slide_Ids = maybe_unserialize( $URIS_All_Slide_Ids );
-				}
-				if ( ! is_array( $URIS_All_Slide_Ids ) ) {
-					$URIS_All_Slide_Ids = array();
-				}
-				$TotalSlideIds = count( $URIS_All_Slide_Ids );
-				
-				$i = 0;
-				if($TotalSlideIds) {
-					foreach($URIS_All_Slide_Ids as $URIS_Slide_Id) {
-						if ( empty( $URIS_Slide_Id['rpgp_image_id'] ) ) {
-							continue;
-						}
-						$slide_id = $URIS_Slide_Id['rpgp_image_id'];
-						$attachment = get_post( $slide_id ); // get all slide details
-						if ( ! $attachment ) {
-							continue;
-						}
-						$slide_alt = get_post_meta( $attachment->ID, '_wp_attachment_image_alt', true );
-						$slide_caption = $attachment->post_excerpt;
-						$slide_description = $attachment->post_content;
-						$slide_src = isset( $attachment->guid ) ? $attachment->guid : ""; //  full image URL
-						$slide_title = $attachment->post_title; // attachment title
-						$slide_medium = wp_get_attachment_image_src($slide_id, 'medium', true); // return is array	medium image URL
-						$slide_medium_url = ( is_array( $slide_medium ) && ! empty( $slide_medium[0] ) ) ? $slide_medium[0] : ( ! empty( $slide_src ) ? $slide_src : URIS_PLUGIN_URL . "assets/img/loading.gif" );
-						$UniqueString = substr(str_shuffle("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 5);
-						?>
-						<li id="<?php echo esc_attr($slide_id); ?>" class="uris-slide" data-position="<?php echo esc_attr($slide_id); ?>">
-							<a id="uris-slide-delete-icon" class="uris-slide-delete-icon"><img src="<?php echo  esc_url(URIS_PLUGIN_URL."assets/img/close-icon.png"); ?>" /></a>
-							<div class="uris-slide-meta">
-								<p>
-									<img loading="lazy" src="<?php echo esc_url($slide_medium_url); ?>" class="uris-slide-image">
-									</p>
-									<p>
-										<label><?php esc_html_e('Slide ID', 'ultimate-responsive-image-slider'); ?>: <?php echo esc_html($slide_id); ?></label><br>
-										<label><?php esc_html_e('Slide Title', 'ultimate-responsive-image-slider'); ?></label>
-										<input type="hidden" id="unique_string[<?php echo esc_attr($slide_id); ?>]" name="unique_string[]" value="<?php echo esc_attr($UniqueString); ?>" />
-										<input type="hidden" id="rpgp_image_id[<?php echo esc_attr($slide_id); ?>]" name="rpgp_image_id[]" value="<?php echo esc_attr($slide_id); ?>">
-										<input type="text" id="rpgp_image_label[<?php echo esc_attr($slide_id); ?>]" name="rpgp_image_label[]" class="uris-slide-input-text" value="<?php echo esc_attr( $slide_title ); ?>" placeholder="<?php esc_attr_e('Enter Slide Title', 'ultimate-responsive-image-slider'); ?>" >
-									</p>
-									<p>
-										<label><?php esc_html_e('Slide Descriptions', 'ultimate-responsive-image-slider'); ?></label>
-										<textarea rows="4" cols="50" id="rpgp_image_desc[<?php echo esc_attr($slide_id); ?>]" name="rpgp_image_desc[]" class="urisp_richeditbox_<?php echo esc_attr( $i ); ?> uris-slide-input-text" placeholder="<?php esc_attr_e( 'Enter Slide Description', 'ultimate-responsive-image-slider' ); ?>"><?php echo esc_textarea( $slide_description ); ?></textarea>
-										<button type="button" class="btn btn-md btn-info btn-block" data-toggle="modal" data-target="#myModal" onclick="urisp_richeditor(<?php echo esc_attr($i); ?>)"><?php esc_attr_e('Use Rich Text Editor', 'ultimate-responsive-image-slider'); ?> <i class="fa fa-edit"></i></button>
-									</p>
-									<p>
-										<label><?php esc_html_e('Slide Alt Text', 'ultimate-responsive-image-slider'); ?></label>
-										<input type="text" id="rpgp_image_alt[<?php echo esc_attr($slide_id); ?>]" name="rpgp_image_alt[]" class="uris-slide-input-text" value="<?php echo esc_attr($slide_alt); ?>" placeholder="<?php esc_attr_e('Max Length 125 Characters', 'ultimate-responsive-image-slider'); ?>">
-									</p>
-								</div>
-							</li>
-							<?php
-							$i++;
-						} // end of for each
-				} else {
-					$TotalSlideIds = 0;
-				}
-				?>
-			</ul>
-
-			<!--uris editor modal-->
-			<div class="modal fade" id="myModal" role="dialog">
-				<div class="modal-dialog">
-					<!-- modal content-->
-					<div class="modal-content">
-						<div class="modal-header">
-							<h4 class="modal-title"><i class="fa fa-edit" style="font-size:23px"></i> Rich Editor</h4>
-							<button type="button" class="close" data-dismiss="modal">&times;</button>
-						</div>
-						<div class="modal-body">
-						  <p>
-							<?php
-								$urisp_box = '';
-								$urisp_editor_id = 'fetch_wpeditor_data';
-								$settings  = array( 'media_buttons' => false ,'quicktags' => array( 'buttons' => 'strong,em,del,link,close' ) ); // for remove media button from editor
-								wp_editor( $urisp_box, $urisp_editor_id, $settings); // without media button
-							?>
-							<input type="hidden" value="" id="fetch_wpelement" name="fetch_wpelement" />
-						  </p>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-default" onclick="urisp_richeditor_putdata()" data-dismiss="modal">Continue</button>
-							<button type="button" class="btn btn-default" data-dismiss="modal">Exit</button>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!--rich editor modal-->
-		</div>
-
-		<!--Add New Image Button-->
-		<div class="uris-control-buttons">
-		<div id="uris-add-new-slide" class="uris-add-new-slide" data-uploader_title="Upload Slide" data-uploader_button_text="Select" >
-			<div class="dashicons dashicons-plus"></div>
-			<p><?php esc_html_e('Add New Slide', 'ultimate-responsive-image-slider'); ?></p>
-		</div>
-		<div id="sort-all-slides" class="uris-clone-slider" onclick="return URISSortSlides('DESC');">
-			<div class="dashicons dashicons-sort"></div>
-			<p><?php esc_html_e("Sort Ascending by Slide ID", 'ultimate-responsive-image-slider'); ?></p>
-		</div>
-		<div id="sort-all-slides" class="uris-clone-slider" onclick="return URISSortSlides('ASC');">
-			<div class="dashicons dashicons-sort"></div>
-			<p><?php esc_html_e("Sort Descending by Slide ID", 'ultimate-responsive-image-slider'); ?></p>
-		</div>
-		<div id="uris-clone-slider" class="uris-clone-slider" onclick="return uris_clone_run(<?php echo esc_attr($post->ID); ?>);">
-			<div class="dashicons dashicons-admin-page"></div>
-			<?php wp_nonce_field('uris_clone_nonce','uris_clone_nonce' ); ?>
-			<p><?php esc_html_e("Clone Slider", 'ultimate-responsive-image-slider'); ?></p>
-		</div>
-		
-		<div id="uris-delete-all-slide" class="uris-delete-all-slide">
-			<div class="dashicons dashicons-trash"></div>
-			<p><?php esc_html_e('Delete All Slides', 'ultimate-responsive-image-slider'); ?></p>
-		</div>
-		
-		<div id="uris-clone-success" class="uris-clone-success">
-			<h1><?php esc_html_e('Slider clone created successfully.', 'ultimate-responsive-image-slider'); ?> <?php esc_html_e('Go to', 'ultimate-responsive-image-slider'); ?> <a href="edit.php?post_type=ris_gallery"><?php esc_html_e('All Slider', 'ultimate-responsive-image-slider'); ?></a> <?php esc_html_e('page to edit cloned slider.', 'ultimate-responsive-image-slider'); ?></h1>
-		</div>
-		
-		<div style="clear:left;"></div>
-		<style>
-		.review-notice {
-			background-color: #27A4DD !important;
-			color: #FFFFFF !important;
-		}
-		</style>
-		<script>
-		function urisp_richeditor(id){
-			var richeditdata = jQuery(".urisp_richeditbox_"+id).val();
-			jQuery("#fetch_wpeditor_data").val(richeditdata);
-			jQuery("#fetch_wpeditor_data-html").click();
-			jQuery("#fetch_wpelement").val(id);
-		}
-		function urisp_richeditor_putdata(){
-			jQuery("#fetch_wpeditor_data").click();
-			jQuery("#fetch_wpeditor_data-html").click();
-			var fetch_wpelement_id = jQuery("#fetch_wpelement").val();
-			var fetched_data = jQuery("#fetch_wpeditor_data").val();
-			jQuery(".urisp_richeditbox_"+fetch_wpelement_id).val(fetched_data);
-		}
-		</script>
-		<script>
-		function URISSortSlides(order){
-			if(order == "ASC") {
-				jQuery(".SortSlides li").sort(sort_li).appendTo('.SortSlides');
-				function sort_li(a, b) {
-					return (jQuery(b).data('position')) > (jQuery(a).data('position')) ? 1 : -1;
-				}
-			}
-			if(order == "DESC") {
-				jQuery(".SortSlides li").sort(sort_li).appendTo('.SortSlides');
-				function sort_li(a, b) {
-					return (jQuery(b).data('position')) < (jQuery(a).data('position')) ? 1 : -1;
-				}
-			}
-		}
-		</script>
-		<?php
-	}
-
-	/**
-	 * This function display Add New Image interface
-	 * Also loads all saved gallery photos into photo gallery
-	 */
-	public function ris_settings_meta_box_function($post) {
-		wp_enqueue_script('jquery');
-		wp_enqueue_script('wpfrank-uris-bootstrap-js', URIS_PLUGIN_URL.'assets/js/bootstrap.js', array('jquery'), URIS_PLUGIN_VER, true);
-		wp_enqueue_style('wpfrank-uris-bootstrap-css', URIS_PLUGIN_URL.'assets/css/bootstrap-latest/bootstrap.css', array(), URIS_PLUGIN_VER);
-		wp_enqueue_style('wpfrank-uris-editor-modal', URIS_PLUGIN_URL.'assets/css/editor-modal.css', array(), URIS_PLUGIN_VER);
-		wp_enqueue_script('media-upload');
-		wp_enqueue_script('wpfrank-uris-media-uploader-js', URIS_PLUGIN_URL . 'assets/js/wpfrank-uris-multiple-media-uploader.js', array('jquery'), URIS_PLUGIN_VER, true);
-		wp_enqueue_media();
-
-		//custom add image box CSS
-		wp_enqueue_style('wpfrank-uris-settings-css', URIS_PLUGIN_URL.'assets/css/wpfrank-uris-settings.css', array(), URIS_PLUGIN_VER);
-
-		//font awesome CSS
-		wp_enqueue_style('wpfrank-uris-font-awesome-all-css', URIS_PLUGIN_URL.'assets/css/font-awesome-latest/css/fontawesome-all.css', array(), URIS_PLUGIN_VER);
-
-		//tool-tip JS & CSS
-		wp_enqueue_script('wpfrank-uris-tool-tip-js',URIS_PLUGIN_URL.'assets/tooltip/jquery.darktooltip.min.js', array('jquery'), URIS_PLUGIN_VER, true);
-		wp_enqueue_style('wpfrank-uris-tool-tip-css', URIS_PLUGIN_URL.'assets/tooltip/darktooltip.min.css', array(), URIS_PLUGIN_VER);
-
-		//color-picker CSS n JS
-		wp_enqueue_style('wp-color-picker');
-		wp_enqueue_script( 'wpfrank-uris-color-picker-custom-js', plugins_url( 'assets/js/wpfrank-uris-color-picker-custom.js', __FILE__ ), array( 'wp-color-picker' ), '1.0.0', true );
-
-		//code-mirror CSS & JS for custom CSS section
-		//wp_enqueue_style('wpfrank-uris-code-mirror-css', URIS_PLUGIN_URL.'assets/css/codemirror/codemirror.css');
-		//wp_enqueue_style('wpfrank-uris-blackboard-css', URIS_PLUGIN_URL.'assets/css/codemirror/blackboard.css');
-		//wp_enqueue_style('wpfrank-uris-show-hint-css', URIS_PLUGIN_URL.'assets/css/codemirror/show-hint.css');
-
-		//wp_enqueue_script('wpfrank-uris-code-mirror-js',URIS_PLUGIN_URL.'assets/css/codemirror/codemirror.js',array('jquery'));
-		//wp_enqueue_script('wpfrank-uris-css-js',URIS_PLUGIN_URL.'assets/css/codemirror/ris-css.js',array('jquery'));
-		//wp_enqueue_script('wpfrank-uris-css-hint-js',URIS_PLUGIN_URL.'assets/css/codemirror/css-hint.js',array('jquery'));
-		
-		wp_enqueue_script('wp-codemirror');
-		wp_enqueue_style('wp-codemirror');
-		// Enqueue CodeMirror CSS theme (optional, e.g., 'default' or 'monokai')
-		//wp_enqueue_style('codemirror-theme', includes_url('js/codemirror/theme/monokai.css'), array('wp-codemirror'), false, 'all');
-		// Enqueue additional CodeMirror modes if needed (e.g., CSS)
-		//wp_enqueue_script('css-mode', includes_url('js/codemirror/mode/css/css.js'), array('wp-codemirror'), false, true);
-
-		// Localize script to pass initialization data
-		$codemirror_settings = array(
-			'codeEditor' => wp_enqueue_code_editor(array(
-				'type' => 'text/css', // Set the mode to CSS (or 'text/javascript', 'htmlmixed', etc.)
-				'codemirror' => array(
-					'indentUnit' => 2,
-					'tabSize' => 2,
-					'lineNumbers' => true, // Show line numbers
-					'mode' => 'css', // Set the mode (e.g., 'css', 'javascript', 'htmlmixed')
-					'theme' => 'monokai', // Optional theme
-				),
-			)),
-		);
-		wp_localize_script('wp-codemirror', 'codemirror_settings', $codemirror_settings);
-		require_once('settings.php');
-	}
-	
-	public function ris_shotcode_meta_box_function() { ?>
-		<p><?php esc_html_e("Use below shortcode in any Page/Post to publish your slider", 'ultimate-responsive-image-slider');?></p>
-		<input readonly="readonly" type="text" value="<?php echo esc_attr("[URIS id=".get_the_ID()."]"); ?>" style="width:100%;">
-		
-		<p><?php esc_html_e("To embed slider in any custom theme template", 'ultimate-responsive-image-slider');?></p>
-		<?php $uris_shortcode = esc_attr("[URIS id=".get_the_ID()."]"); ?>
-		<input readonly="readonly" type="text" value="&#x3c;&#x3f;php do_shortcode&#x28; '<?php echo esc_attr("[URIS id=".get_the_ID()."]"); ?>' &#x29;; &#x3f;&#x3e;" style="width:100%;">
-		<?php
-	}
-	
-	public function ris_new_plugin_meta_box_function() { ?>
-		<p><a href="https://wordpress.org/plugins/slider-factory/" target="_blank"><img loading="lazy" src="<?php echo esc_url(URIS_PLUGIN_URL . "assets/img/products/slider-factory-free-wordpress-plugin.jpg"); ?>" width="100%" /></a></p>
-		<p style="text-align: center;"><a href="plugin-install.php?s=slider%20factory&tab=search&type=term" class="button button-primary button-hero">Install Plugin</a></p>
-		<?php
-	}
-	
-	public function admin_thumb_uris($id) {
-		if ( current_user_can( 'manage_options' ) ) {
-			$attachment = get_post( $id );
-			if ( ! $attachment ) {
-				return;
-			}
-			$slide_alt = get_post_meta( $attachment->ID, '_wp_attachment_image_alt', true );
-			$slide_caption = $attachment->post_excerpt;
-			$slide_description = $attachment->post_content;
-			$slide_href = get_permalink( $attachment->ID );
-			$slide_src = isset( $attachment->guid ) ? $attachment->guid : "";
-			$slide_title = $attachment->post_title;
-			$slide_medium = wp_get_attachment_image_src($id, 'medium', true);
-			$slide_medium_url = ( is_array( $slide_medium ) && ! empty( $slide_medium[0] ) ) ? $slide_medium[0] : ( ! empty( $slide_src ) ? $slide_src : URIS_PLUGIN_URL . "assets/img/loading.gif" );
-			$slide_full  = wp_get_attachment_image_src($id, 'full', true);
-			$UniqueString = substr(str_shuffle("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 5);
-			?>
-			<li id="<?php echo esc_attr($id); ?>" class="uris-slide" data-position="<?php echo esc_attr($id); ?>">
-				<a id="uris-slide-delete-icon" class="uris-slide-delete-icon"><img src="<?php echo  esc_url(URIS_PLUGIN_URL."assets/img/close-icon.png"); ?>" /></a>
-				<div>
-					<p>
-						<img loading="lazy" src="<?php echo esc_url($slide_medium_url); ?>" class="uris-slide-image">
-					<p>
-						<label><?php esc_html_e('Slide ID', 'ultimate-responsive-image-slider'); ?>: <?php echo esc_html($id); ?></label><br>
-						<label><?php esc_html_e('Slide Title', 'ultimate-responsive-image-slider'); ?></label>
-						<input type="hidden" id="unique_string[<?php echo esc_attr($id); ?>]" name="unique_string[]" value="<?php echo esc_attr($UniqueString); ?>" />
-						<input type="hidden" id="rpgp_image_id[<?php echo esc_attr($id); ?>]" name="rpgp_image_id[]" value="<?php echo esc_attr($id); ?>">
-						<input type="text" id="rpgp_image_label[<?php echo esc_attr($id); ?>]" name="rpgp_image_label[]" value="<?php echo esc_attr($slide_title); ?>" placeholder="<?php esc_attr_e('Enter Slide Title Here', 'ultimate-responsive-image-slider'); ?>" class="uris-slide-input-text">
-					</p>
-					<p>
-						<label><?php esc_html_e('Slide Description', 'ultimate-responsive-image-slider'); ?></label>
-						<textarea rows="4" cols="50" id="rpgp_image_desc[]" name="rpgp_image_desc[]" placeholder="<?php esc_attr_e('Enter Slide Description Here', 'ultimate-responsive-image-slider'); ?>" class="urisp_richeditbox_<?php echo esc_attr($id); ?> uris-slide-input-text"><?php echo esc_textarea( $slide_description ); ?></textarea>
-						<button type="button" class="btn btn-md btn-info btn-block" data-toggle="modal" data-target="#myModal" onclick="urisp_richeditor(<?php echo esc_attr($id); ?>)"><?php esc_html_e('Use Rich Text Editor', 'ultimate-responsive-image-slider'); ?> <i class="fa fa-edit"></i></button>
-					</p>
-					<p>
-						<label><?php esc_html_e('Slide Alt Text', 'ultimate-responsive-image-slider'); ?></label>
-						<input type="text" id="rpgp_image_alt[]" name="rpgp_image_alt[]" class="uris-slide-input-text" value="<?php echo esc_attr($slide_alt); ?>" placeholder="<?php esc_attr_e('Max Length 125 Characters', 'ultimate-responsive-image-slider'); ?>">
-					</p>
-				</div>
-			</li>
-			<?php
-		}
-	}
-
-	public function ajax_get_thumbnail_uris() {
-		if ( current_user_can( 'manage_options' ) ) {
-			// Verify nonce for AJAX request
-			check_ajax_referer( 'uris-ajax-nonce', 'nonce' );
-
-			$image_id = isset( $_POST['imageid'] ) ? sanitize_text_field( wp_unslash( $_POST['imageid'] ) ) : '';
-			echo esc_html($this->admin_thumb_uris( $image_id ) );
-			die;
-		}
-	}
-
-	public function add_image_meta_box_save($PostID) {
-		if ( current_user_can( 'manage_options' ) ) {
-			// Verify nonce
-			if( isset($PostID) && isset( $_POST['uris-save-action'] ) && isset( $_POST['uris_save_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['uris_save_nonce'] ) ), 'uris_save_action' ) ) {
-				$TotalSlideIds = ( isset( $_POST['rpgp_image_id'] ) && is_array( $_POST['rpgp_image_id'] ) ) ? count( $_POST['rpgp_image_id'] ) : 0;
-
-				$SlideIds = array();
-				if($TotalSlideIds) {
-					for($i=0; $i < $TotalSlideIds; $i++) {
-						$slide_id = isset( $_POST['rpgp_image_id'][$i] ) ? sanitize_text_field( wp_unslash( $_POST['rpgp_image_id'][$i] ) ) : '';
-						$slide_title = isset( $_POST['rpgp_image_label'][$i] ) ? sanitize_text_field( wp_unslash( $_POST['rpgp_image_label'][$i] ) ) : '';
-						$slide_desc = isset( $_POST['rpgp_image_desc'][$i] ) ? sanitize_textarea_field( wp_unslash( $_POST['rpgp_image_desc'][$i] ) ) : '';
-						$slide_alt = isset( $_POST['rpgp_image_alt'][$i] ) ? sanitize_text_field( wp_unslash( $_POST['rpgp_image_alt'][$i] ) ) : '';
-						$SlideIds[] = array(
-							'rpgp_image_id' => $slide_id,
-						);
-						// update attachment image title and description
-						$attachment_details = array(
-							'ID' => $slide_id,
-							'post_title' => $slide_title,
-							'post_content' => $slide_desc
-						);
-						wp_update_post( $attachment_details );
-						
-						// update attachment alt text
-						update_post_meta( $slide_id, '_wp_attachment_image_alt', $slide_alt );
-					}
-					update_post_meta($PostID, 'ris_all_photos_details', $SlideIds);
-				} else {
-					update_post_meta($PostID, 'ris_all_photos_details', $SlideIds);
-				}
-			}
-		}
-	}
-
-	//save settings meta box values
-	public function ris_settings_meta_save($PostID) {
-		if ( current_user_can( 'manage_options' ) ) {
-			// Verify nonce
-			if(isset($PostID) && isset( $_POST['wl_action'] ) && $_POST['wl_action'] == "wl-save-settings" && isset( $_POST['uris_settings_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['uris_settings_nonce'] ) ), 'uris_settings_action' ) ) {
-				$WRIS_L3_Slide_Title				=	isset( $_POST['wl-l3-slide-title'] ) ? sanitize_text_field ( wp_unslash( $_POST['wl-l3-slide-title'] )) : '';
-				$WRIS_L3_Show_Slide_Title			=	isset( $_POST['wl-l3-show-slide-title'] ) ? sanitize_text_field ( wp_unslash( $_POST['wl-l3-show-slide-title'] )) : '';
-				$WRIS_L3_Show_Slide_Desc				=	isset( $_POST['wl-l3-show-slide-desc'] ) ? sanitize_textarea_field ( wp_unslash( $_POST['wl-l3-show-slide-desc'] )) : '';
-				$WRIS_L3_Auto_Slideshow				=	isset( $_POST['wl-l3-auto-slide'] ) ? sanitize_text_field ( wp_unslash( $_POST['wl-l3-auto-slide'] )) : '';
-				$WRIS_L3_Transition					=	isset( $_POST['wl-l3-transition'] ) ? sanitize_text_field ( wp_unslash( $_POST['wl-l3-transition'] )) : '';
-				$WRIS_L3_Transition_Speed			=	isset( $_POST['wl-l3-transition-speed'] ) ? sanitize_text_field ( wp_unslash( $_POST['wl-l3-transition-speed'] )) : '';
-				$WRIS_L3_Sliding_Arrow				=	isset( $_POST['wl-l3-sliding-arrow'] ) ? sanitize_text_field ( wp_unslash( $_POST['wl-l3-sliding-arrow'] )) : '';
-				$WRIS_L3_Slider_Navigation			=	isset( $_POST['wl-l3-navigation'] ) ? sanitize_text_field ( wp_unslash( $_POST['wl-l3-navigation'] )) : '';
-				$WRIS_L3_Navigation_Button			=	isset( $_POST['wl-l3-navigation-button'] ) ? sanitize_text_field ( wp_unslash( $_POST['wl-l3-navigation-button'] )) : '';
-				$WRIS_L3_Slider_Width				=	isset( $_POST['wl-l3-slider-width'] ) ? sanitize_text_field ( wp_unslash( $_POST['wl-l3-slider-width'] )) : '';
-				$WRIS_L3_Slider_Height				=	isset( $_POST['wl-l3-slider-height'] ) ? sanitize_text_field ( wp_unslash( $_POST['wl-l3-slider-height'] )) : '';
-				$WRIS_L3_Font_Style					=	isset( $_POST['wl-l3-font-style'] ) ? sanitize_text_field ( wp_unslash( $_POST['wl-l3-font-style'] )) : '';
-				$WRIS_L3_Title_Color				=	isset( $_POST['wl-l3-title-color'] ) ? sanitize_text_field ( wp_unslash( $_POST['wl-l3-title-color'] )) : '';
-				$WRIS_L3_Slider_Scale_Mode			=	isset( $_POST['wl-l3-slider_scale_mode'] ) ? sanitize_text_field ( wp_unslash( $_POST['wl-l3-slider_scale_mode'] )) : '';
-				$WRIS_L3_Slider_Auto_Scale			=	isset( $_POST['wl-l3-slider-auto-scale'] ) ? sanitize_text_field ( wp_unslash( $_POST['wl-l3-slider-auto-scale'] )) : '';
-				$WRIS_L3_Title_BgColor				=	isset( $_POST['wl-l3-title-bgcolor'] ) ? sanitize_text_field ( wp_unslash( $_POST['wl-l3-title-bgcolor'] )) : '';
-				$WRIS_L3_Desc_Color					=	isset( $_POST['wl-l3-desc-color'] ) ? sanitize_text_field ( wp_unslash( $_POST['wl-l3-desc-color'] )) : '';
-				$WRIS_L3_Desc_BgColor				=	isset( $_POST['wl-l3-desc-bgcolor'] ) ? sanitize_text_field ( wp_unslash( $_POST['wl-l3-desc-bgcolor'] )) : '';
-				$WRIS_L3_Navigation_Color			=	isset( $_POST['wl-l3-navigation-color'] ) ? sanitize_text_field ( wp_unslash( $_POST['wl-l3-navigation-color'] )) : '';
-				$WRIS_L3_Fullscreeen				=	isset( $_POST['wl-l3-fullscreen'] ) ? sanitize_text_field ( wp_unslash( $_POST['wl-l3-fullscreen'] )) : '';
-				$WRIS_L3_Custom_CSS					=	isset( $_POST['wl-l3-custom-css'] ) ? sanitize_text_field ( wp_unslash( $_POST['wl-l3-custom-css'] )) : '';
-				$WRIS_L3_Slide_Order				= 	isset( $_POST['wl-l3-slide-order'] ) ? sanitize_text_field ( wp_unslash( $_POST['wl-l3-slide-order'] )) : '';
-				$WRIS_L3_Slide_Distance				= 	isset( $_POST['wl-l3-slide-distance'] ) ? sanitize_text_field ( wp_unslash( $_POST['wl-l3-slide-distance'] )) : '';
-				$WRIS_L3_Thumbnail_Style				= 	isset( $_POST['wl-l3-thumbnail-style'] ) ? sanitize_text_field ( wp_unslash( $_POST['wl-l3-thumbnail-style'] )) : '';
-				$WRIS_L3_Navigation_Position			= 	isset( $_POST['wl-l3-navigation-position'] ) ? sanitize_text_field ( wp_unslash( $_POST['wl-l3-navigation-position'] )) : '';
-				$WRIS_L3_Thumbnail_Width				= 	isset( $_POST['wl-l3-navigation-width'] ) ? sanitize_text_field ( wp_unslash( $_POST['wl-l3-navigation-width'] )) : '';
-				$WRIS_L3_Thumbnail_Height			= 	isset( $_POST['wl-l3-navigation-height'] ) ? sanitize_text_field ( wp_unslash( $_POST['wl-l3-navigation-height'] )) : '';
-				$WRIS_L3_Width						= 	isset( $_POST['wl-l3-width'] ) ? sanitize_text_field ( wp_unslash( $_POST['wl-l3-width'] )) : '';
-				$WRIS_L3_Height					= 	isset( $_POST['wl-l3-height'] ) ? sanitize_text_field ( wp_unslash( $_POST['wl-l3-height'] )) : '';
-				$WRIS_L3_Navigation_Bullets_Color		= 	isset( $_POST['wl-l3-navigation-bullets-color'] ) ? sanitize_text_field ( wp_unslash( $_POST['wl-l3-navigation-bullets-color'] )) : '';
-				$WRIS_L3_Navigation_Pointer_Color		=	isset( $_POST['wl-l3-navigation-pointer-color'] ) ? sanitize_text_field ( wp_unslash( $_POST['wl-l3-navigation-pointer-color'] )) : '';
-
-				$WRIS_Settings_Array = array(
-					'WRIS_L3_Slide_Title'  			=>	$WRIS_L3_Slide_Title,
-					'WRIS_L3_Show_Slide_Title'		=>	$WRIS_L3_Show_Slide_Title,
-					'WRIS_L3_Show_Slide_Desc'		=>	$WRIS_L3_Show_Slide_Desc,
-					'WRIS_L3_Auto_Slideshow'  		=>	$WRIS_L3_Auto_Slideshow,
-					'WRIS_L3_Transition'  			=>	$WRIS_L3_Transition,
-					'WRIS_L3_Transition_Speed'  		=>	$WRIS_L3_Transition_Speed,
-					'WRIS_L3_Sliding_Arrow'  		=>	$WRIS_L3_Sliding_Arrow,
-					'WRIS_L3_Slider_Navigation'  		=>	$WRIS_L3_Slider_Navigation,
-					'WRIS_L3_Navigation_Button'  		=>	$WRIS_L3_Navigation_Button,
-					'WRIS_L3_Slider_Width'  			=>	$WRIS_L3_Slider_Width,
-					'WRIS_L3_Slider_Height'  		=>	$WRIS_L3_Slider_Height,
-					'WRIS_L3_Font_Style'  			=>	$WRIS_L3_Font_Style,
-					'WRIS_L3_Title_Color'   			=>	$WRIS_L3_Title_Color,
-					'WRIS_L3_Slider_Scale_Mode'		=>	$WRIS_L3_Slider_Scale_Mode,
-					'WRIS_L3_Slider_Auto_Scale'		=>	$WRIS_L3_Slider_Auto_Scale,
-					'WRIS_L3_Title_BgColor'   		=>	$WRIS_L3_Title_BgColor,
-					'WRIS_L3_Desc_Color'   			=>	$WRIS_L3_Desc_Color,
-					'WRIS_L3_Desc_BgColor'  			=>	$WRIS_L3_Desc_BgColor,
-					'WRIS_L3_Navigation_Color' 		=>	$WRIS_L3_Navigation_Color,
-					'WRIS_L3_Fullscreeen' 			=>	$WRIS_L3_Fullscreeen,
-					'WRIS_L3_Custom_CSS'  			=>	$WRIS_L3_Custom_CSS,
-					'WRIS_L3_Slide_Order'   			=>	$WRIS_L3_Slide_Order,
-					'WRIS_L3_Slide_Distance'   		=>	$WRIS_L3_Slide_Distance,
-					'WRIS_L3_Thumbnail_Style'   		=>	$WRIS_L3_Thumbnail_Style,
-					'WRIS_L3_Navigation_Position'   	=>	$WRIS_L3_Navigation_Position,
-					'WRIS_L3_Thumbnail_Width'   		=>	$WRIS_L3_Thumbnail_Width,
-					'WRIS_L3_Thumbnail_Height'   		=>	$WRIS_L3_Thumbnail_Height,
-					'WRIS_L3_Width'   				=>	$WRIS_L3_Width,
-					'WRIS_L3_Height'   				=>	$WRIS_L3_Height,
-					'WRIS_L3_Navigation_Bullets_Color'	=>	$WRIS_L3_Navigation_Bullets_Color,
-					'WRIS_L3_Navigation_Pointer_Color'	=>	$WRIS_L3_Navigation_Pointer_Color,
-				);
-				$WRIS_Gallery_Settings = "WRIS_Gallery_Settings_".$PostID;
-				update_post_meta($PostID, $WRIS_Gallery_Settings, $WRIS_Settings_Array);
-			}
-		}
-	}
-}
-
-global $URIS;
-$URIS = URIS::forge();
-
-// All Slider Post Features Box
-add_action( "admin_notices", "uris_admin_notice_resport" );
-function uris_admin_notice_resport() {
-	global $pagenow;
-	$uris_screen = get_current_screen();
-	// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- This is just checking URL parameters for display purposes, not processing form data
-	if ( $pagenow == 'edit.php' && $uris_screen->post_type == "ris_gallery" && ! isset( $_GET['page'] ) ) {
-		require_once ( 'admin-banner.php' );
-	}
-}
-
-// Admin Submenu Pages
-add_action('admin_menu' , 'uris_menu_pages');
-function uris_menu_pages() {
-	if ( current_user_can( 'manage_options' ) ) {
-		add_submenu_page(
-			'edit.php?post_type=ris_gallery',
-			__( 'Import & Export Slider', 'ultimate-responsive-image-slider' ),
-			__( 'Import & Export Slider', 'ultimate-responsive-image-slider' ),
-			'manage_options',
-			'uris-help-page',
-			'uris_help_and_support_page'
-		);
-	}
-}
-
-function uris_recover_slider_page() {
-	require_once('recover-slider.php');
-}
-
-function uris_help_and_support_page() {
-	wp_enqueue_style('bootstrap-admin.css', URIS_PLUGIN_URL.'assets/css/bootstrap-latest/bootstrap-admin.css', array(), URIS_PLUGIN_VER);
-	require_once('help-and-support.php');
-}
-
-// Handle Export and Import Actions
-add_action( 'admin_init', 'uris_handle_export_import_actions' );
-function uris_handle_export_import_actions() {
-	if ( ! current_user_can( 'manage_options' ) ) {
-		return;
-	}
-
-	// 1. Handle Export
-	if ( isset( $_POST['uris_export_slider_action'] ) ) {
-		check_admin_referer( 'uris_export_action_nonce', 'uris_export_nonce' );
-
-		$export_type = isset( $_POST['uris_export_type'] ) ? sanitize_text_field( wp_unslash( $_POST['uris_export_type'] ) ) : 'all';
-		$selected_ids = array();
-		if ( $export_type === 'selected' && ! empty( $_POST['uris_selected_sliders'] ) && is_array( $_POST['uris_selected_sliders'] ) ) {
-			$selected_ids = array_map( 'absint', $_POST['uris_selected_sliders'] );
-		}
-
-		$query_args = array(
-			'post_type'      => 'ris_gallery',
-			'posts_per_page' => -1,
-			'post_status'    => 'any',
-		);
-		if ( $export_type === 'selected' ) {
-			if ( empty( $selected_ids ) ) {
-				wp_safe_redirect( add_query_arg( array( 'post_type' => 'ris_gallery', 'page' => 'uris-help-page', 'uris_export_error' => 'none_selected' ), admin_url( 'edit.php' ) ) );
-				exit;
-			}
-			$query_args['post__in'] = $selected_ids;
-		}
-
-		$sliders = get_posts( $query_args );
-		if ( empty( $sliders ) ) {
-			wp_safe_redirect( add_query_arg( array( 'post_type' => 'ris_gallery', 'page' => 'uris-help-page', 'uris_export_error' => 'no_sliders' ), admin_url( 'edit.php' ) ) );
-			exit;
-		}
-
-		$export_data = array(
-			'generator'   => 'Ultimate Responsive Image Slider',
-			'version'     => URIS_PLUGIN_VER,
-			'export_date' => gmdate( 'Y-m-d H:i:s' ),
-			'count'       => count( $sliders ),
-			'sliders'     => array(),
-		);
-
-		foreach ( $sliders as $slider ) {
-			$s_id = $slider->ID;
-			$settings_key = 'WRIS_Gallery_Settings_' . $s_id;
-			$settings = get_post_meta( $s_id, $settings_key, true );
-			if ( is_string( $settings ) ) {
-				$settings = maybe_unserialize( $settings );
-			}
-			if ( ! is_array( $settings ) ) {
-				$settings = array();
-			}
-
-			$slides = get_post_meta( $s_id, 'ris_all_photos_details', true );
-			if ( is_string( $slides ) ) {
-				$slides = maybe_unserialize( $slides );
-			}
-			if ( ! is_array( $slides ) ) {
-				$slides = array();
-			}
-
-			$slides_data = array();
-			foreach ( $slides as $slide ) {
-				$img_id = ! empty( $slide['rpgp_image_id'] ) ? absint( $slide['rpgp_image_id'] ) : 0;
-				$attachment = $img_id ? get_post( $img_id ) : null;
-				$img_url = $img_id ? wp_get_attachment_url( $img_id ) : '';
-
-				$slides_data[] = array(
-					'image_id'    => $img_id,
-					'image_url'   => $img_url ? $img_url : '',
-					'title'       => $attachment ? $attachment->post_title : '',
-					'caption'     => $attachment ? $attachment->post_excerpt : '',
-					'description' => $attachment ? $attachment->post_content : '',
-					'alt'         => $img_id ? get_post_meta( $img_id, '_wp_attachment_image_alt', true ) : '',
-				);
-			}
-
-			$export_data['sliders'][] = array(
-				'title'    => $slider->post_title,
-				'settings' => $settings,
-				'slides'   => $slides_data,
-			);
-		}
-
-		while ( ob_get_level() ) {
-			ob_end_clean();
-		}
-
-		$filename = 'uris-sliders-export-' . gmdate( 'Y-m-d-His' ) . '.json';
-		header( 'Content-Description: File Transfer' );
-		header( 'Content-Type: application/json; charset=utf-8' );
-		header( 'Content-Disposition: attachment; filename="' . $filename . '"' );
-		header( 'Expires: 0' );
-		header( 'Cache-Control: must-revalidate' );
-		header( 'Pragma: public' );
-		echo wp_json_encode( $export_data, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES );
-		exit;
-	}
-
-	// 2. Handle Import
-	if ( isset( $_POST['uris_import_slider_action'] ) ) {
-		check_admin_referer( 'uris_import_action_nonce', 'uris_import_nonce' );
-
-		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-		$uploaded_tmp = isset( $_FILES['uris_import_file']['tmp_name'] ) ? sanitize_text_field( wp_unslash( $_FILES['uris_import_file']['tmp_name'] ) ) : '';
-		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-		if ( empty( $uploaded_tmp ) || ! is_uploaded_file( $uploaded_tmp ) ) {
-			wp_safe_redirect( add_query_arg( array( 'post_type' => 'ris_gallery', 'page' => 'uris-help-page', 'uris_import_error' => 'no_file' ), admin_url( 'edit.php' ) ) );
-			exit;
-		}
-
-		$file_name = isset( $_FILES['uris_import_file']['name'] ) ? sanitize_file_name( wp_unslash( $_FILES['uris_import_file']['name'] ) ) : '';
-		$file_ext = strtolower( pathinfo( $file_name, PATHINFO_EXTENSION ) );
-		if ( $file_ext !== 'json' ) {
-			wp_safe_redirect( add_query_arg( array( 'post_type' => 'ris_gallery', 'page' => 'uris-help-page', 'uris_import_error' => 'invalid_extension' ), admin_url( 'edit.php' ) ) );
-			exit;
-		}
-
-		$raw_json = file_get_contents( $uploaded_tmp );
-		$import_data = json_decode( $raw_json, true );
-
-		if ( ! is_array( $import_data ) || empty( $import_data['sliders'] ) || ! is_array( $import_data['sliders'] ) ) {
-			wp_safe_redirect( add_query_arg( array( 'post_type' => 'ris_gallery', 'page' => 'uris-help-page', 'uris_import_error' => 'invalid_format' ), admin_url( 'edit.php' ) ) );
-			exit;
-		}
-
-		$imported_count = 0;
-
-		foreach ( $import_data['sliders'] as $s_item ) {
-			$title = ! empty( $s_item['title'] ) ? sanitize_text_field( $s_item['title'] ) : __( 'Imported Slider', 'ultimate-responsive-image-slider' );
-			$new_id = wp_insert_post( array(
-				'post_title'  => $title,
-				'post_type'   => 'ris_gallery',
-				'post_status' => 'publish',
-			) );
-
-			if ( is_wp_error( $new_id ) || ! $new_id ) {
-				continue;
-			}
-
-			// Save slider settings
-			if ( ! empty( $s_item['settings'] ) && is_array( $s_item['settings'] ) ) {
-				update_post_meta( $new_id, 'WRIS_Gallery_Settings_' . $new_id, $s_item['settings'] );
-			}
-
-			// Save slides
-			$new_slides = array();
-			if ( ! empty( $s_item['slides'] ) && is_array( $s_item['slides'] ) ) {
-				foreach ( $s_item['slides'] as $sl ) {
-					$img_url     = ! empty( $sl['image_url'] ) ? esc_url_raw( $sl['image_url'] ) : '';
-					$sl_title    = ! empty( $sl['title'] ) ? sanitize_text_field( $sl['title'] ) : '';
-					$sl_desc     = ! empty( $sl['description'] ) ? wp_kses_post( $sl['description'] ) : '';
-					$sl_alt      = ! empty( $sl['alt'] ) ? sanitize_text_field( $sl['alt'] ) : '';
-					$attached_id = 0;
-
-					// 1. Try matching existing attachment by URL
-					if ( $img_url ) {
-						$attached_id = attachment_url_to_postid( $img_url );
-
-						// 2. If not matched, try sideloading image into Media Library
-						if ( ! $attached_id && filter_var( $img_url, FILTER_VALIDATE_URL ) ) {
-							require_once ABSPATH . 'wp-admin/includes/media.php';
-							require_once ABSPATH . 'wp-admin/includes/file.php';
-							require_once ABSPATH . 'wp-admin/includes/image.php';
-							$sideload = media_sideload_image( $img_url, $new_id, $sl_title, 'id' );
-							if ( ! is_wp_error( $sideload ) ) {
-								$attached_id = absint( $sideload );
-							}
-						}
-					}
-
-					// 3. Fallback: match by local existing attachment ID
-					if ( ! $attached_id && ! empty( $sl['image_id'] ) ) {
-						$existing_post = get_post( absint( $sl['image_id'] ) );
-						if ( $existing_post && $existing_post->post_type === 'attachment' ) {
-							$attached_id = absint( $sl['image_id'] );
-						}
-					}
-
-					if ( $attached_id ) {
-						if ( $sl_title || $sl_desc ) {
-							wp_update_post( array(
-								'ID'           => $attached_id,
-								'post_title'   => $sl_title,
-								'post_content' => $sl_desc,
-							) );
-						}
-						if ( $sl_alt ) {
-							update_post_meta( $attached_id, '_wp_attachment_image_alt', $sl_alt );
-						}
-
-						$new_slides[] = array(
-							'rpgp_image_id' => $attached_id,
-						);
-					}
-				}
-			}
-
-			update_post_meta( $new_id, 'ris_all_photos_details', $new_slides );
-			$imported_count++;
-		}
-
-		wp_safe_redirect( add_query_arg( array(
-			'post_type'          => 'ris_gallery',
-			'page'               => 'uris-help-page',
-			'uris_import_status' => 'success',
-			'uris_count'         => $imported_count,
-		), admin_url( 'edit.php' ) ) );
-		exit;
-	}
-}
-
-// urisp frontend JS CSS
-add_action("wp_enqueue_scripts", "uris_scripts");
-function uris_scripts() { 
-	wp_register_script('wpfrank-uris-js', URIS_PLUGIN_URL.'assets/js/jquery.sliderPro.js', array('jquery'), '1.6.2', array( 'strategy' => 'defer', 'in_footer' => true));
-	wp_register_style('wpfrank-uris-css', URIS_PLUGIN_URL.'assets/css/slider-pro.css', array(), '1.6.2', 'all');
-}
-
-// URIS Shortcode
-require_once("shortcode.php");
-require_once('products.php');
+add_action( 'wp_enqueue_scripts', 'uris_frontend_scripts');

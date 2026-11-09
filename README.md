@@ -1,6 +1,6 @@
 # Ultimate Responsive Image Slider
 
-[![Version](https://img.shields.io/badge/version-v3.5.20-blue.svg)](https://github.com/FARAZFRANK/ultimate-responsive-image-slider)
+[![Version](https://img.shields.io/badge/version-v4.0.0-blue.svg)](https://github.com/FARAZFRANK/ultimate-responsive-image-slider)
 [![WordPress](https://img.shields.io/badge/WordPress-4.0%20--%206.8%2B-21759b.svg)](https://wordpress.org/plugins/ultimate-responsive-image-slider/)
 [![PHP](https://img.shields.io/badge/PHP-7.0%2B-777bb4.svg)](https://www.php.net/)
 [![License](https://img.shields.io/badge/license-GPLv2%20or%20later-green.svg)](https://www.gnu.org/licenses/gpl-2.0.html)
@@ -223,7 +223,14 @@ Whether your theme is a lightweight block theme, multipurpose builder theme, or 
 
 ## 📝 Changelog
 
-### **v3.5.20** *(Current Release - October 28, 2026)*
+### **v4.0.0** *(Current Release - November 9, 2026)*
+- 🏗️ **Modern Modular Architecture**: Refactored codebase into clean, modular components (`admin/`, `includes/`, `layouts/`).
+- 🔄 **Automated Migration Engine**: Seamlessly transforms legacy v3.5.x data structures into canonical unified settings format with zero data loss.
+- 🛡️ **Complete Backward Compatibility**: Preserves all existing `[URIS id=...]` shortcodes and slider settings.
+- ⚡ **Anti-FOUC & Loading Guard**: Implemented `sp-no-js` pre-initialization state and transparent image placeholders, eliminating multi-loader flickering and floating caption cards on load.
+- 🚀 **Performance Optimization**: Minimized asset payloads, improved touch gestures, and optimized layout rendering.
+
+### **v3.5.20** *(October 28, 2026)*
 - 🔄 **Database Version Tracking**: Added automated DB versioning (`uris_plugin_version`, `uris_db_version`) and upgrade migration hooks for future updates.
 - 📐 **Overlap Fix**: Resolved Slide Title and Description collision on multi-line text using dynamic unified flexbox layout.
 - 🔘 **Navigation Dots & Bullets**: Fixed pagination dots gap, alignment, and hover styling.

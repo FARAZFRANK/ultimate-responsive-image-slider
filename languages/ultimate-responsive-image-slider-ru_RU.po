@@ -1,528 +1,3539 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Ultimate Responsive Image Slider\n"
-"POT-Creation-Date: 2023-11-23 13:50+0530\n"
-"PO-Revision-Date: 2023-11-23 13:51+0530\n"
-"Last-Translator: Weblizar <lizarweb@gmail.com>\n"
-"Language-Team: \n"
+"Project-Id-Version: Ultimate Responsive Image Slider 4.0.0\n
+"Report-Msgid-Bugs-To: https://wpfrank.com/\n"
+"POT-Creation-Date: 2026-10-01 09:20+0000\n"
+"PO-Revision-Date: 2026-10-01 09:20+0000\n"
+"Last-Translator: WP Frank <support@wpfrank.com>\n"
+"Language-Team: ru\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
-"X-Generator: Poedit 3.4.1\n"
-"X-Poedit-Basepath: .\n"
-"X-Poedit-KeywordsList: _e;__\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
+"X-Generator: Poedit 3.4\n"
+"X-Poedit-KeywordsList: __;_e;_x:1,2c;_ex:1,2c;_n:1,2;_nx:1,2,4c;esc_attr__;esc_attr_e;esc_html__;esc_html_e\n"
 "X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-Basepath: ..\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: settings.php:231 tooltip.php:51
-msgid "Display Slider Post Title"
-msgstr "Отображать заголовок слайдера поста"
+#: init.php:447
+msgid "%s Image"
+msgid_plural "%s Images"
+msgstr[0] ""
+msgstr[1] ""
 
-#: settings.php:237
-msgid "Select Yes/No option to show/hide slide title above slider"
+#: includes/docs.php:256
+msgid "(Forces Layout 3 without changing saved settings in backend)"
 msgstr ""
-"Выберите опцию Да/Нет для отображения/скрытия заголовка слайда над слайдером"
 
-#: settings.php:238 settings.php:251 settings.php:263 settings.php:275
-#: settings.php:288 settings.php:300 settings.php:312 settings.php:326
-#: settings.php:338 settings.php:350 settings.php:378 settings.php:397
-#: settings.php:410 settings.php:423 settings.php:436 settings.php:448
-#: settings.php:462 settings.php:478 settings.php:493 settings.php:515
-#: settings.php:528 settings.php:541 settings.php:553 settings.php:566
-#: settings.php:578 settings.php:591 settings.php:626
-msgid "Preview"
-msgstr "Просмотр"
-
-#: settings.php:244 tooltip.php:56
-msgid "Display Slide Title"
-msgstr "Отображать заголовок слайда"
-
-#: settings.php:250
-msgid "Select Yes/No option to show/hide slide title over slides."
+#: includes/docs.php:252
+msgid "(Replace 123 with your slider ID)"
 msgstr ""
-"Выберите опцию Да/Нет для отображения/скрытия заголовка слайда поверх "
-"слайдов."
 
-#: settings.php:257 tooltip.php:61
-msgid "Slide Title Color"
-msgstr "Цвет заголовка слайда"
-
-#: settings.php:262
-msgid "Select a color to set slide title color."
-msgstr "Выберите цвет для установки цвета заголовка слайда."
-
-#: settings.php:269 tooltip.php:66
-msgid "Slide Title Background Color"
-msgstr "Цвет фона заголовка слайда"
-
-#: settings.php:274
-msgid "Select a color to set slide title background color."
-msgstr "Выберите цвет для установки цвета фона заголовка слайда."
-
-#: settings.php:281 tooltip.php:71
-msgid "Display Slide Description"
-msgstr "Отображать описание слайда"
-
-#: settings.php:287
-msgid "Select Yes/No option to show/hide slide description over slides."
+#: includes/elementor-widget.php:101 includes/gutenberg-block.php:68
+msgid "(no title)"
 msgstr ""
-"Выберите опцию Да/Нет для отображения/скрытия описания слайда поверх слайдов."
 
-#: settings.php:294 tooltip.php:76
-msgid "Slide Description Color"
-msgstr "Цвет описания слайда"
-
-#: settings.php:299
-msgid "Select a color to set slide description color."
-msgstr "Выберите цвет для установки цвета описания слайда."
-
-#: settings.php:306 tooltip.php:81
-msgid "Slide Description Background Color"
-msgstr "Цвет фона описания слайда"
-
-#: settings.php:311
-msgid "Select a color to set slide description background color."
-msgstr "Выберите цвет для установки цвета фона описания слайда."
-
-#: settings.php:318
-msgid "Auto Play Slide Show"
-msgstr "Автоматическое воспроизведение слайд-шоу"
-
-#: settings.php:321
-msgid "Yes"
-msgstr "Да"
-
-#: settings.php:322
-msgid "Yes with Stop on Mouse Hover"
-msgstr "Да с остановкой при наведении мыши"
-
-#: settings.php:323
-msgid "No"
-msgstr "Нет"
-
-#: settings.php:325
-msgid "Select Yes/No option to auto slide enable or disable into slider."
+#: admin/settings.php:901
+msgid "+ Upload Font"
 msgstr ""
-"Выберите опцию Да/Нет для включения или выключения автоматической прокрутки "
-"слайдов в слайдере."
 
-#: settings.php:331
-msgid "Slide Transition"
-msgstr "Переход слайдов"
-
-#: settings.php:337
-msgid "Select a transition effect you want to apply on slides."
-msgstr "Выберите эффект перехода, который вы хотите применить к слайдам."
-
-#: settings.php:343
-msgid "Auto play Slider Speed"
-msgstr "Скорость автоматического воспроизведения слайдера"
-
-#: settings.php:349
-msgid "Set your desired slider speed of slides. Default speed is 5 Second."
+#: admin/settings.php:335
+msgid "-- All Taxonomies / No Filter --"
 msgstr ""
-"Установите желаемую скорость слайдов. Скорость по умолчанию - 5 секунд."
 
-#: settings.php:370
-msgid "Slide Order"
-msgstr "Порядок слайдов"
-
-#: settings.php:373
-msgid "Ascending"
-msgstr "По возрастанию"
-
-#: settings.php:374
-msgid "Descending"
-msgstr "По убыванию"
-
-#: settings.php:375
-msgid "Random"
-msgstr "Случайный"
-
-#: settings.php:377
-msgid "Select a slide order you want to apply on slides"
-msgstr "Выберите порядок слайдов, который вы хотите применить к слайдам"
-
-#: settings.php:384 tooltip.php:88
-msgid "Distance Between Slide"
-msgstr "Расстояние между слайдами"
-
-#: settings.php:396
-msgid ""
-"Set a gap between all slides. Range 0 to 25. Works when Slide Transition "
-"setting selected to Slide."
+#: includes/elementor-widget.php:98
+msgid "-- Select Slider --"
 msgstr ""
-"Установите расстояние между всеми слайдами. Диапазон от 0 до 25. Работает, "
-"когда выбран переход слайдов к слайдам."
 
-#: settings.php:403 tooltip.php:93
-msgid "Show Thumbnail"
-msgstr "Показать миниатюры"
-
-#: settings.php:409
-msgid ""
-"Select Yes/No option to show or hide thumbnail based navigation under slides."
+#: includes/analytics.php:964
+msgid "1. Impressions"
 msgstr ""
-"Выберите опцию Да/Нет для отображения или скрытия навигации по миниатюрам "
-"под слайдами."
 
-#: settings.php:416 tooltip.php:98
-msgid "Thumbnail Position"
-msgstr "Позиция миниатюр"
-
-#: settings.php:419
-msgid "Top"
-msgstr "Сверху"
-
-#: settings.php:420
-msgid "Bottom"
-msgstr "Снизу"
-
-#: settings.php:422
-msgid "Select a thumbnail position to show above or below the slider."
-msgstr "Выберите позицию миниатюр для отображения над или под слайдером."
-
-#: settings.php:429 tooltip.php:103
-msgid "Selected Thumbnail Style"
-msgstr "Стиль выбранных миниатюр"
-
-#: settings.php:432
-msgid "Border"
-msgstr "Граница"
-
-#: settings.php:433
-msgid "Pointer"
-msgstr "Указатель"
-
-#: settings.php:435
-msgid "Select a style to apply on select thumbnails."
-msgstr "Выберите стиль для применения к выбранным миниатюрам."
-
-#: settings.php:442 tooltip.php:108
-msgid "Selected Thumbnail Style Color"
-msgstr "Цвет стиля выбранных миниатюр"
-
-#: settings.php:447
-msgid "Select a color to set on selected thumbnail style color."
-msgstr "Выберите цвет для установки цвета стиля выбранных миниатюр."
-
-#: settings.php:454 tooltip.php:113
-msgid "Thumbnail Resize"
-msgstr "Изменение размера миниатюр"
-
-#: settings.php:458
-msgid "Width"
-msgstr "Ширина"
-
-#: settings.php:459
-msgid "Height"
-msgstr "Высота"
-
-#: settings.php:461
-msgid "Set custom height and width for thumbnails."
-msgstr "Установите пользовательские высоту и ширину для миниатюр."
-
-#: settings.php:468 tooltip.php:118
-msgid "Slider Width"
-msgstr "Ширина слайдера"
-
-#: settings.php:472
-msgid "100% Width"
-msgstr "100% ширина"
-
-#: settings.php:473
-msgid "Full Width"
-msgstr "Полная ширина"
-
-#: settings.php:474 settings.php:489
-msgid "Custom"
-msgstr "Пользовательский"
-
-#: settings.php:477
-msgid "Enter your desired width for slider. Default width is 1000px."
-msgstr "Укажите желаемую ширину слайдера. Ширина по умолчанию - 1000 пикселей."
-
-#: settings.php:484 tooltip.php:123
-msgid "Slider Height"
-msgstr "Высота слайдера"
-
-#: settings.php:488
-msgid "Auto Height"
-msgstr "Автоматическая высота"
-
-#: settings.php:492
-msgid "Enter your desired height for slider. Default height is 500px."
-msgstr "Укажите желаемую высоту слайдера. Высота по умолчанию - 500 пикселей."
-
-#: settings.php:499
-msgid "Slide Scale Mode"
-msgstr "Режим масштабирования слайда"
-
-#: settings.php:504
-msgid "Cover"
-msgstr "Заполнение"
-
-#: settings.php:505
-msgid "Contain"
-msgstr "Сохранение пропорций"
-
-#: settings.php:506
-msgid "Exact"
-msgstr "Точно"
-
-#: settings.php:507
-msgid "None"
-msgstr "Без масштабирования"
-
-#: settings.php:511
-msgid "COVER will scale and crop the image so that it fills the entire slide."
+#: includes/analytics.php:975
+msgid "2. Slide Views"
 msgstr ""
-"ЗАПОЛНЕНИЕ масштабирует и обрезает изображение так, чтобы оно заполнило весь "
-"слайд."
 
-#: settings.php:512
-msgid "CONTAIN will keep the entire image visible inside the slide."
-msgstr "СОХРАНЕНИЕ ПРОПОРЦИЙ сохраняет всё изображение видимым внутри слайда."
-
-#: settings.php:513
-msgid "EXACT will match the size of the image to the size of the slide."
-msgstr "ТОЧНО сделает размер изображения таким же, как размер слайда."
-
-#: settings.php:514
-msgid "NONE will leave the image to its original size."
-msgstr "БЕЗ МАСШТАБИРОВАНИЯ оставит изображение в его исходном размере."
-
-#: settings.php:521
-msgid "Slide Auto Scale Up"
-msgstr "Автоматическое масштабирование слайда"
-
-#: settings.php:527
-msgid "If the slide can be scaled up more than its original size."
-msgstr "Если слайд можно увеличить более чем в его исходный размер."
-
-#: settings.php:534 tooltip.php:130
-msgid "Show Navigation Arrow"
-msgstr "Показать стрелки навигации"
-
-#: settings.php:540
-msgid "Select Yes/No option to show or hide arrows on mouse hover on slide."
+#: includes/analytics.php:986
+msgid "3. CTA & Link Clicks"
 msgstr ""
-"Выберите опцию Да/Нет для отображения или скрытия стрелок при наведении мыши "
-"на слайд."
 
-#: settings.php:547 tooltip.php:135
-msgid "Navigation Color"
-msgstr "Цвет навигации"
-
-#: settings.php:552
-msgid "Select a color to set navigation arrow and full screen icon color."
+#: includes/docs.php:291
+msgid "A high-converting eCommerce and portfolio standard. Large main showcase with a smooth, synchronized thumbnail carousel underneath showing miniature previews of all slides."
 msgstr ""
-"Выберите цвет для установки цвета стрелок навигации и значка полноэкранного "
-"режима."
 
-#: settings.php:559 tooltip.php:140
-msgid "Show Navigation Bullets"
-msgstr "Показать точки навигации"
-
-#: settings.php:565
-msgid ""
-"Select Yes/No option to show or hide slider navigation buttons under image "
-"slider."
+#: includes/global-settings.php:1360
+msgid "A server error occurred while saving the font."
 msgstr ""
-"Выберите опцию Да/Нет для отображения или скрытия кнопок навигации под "
-"изображением слайдера."
 
-#: settings.php:572 tooltip.php:145
-msgid "Navigation Bullets Color"
-msgstr "Цвет точек навигации"
-
-#: settings.php:577
-msgid "Select a color to set navigation bullets color."
-msgstr "Выберите цвет для установки цвета точек навигации."
-
-#: settings.php:584 tooltip.php:150
-msgid "Full Screen Slide Show"
-msgstr "Показать слайд-шоу в полноэкранном режиме"
-
-#: settings.php:590
-msgid "Select Yes/No option for full screen slide show."
-msgstr "Выберите вариант «Да/Нет» для полноэкранного слайд-шоу."
-
-#: settings.php:597 tooltip.php:155
-msgid "Fonts"
-msgstr "Шрифты"
-
-#: settings.php:625
-msgid "Choose a font to apply on slide title and description."
-msgstr "Выберите шрифт для применения к заголовку и описанию слайда."
-
-#: settings.php:633
-msgid "Custom CSS"
-msgstr "Пользовательский CSS"
-
-#: settings.php:638
-msgid ""
-"Enter any custom CSS you want to apply on this slider into text area filed."
+#: admin/settings.php:141
+msgid "ADD NEW SLIDE / IMAGE"
 msgstr ""
-"Введите любой пользовательский CSS, который вы хотите применить к этому "
-"слайду, в поле текстовой области."
 
-#: ultimate-responsive-image-slider.php:185
-#: ultimate-responsive-image-slider.php:186
+#: includes/global-settings.php:529
+msgid "Accent color for the frontend loading animation."
+msgstr ""
+
+#: includes/global-settings.php:560
+msgid "Access Control & Role Permissions"
+msgstr ""
+
+#: admin/settings.php:1048
+msgid "Action Buttons & Links (CTA & Read More)"
+msgstr ""
+
+#: includes/analytics.php:873 includes/global-settings.php:842 init.php:349
+msgid "Actions"
+msgstr ""
+
+#: admin/settings.php:512 admin/settings.php:1832
+msgid "Active"
+msgstr ""
+
+#: includes/analytics.php:836
+msgid "Activity Timeline & Growth Trends"
+msgstr ""
+
+#: includes/docs.php:155
+msgid "Add Content"
+msgstr ""
+
+#: includes/global-settings.php:770
+msgid "Add Font to Library"
+msgstr ""
+
+#: init.php:285 init.php:286
+msgid "Add New Image Slider"
+msgstr ""
+
+#: includes/analytics.php:694 includes/global-settings.php:398
 msgid "Add New Slider"
 msgstr "Добавить новый слайдер"
 
-#: ultimate-responsive-image-slider.php:187
-msgid "Edit Slider"
-msgstr "Редактировать слайдер"
+#: includes/dynamic-source.php:203
+msgid "Add to Cart"
+msgstr ""
 
-#: ultimate-responsive-image-slider.php:188
-msgid "New Slider"
-msgstr "Новый слайдер"
+#: includes/global-settings.php:841
+msgid "Added"
+msgstr ""
 
-#: ultimate-responsive-image-slider.php:189
-msgid "View Slider"
-msgstr "Просмотр слайдера"
+#: admin/settings.php:145
+msgid "Adding images..."
+msgstr ""
 
-#: ultimate-responsive-image-slider.php:190
-msgid "Search Slider"
-msgstr "Поиск слайдера"
+#: includes/docs.php:393
+msgid "Adds a slow, cinematic zoom & pan effect to slide images with Subtle, Medium, or Dramatic intensity presets."
+msgstr ""
 
-#: ultimate-responsive-image-slider.php:191
-msgid "No Slider found"
-msgstr "Слайдер не найден"
+#: admin/settings.php:717
+msgid "Adjust touch swipe gesture sensitivity on mobile devices and touchscreens."
+msgstr ""
 
-#: ultimate-responsive-image-slider.php:192
-msgid "No Slider Found in Trash"
-msgstr "Слайдер не найден в корзине"
+#: includes/global-settings.php:572
+msgid "Administrator: Permanent Full Access"
+msgstr ""
 
-#: ultimate-responsive-image-slider.php:193
-msgid "Parent Slider:"
-msgstr "Родительский слайдер:"
+#: includes/global-settings.php:575
+msgid "Administrators always have complete access to manage sliders, view analytics, and change settings. This cannot be modified or restricted."
+msgstr ""
 
-#: ultimate-responsive-image-slider.php:194
+#: admin/settings.php:81
+msgid "Advanced Settings"
+msgstr ""
+
+#: init.php:294
+msgid "All Image Sliders"
+msgstr ""
+
+#: admin/settings.php:177 includes/analytics.php:757 includes/docs.php:78
+#: init.php:129
 msgid "All Sliders"
 msgstr "Все слайдеры"
 
-#: ultimate-responsive-image-slider.php:223
-msgid "UR Image Slider Title"
-msgstr "Заголовок UR Image Slider"
+#: admin/settings.php:1963
+msgid "All Taxonomies / No Filter"
+msgstr ""
 
-#: ultimate-responsive-image-slider.php:224
-#: ultimate-responsive-image-slider.php:246
-msgid "Slider Shortcode"
-msgstr "Шорткод слайдера"
+#: includes/analytics.php:746
+msgid "All Time"
+msgstr ""
 
-#: ultimate-responsive-image-slider.php:225
+#: includes/analytics.php:705
+msgid "All analytics tracking data has been successfully reset."
+msgstr ""
+
+#: admin/settings.php:93
+msgid "All slider configuration settings have been restored to their default values in this form. Please note: these changes will only be permanently saved when you click the \"Update\" button."
+msgstr ""
+
+#: admin/settings.php:2799
+msgid ""
+"All slider settings have been reset to default values!\n"
+"\n"
+"Please note: You must click the 'Update' button to save these changes permanently."
+msgstr ""
+
+#: admin/settings.php:1394
+msgid "Allow images to be clicked and opened in a fullscreen lightbox."
+msgstr ""
+
+#: admin/settings.php:835
+msgid "Allow images to upscale larger than their original resolution if container is bigger."
+msgstr ""
+
+#: admin/settings.php:1426
+msgid "Allow users to slide using their mouse scroll wheel."
+msgstr ""
+
+#: includes/docs.php:401
+msgid "Allows choosing whether WordPress loads Full (original), Large (1024px), or Medium Large (768px). Using Large dramatically speeds up page loading for heavy uploads."
+msgstr ""
+
+#: admin/settings.php:1662
+msgid "Also fill title"
+msgstr ""
+
+#: includes/docs.php:191
+msgid "Alternatively, add a core Shortcode block and paste your [URISP id=XXX] code."
+msgstr ""
+
+#: init.php:813
+msgid "An error occurred while uploading files."
+msgstr ""
+
+#: init.php:130
+msgid "An unexpected server error occurred while duplicating the slider."
+msgstr ""
+
+#: includes/analytics.php:58
+msgid "Analytics"
+msgstr ""
+
+#: includes/global-settings.php:541
+msgid "Analytics & Event Tracking"
+msgstr ""
+
+#: includes/analytics.php:57 includes/docs.php:116 includes/docs.php:578
+msgid "Analytics Dashboard"
+msgstr ""
+
+#: includes/analytics.php:704
+msgid "Analytics tracking data for Slider #%d has been successfully reset."
+msgstr ""
+
+#: includes/analytics.php:719
+msgid "Analytics tracking is currently disabled in Global Settings. Enable tracking to record visitor impressions and click metrics."
+msgstr ""
+
+#: admin/settings.php:654
+msgid "Animation style used when changing slides."
+msgstr ""
+
+#: includes/analytics.php:772
+msgid "Apply Filter"
+msgstr ""
+
+#: includes/docs.php:514
+msgid "Apply copyright notices, brand names, or URLs. Customize text font size, color, opacity (0-100%), and 9-point anchor alignment."
+msgstr ""
+
+#: init.php:811
+msgid "Are you sure you want to delete all the slides?"
+msgstr ""
+
+#: init.php:810
+msgid "Are you sure you want to delete the selected slide(s)?"
+msgstr ""
+
+#: init.php:809
+msgid "Are you sure you want to delete this slide?"
+msgstr ""
+
+#: init.php:125
+msgid "Are you sure you want to duplicate this slider?"
+msgstr ""
+
+#: includes/global-settings.php:1373
+msgid "Are you sure you want to remove font: "
+msgstr ""
+
+#: includes/analytics.php:652
+msgid "Are you sure you want to reset ALL analytics tracking data across all sliders? This action cannot be undone."
+msgstr ""
+
+#: admin/settings.php:2695
+msgid ""
+"Are you sure you want to reset all slider settings to their default values?\n"
+"\n"
+"Your uploaded slides, images, and content will NOT be affected.\n"
+"\n"
+"Click OK to reset the settings in this form, then click the 'Update' button to save permanently."
+msgstr ""
+
+#: includes/analytics.php:651
+msgid "Are you sure you want to reset analytics data for this slider? This action cannot be undone."
+msgstr ""
+
+#: admin/settings.php:1353
+msgid "Arrow / Icon BG Color"
+msgstr ""
+
+#: admin/settings.php:1349
+msgid "Arrow Color"
+msgstr ""
+
+#: includes/docs.php:443
+msgid "Arrow Style & Shape"
+msgstr ""
+
+#: includes/docs.php:487
+msgid "Arrow color, Arrow background color, Active/Inactive bullet colors, and Thumbnail active border colors."
+msgstr ""
+
+#: admin/settings.php:598
+msgid "Ascending"
+msgstr "По возрастанию"
+
+#: includes/docs.php:389
+msgid "Ascending (ASC), Descending (DESC), or Shuffle (randomizes slides on every page load)."
+msgstr ""
+
+#: admin/settings.php:400
+msgid "Ascending (Oldest first)"
+msgstr ""
+
+#: admin/settings.php:804
+msgid "Auto"
+msgstr ""
+
+#: admin/settings.php:573
+msgid "Auto Play Slide Show"
+msgstr "Автоматическое воспроизведение слайд-шоу"
+
+#: admin/settings.php:834
+msgid "Auto Scale Up"
+msgstr ""
+
+#: includes/docs.php:368
+msgid "Auto Slideshow"
+msgstr ""
+
+#: admin/settings.php:303
+msgid "Auto-Syncing Content"
+msgstr ""
+
+#: includes/docs.php:327
+msgid "Automatic Mapping:"
+msgstr ""
+
+#: includes/docs.php:347
+msgid "Automatic Thumbnail Cover Fetching:"
+msgstr ""
+
+#: includes/docs.php:322
+msgid "Automatically populates slides from your existing WordPress database without manual uploading:"
+msgstr ""
+
+#: admin/settings.php:1033
+msgid "Background Color Opacity"
+msgstr ""
+
+#: includes/docs.php:204
+msgid "Beaver / WPBakery:"
+msgstr ""
+
+#: includes/docs.php:247
+msgid "Block Editor (Gutenberg Block)"
+msgstr ""
+
+#: admin/settings.php:1228 admin/settings.php:1684
+msgid "Bold"
+msgstr ""
+
+#: admin/settings.php:1297
+msgid "Border Highlight"
+msgstr ""
+
+#: admin/settings.php:1266 admin/settings.php:1316
+msgid "Bottom"
+msgstr "Снизу"
+
+#: admin/settings.php:963 admin/settings.php:1572
+msgid "Bottom Center"
+msgstr ""
+
+#: admin/settings.php:962 admin/settings.php:1573
+msgid "Bottom Left"
+msgstr ""
+
+#: admin/settings.php:964
+msgid "Bottom Right"
+msgstr ""
+
+#: admin/settings.php:1571
+msgid "Bottom Right (Recommended)"
+msgstr ""
+
+#: includes/global-settings.php:520
+msgid "Bouncing Cubes"
+msgstr ""
+
+#: includes/global-settings.php:732
+msgid "Brand Typography"
+msgstr ""
+
+#: includes/global-settings.php:1030
+msgid "Browse File"
+msgstr ""
+
+#: includes/global-settings.php:781
+msgid "Built-in Accessibility Presets"
+msgstr ""
+
+#: includes/docs.php:472
+msgid "Built-in support for OpenDyslexic (weighted bottoms prevent letter flipping), Atkinson Hyperlegible (Braille Institute high-contrast font), Lexend (scientifically tuned reading fluency), and Comic Neue."
+msgstr ""
+
+#: includes/docs.php:316
+msgid "Bulk Management:"
+msgstr ""
+
+#: admin/settings.php:152
+msgid "Bulk Select"
+msgstr ""
+
+#: admin/settings.php:159
+msgid "Bulk Watermark..."
+msgstr ""
+
+#: admin/settings.php:1360
+msgid "Bullet Color"
+msgstr ""
+
+#: admin/settings.php:1690
+msgid "Bullet List"
+msgstr ""
+
+#: admin/settings.php:1461
+msgid "Burn permanent, high-quality text or graphic logo watermarks directly into your slider images with server-side caching."
+msgstr ""
+
+#: admin/settings.php:1077
+msgid "Button & Link Colors"
+msgstr ""
+
+#: admin/settings.php:1083
+msgid "Button Background / Link Color"
+msgstr ""
+
+#: admin/settings.php:1730
+msgid "Button Style"
+msgstr ""
+
+#: admin/settings.php:1719
+msgid "Button Text"
+msgstr ""
+
+#: admin/settings.php:1091
+msgid "Button Text Color"
+msgstr ""
+
+#: admin/settings.php:1723
+msgid "Button URL"
+msgstr ""
+
+#: includes/global-settings.php:654
+msgid "CSS written here applies site-wide to all Ultimate Responsive Image Slider instances. You do not need &lt;style&gt; tags."
+msgstr ""
+
+#: includes/docs.php:583
+msgid "CTA Clicks & CTR:"
+msgstr ""
+
+#: includes/analytics.php:817
+msgid "CTA buttons & slide links"
+msgstr ""
+
+#: includes/analytics.php:872
+msgid "CTR"
+msgstr ""
+
+#: includes/docs.php:583
+msgid "Calculates real Click-Through Rates (CTR %) on your Read More and Call To Action buttons to help you identify your highest-converting sliders."
+msgstr ""
+
+#: includes/docs.php:416
+msgid "Call To Action (CTA) Button:"
+msgstr ""
+
+#: admin/settings.php:1712
+msgid "Call-To-Action (CTA) Button"
+msgstr ""
+
+#: includes/docs.php:550
+msgid "Capability"
+msgstr ""
+
+#: includes/docs.php:414
+msgid "Caption Alignment:"
+msgstr ""
+
+#: includes/docs.php:485
+msgid "Caption Colors:"
+msgstr ""
+
+#: admin/settings.php:951
+msgid "Caption Position"
+msgstr ""
+
+#: admin/settings.php:1218
+msgid "Caret"
+msgstr ""
+
+#: admin/settings.php:960
+msgid "Center"
+msgstr ""
+
+#: admin/settings.php:1574
+msgid "Center (Maximum Security)"
+msgstr ""
+
+#: includes/docs.php:542
+msgid "Central repository for custom CSS rules loaded site-wide on all sliders."
+msgstr ""
+
+#: init.php:521
+msgid "Check Live Preview"
+msgstr ""
+
+#: admin/settings.php:1213
+msgid "Chevron"
+msgstr ""
+
+#: includes/docs.php:381
+msgid "Choose 100% fluid responsive, custom pixel width (e.g. 1100px), or Full Width bleed. Height can be custom fixed pixels or auto-proportional."
+msgstr ""
+
+#: includes/docs.php:324
+msgid "Choose Posts, Pages, WooCommerce Products, or custom post types (Portfolio, Events, etc.)."
+msgstr ""
+
+#: includes/elementor-widget.php:108
+msgid "Choose Slider"
+msgstr ""
+
+#: includes/global-settings.php:1026
+msgid "Choose a JSON file to import"
+msgstr ""
+
+#: admin/settings.php:522
+msgid "Choose an instant visual aesthetic theme for your slider."
+msgstr ""
+
+#: includes/docs.php:415
+msgid "Choose animation direction for titles and descriptions entering the frame (Up, Down, Left, or Right)."
+msgstr ""
+
+#: includes/docs.php:369
+msgid "Choose between Disabled, Autoplay Always, or Autoplay with Pause on Hover (recommended for accessibility)."
+msgstr ""
+
+#: includes/docs.php:498
+msgid "Choose between FancyBox (classic, lightweight) or LightGallery (modern, mobile-optimized with pinch-to-zoom and thumbnail strip)."
+msgstr ""
+
+#: admin/settings.php:820
+msgid "Choose how slide images scale to fit the slider dimensions."
+msgstr ""
+
+#: admin/settings.php:593
+msgid "Choose how slides are ordered."
+msgstr ""
+
+#: admin/settings.php:1205
+msgid "Choose the icon style for previous and next navigation arrows."
+msgstr ""
+
+#: admin/settings.php:1056
+msgid "Choose the shape and design for action buttons and links."
+msgstr ""
+
+#: admin/settings.php:1324
+msgid "Choose what content to display inside navigation boxes in Layout 5."
+msgstr ""
+
+#: admin/settings.php:1566
+msgid "Choose where the watermark appears on the image (7 precision anchor positions)."
+msgstr ""
+
+#: includes/docs.php:417
+msgid "Choose whether clicking the slide opens the link on the entire slide image or only when clicking the CTA button."
+msgstr ""
+
+#: admin/settings.php:1491
+msgid "Choose whether to stamp custom copyright text or a graphic PNG logo watermark."
+msgstr ""
+
+#: admin/settings.php:120
+msgid "Choose whether your slides are manually uploaded images or dynamically populated from WordPress content."
+msgstr ""
+
+#: admin/settings.php:683
+msgid "Choose which image size WordPress loads. Using \"Large\" significantly improves page speed for high-resolution uploads."
+msgstr ""
+
+#: includes/docs.php:216
+msgid "Choose your slider from the popup list and click \"Insert Selected Shortcode\"."
+msgstr ""
+
+#: admin/settings.php:1191
+msgid "Circle"
+msgstr ""
+
+#: admin/settings.php:1158
+msgid "Circle Bullets"
+msgstr ""
+
+#: includes/docs.php:212
+msgid "Classic Editor & TinyMCE"
+msgstr ""
+
+#: includes/docs.php:290
+msgid "Classic Hero Slider with Image Thumbnails Below"
+msgstr ""
+
+#: admin/settings.php:531
+msgid "Classic clean styling"
+msgstr ""
+
+#: admin/settings.php:490
+msgid "Classic responsive slider with horizontal bottom thumbnails"
+msgstr ""
+
+#: admin/settings.php:541
+msgid "Clean monochrome lines"
+msgstr ""
+
+#: includes/analytics.php:777
+msgid "Clear Filter"
+msgstr ""
+
+#: includes/analytics.php:776
+msgid "Clear active filters"
+msgstr ""
+
+#: includes/docs.php:90
+msgid "Clear search"
+msgstr ""
+
+#: includes/docs.php:151
+msgid "Click \"Add New Image Slider\" in the admin menu and give your slider a title."
+msgstr ""
+
+#: includes/docs.php:316
+msgid "Click \"Bulk Select\" in the toolbar to select all, invert selection, and delete multiple slides at once."
+msgstr ""
+
+#: includes/docs.php:526
+msgid "Click \"Purge Watermark Cache\" whenever you change your logo or font size to instantly regenerate all watermarked images."
+msgstr ""
+
+#: includes/analytics.php:825
+msgid "Click Engagement (CTR)"
+msgstr ""
+
+#: admin/settings.php:1666
+msgid "Click Fetch Thumbnail to download the YouTube/Vimeo cover, or Revert to restore your original uploaded image."
+msgstr ""
+
+#: includes/docs.php:215
+msgid "Click the \"Add Slider\" button located directly above the visual editor toolbar."
+msgstr ""
+
+#: includes/docs.php:188
+msgid "Click the (+) Block Inserter and search for \"Ultimate Responsive Image Slider\" (or type /urisp)."
+msgstr ""
+
+#: includes/docs.php:190
+msgid "Click the Edit button in the block toolbar or inspector to quickly modify the slider settings."
+msgstr ""
+
+#: init.php:396 init.php:400
+msgid "Click to Live Preview"
+msgstr ""
+
+#: admin/settings.php:806
+msgid "Click to apply recommended dimensions for this layout"
+msgstr ""
+
+#: includes/analytics.php:871
+msgid "Clicks"
+msgstr ""
+
+#: includes/analytics.php:827
+msgid "Clicks per 100 impressions"
+msgstr ""
+
+#: includes/class-urisp-fonts.php:115
+msgid "Clinically proven to enhance reading rate and visual tracking."
+msgstr ""
+
+#: admin/settings.php:1002
+msgid "Colors & Background Opacity"
+msgstr ""
+
+#: includes/docs.php:112
+msgid "Colors & Typography"
+msgstr ""
+
+#: includes/docs.php:462
+msgid "Colors, Typography, Custom Fonts & Accessibility Presets"
+msgstr ""
+
+#: admin/settings.php:351
+msgid "Comma-separated category or term slugs/IDs to filter by (leave blank for all)."
+msgstr ""
+
+#: includes/docs.php:122
+msgid "Community & Support"
+msgstr ""
+
+#: includes/docs.php:61
+msgid "Comprehensive user guide and detailed configuration reference for all slider layouts, settings, and features."
+msgstr ""
+
+#: includes/docs.php:541
+msgid "Conditional Loading:"
+msgstr ""
+
+#: init.php:124
+msgid "Configuration error: Slider AJAX parameters are not loaded."
+msgstr ""
+
+#: init.php:469
+msgid "Configure Setting"
+msgstr ""
+
+#: includes/docs.php:416
+msgid "Configure button style (Filled, Outline, Minimal), button background color, text color, and hover states."
+msgstr ""
+
+#: admin/settings.php:1007
+msgid "Configure colors for the title and description text."
+msgstr ""
+
+#: includes/defaults.php:507
+msgid "Configure global plugin settings and perform import/export."
+msgstr ""
+
+#: admin/settings.php:1110
+msgid "Configure how custom slide links are displayed (uses the button style & colors above)."
+msgstr ""
+
+#: includes/global-settings.php:394
+msgid "Configure site-wide loading behaviors, spinner designs, custom CSS, accessible dyslexia fonts, and manage selective slider backups."
+msgstr ""
+
+#: includes/docs.php:452
+msgid "Configure swipe distance threshold in pixels for mobile swipe sensitivity (default 50px)."
+msgstr ""
+
+#: admin/settings.php:574
+msgid "Configure the slideshow auto-advance behavior."
+msgstr ""
+
+#: admin/settings.php:1050
+msgid "Configure unified button and link styling for Call-To-Action buttons and Read More links across all slides."
+msgstr ""
+
+#: admin/settings.php:788 admin/settings.php:1865
+msgid "Configure width and height (Recommended size: 1280x720 px)."
+msgstr ""
+
+#: admin/settings.php:786 admin/settings.php:1862
+msgid "Configure width and height (Recommended size: 480x320 px for Layout 2)."
+msgstr ""
+
+#: includes/docs.php:71 includes/docs.php:131
+msgid "Contact Page"
+msgstr ""
+
+#: admin/settings.php:825
+msgid "Contain (Fit Inside)"
+msgstr ""
+
+#: admin/settings.php:310
+msgid "Content Post Type"
+msgstr ""
+
+#: admin/settings.php:61
+msgid "Content Source"
+msgstr ""
+
+#: includes/docs.php:107
+msgid "Content Sources & Media"
+msgstr ""
+
+#: includes/docs.php:310
+msgid "Content Sources (Manual vs Dynamic)"
+msgstr ""
+
+#: includes/docs.php:429
+msgid "Control"
+msgstr ""
+
+#: admin/settings.php:1343
+msgid "Control Colors"
+msgstr ""
+
+#: includes/docs.php:487
+msgid "Control Colors:"
+msgstr ""
+
+#: admin/settings.php:1585
+msgid "Controls watermark transparency (10% faint watermark to 100% solid watermark)."
+msgstr ""
+
+#: init.php:636
+msgid "Copied!"
+msgstr ""
+
+#: init.php:410 init.php:848 init.php:862
+msgid "Copy"
+msgstr ""
+
+#: init.php:862
+msgid "Copy PHP Code"
+msgstr ""
+
+#: init.php:848
+msgid "Copy Shortcode"
+msgstr ""
+
+#: init.php:470
+msgid "Copy Slider Shortcode"
+msgstr ""
+
+#: init.php:410
+msgid "Copy shortcode to clipboard"
+msgstr ""
+
+#: includes/docs.php:166
+msgid "Copy the generated shortcode [URISP id=XXX] or use the Gutenberg block / Elementor widget."
+msgstr ""
+
+#: admin/settings.php:2391
+msgid "Could not connect to Vimeo."
+msgstr ""
+
+#: init.php:1248
+msgid "Could not find or fetch a cover thumbnail for this video URL. Please ensure it is a public YouTube or Vimeo video."
+msgstr ""
+
+#: admin/settings.php:2386
+msgid "Could not retrieve Vimeo thumbnail."
+msgstr ""
+
+#: admin/settings.php:824
+msgid "Cover (Fill Container)"
+msgstr ""
+
+#: init.php:1349
+msgid "Cover thumbnail fetched from %s!"
+msgstr ""
+
+#: admin/settings.php:2418
+msgid "Cover thumbnail loaded from"
+msgstr ""
+
+#: includes/docs.php:75
+msgid "Create New Slider"
+msgstr ""
+
+#: includes/docs.php:150
+msgid "Create a Slider"
+msgstr ""
+
+#: includes/defaults.php:499
+msgid "Create, edit, clone, and delete image sliders."
+msgstr ""
+
+#: admin/settings.php:1194
+msgid "Curved"
+msgstr ""
+
+#: includes/global-settings.php:410
+msgid "Custom & Dyslexia Fonts"
+msgstr ""
+
+#: includes/docs.php:605
+msgid "Custom CSS Target Selectors"
+msgstr ""
+
+#: includes/docs.php:467
+msgid "Custom Font Uploads"
+msgstr ""
+
+#: includes/class-urisp-fonts.php:292
+msgid "Custom font \"%s\" saved successfully!"
+msgstr ""
+
+#: admin/settings.php:1078
+msgid "Customize background, text, and hover states for buttons and links."
+msgstr ""
+
+#: admin/settings.php:1344
+msgid "Customize the appearance of arrows, bullets, and thumbnail highlights."
+msgstr ""
+
+#: includes/analytics.php:839
+msgid "Daily timeline across chosen date window"
+msgstr ""
+
+#: includes/global-settings.php:939 init.php:350
 msgid "Date"
 msgstr "Дата"
 
-#: ultimate-responsive-image-slider.php:243
-msgid "Add Slides"
-msgstr "Добавить слайды"
+#: includes/analytics.php:740
+msgid "Date Range:"
+msgstr ""
 
-#: ultimate-responsive-image-slider.php:244
-msgid "Configure Settings"
-msgstr "Настроить параметры"
+#: includes/docs.php:480
+msgid "Dedicated syntax-highlighted CSS editor with bracket-matching, auto-formatting, and autocomplete to write rules that target specific slider elements with zero plugin conflicts."
+msgstr ""
 
-#: ultimate-responsive-image-slider.php:247
-msgid "Try My New Slider Plugin"
-msgstr "Попробуйте мой новый плагин слайдера"
+#: admin/settings.php:530
+msgid "Default"
+msgstr ""
 
-#: ultimate-responsive-image-slider.php:345
-#: ultimate-responsive-image-slider.php:544
-msgid "Slide ID"
-msgstr "ID слайда"
+#: admin/settings.php:1759
+msgid "Default (Inherit from Slider Settings)"
+msgstr ""
 
-#: ultimate-responsive-image-slider.php:346
-#: ultimate-responsive-image-slider.php:545
-msgid "Slide Title"
-msgstr "Заголовок слайда"
+#: admin/settings.php:1055
+msgid "Default Button / Link Style"
+msgstr ""
 
-#: ultimate-responsive-image-slider.php:349
-msgid "Enter Slide Title"
-msgstr "Введите заголовок слайда"
+#: admin/settings.php:2691
+msgid "Default settings could not be loaded."
+msgstr ""
 
-#: ultimate-responsive-image-slider.php:352
-msgid "Slide Descriptions"
-msgstr "Описание слайдов"
+#: includes/global-settings.php:480
+msgid "Defer image downloads until slides scroll into view to increase initial page speed."
+msgstr ""
 
-#: ultimate-responsive-image-slider.php:353
-msgid "Enter Slide Description"
-msgstr "Введите описание слайда"
+#: includes/docs.php:540
+msgid "Defers off-screen slide image loading until the slide approaches, saving mobile bandwidth and improving Google PageSpeed / Core Web Vitals."
+msgstr ""
 
-#: ultimate-responsive-image-slider.php:354
-#: ultimate-responsive-image-slider.php:553
-msgid "Use Rich Text Editor"
-msgstr "Использовать редактор Rich Text"
+#: includes/docs.php:373
+msgid "Delay between automatic slide advances in milliseconds (e.g. 5000 = 5 seconds)."
+msgstr ""
 
-#: ultimate-responsive-image-slider.php:357
-#: ultimate-responsive-image-slider.php:556
-msgid "Slide Alt Text"
-msgstr "Альтернативный текст слайда"
+#: admin/settings.php:633
+msgid "Delay duration between automatic slide transitions."
+msgstr ""
 
-#: ultimate-responsive-image-slider.php:358
-#: ultimate-responsive-image-slider.php:557
-msgid "Max Length 125 Characters"
-msgstr "Максимальная длина 125 символов"
-
-#: ultimate-responsive-image-slider.php:406
-msgid "Add New Slide"
-msgstr "Добавить новый слайд"
-
-#: ultimate-responsive-image-slider.php:410
-msgid "Sort Ascending by Slide ID"
-msgstr "Сортировать по возрастанию по ID слайда"
-
-#: ultimate-responsive-image-slider.php:414
-msgid "Sort Descending by Slide ID"
-msgstr "Сортировать по убыванию по ID слайда"
-
-#: ultimate-responsive-image-slider.php:419
-msgid "Clone Slider"
-msgstr "Клонировать слайдер"
-
-#: ultimate-responsive-image-slider.php:424
+#: admin/settings.php:172
 msgid "Delete All Slides"
 msgstr "Удалить все слайды"
 
-#: ultimate-responsive-image-slider.php:428
-msgid "Slider clone created successfully."
-msgstr "Клон слайдера успешно создан."
+#: includes/global-settings.php:870
+msgid "Delete Font"
+msgstr ""
 
-#: ultimate-responsive-image-slider.php:428
+#: admin/settings.php:157
+msgid "Delete Selected"
+msgstr ""
+
+#: admin/settings.php:227 init.php:902
+msgid "Delete slide"
+msgstr ""
+
+#: admin/settings.php:601
+msgid "Descending"
+msgstr "По убыванию"
+
+#: admin/settings.php:397
+msgid "Descending (Newest first)"
+msgstr ""
+
+#: includes/docs.php:551
+msgid "Description"
+msgstr ""
+
+#: includes/docs.php:363
+msgid "Description & Best Practices"
+msgstr ""
+
+#: admin/settings.php:1024
+msgid "Description BG Color"
+msgstr ""
+
+#: admin/settings.php:1020
+msgid "Description Color"
+msgstr ""
+
+#: admin/settings.php:938
+msgid "Description Size:"
+msgstr ""
+
+#: admin/settings.php:986
+msgid "Description Transition Effect"
+msgstr ""
+
+#: admin/settings.php:156
+msgid "Deselect All"
+msgstr ""
+
+#: includes/docs.php:435
+msgid "Detailed Navigation"
+msgstr ""
+
+#: includes/class-urisp-fonts.php:108
+msgid "Developed by the Braille Institute to maximize contrast and letter distinction."
+msgstr ""
+
+#: includes/docs.php:217
+msgid "Direct Paste:"
+msgstr ""
+
+#: admin/settings.php:987
+msgid "Direction from which the slide description animates in."
+msgstr ""
+
+#: admin/settings.php:972
+msgid "Direction from which the slide title animates in."
+msgstr ""
+
+#: admin/settings.php:1117
+msgid "Disable Link"
+msgstr ""
+
+#: admin/settings.php:1761
+msgid "Disable Watermark (Never)"
+msgstr ""
+
+#: admin/settings.php:102
+msgid "Dismiss notice"
+msgstr ""
+
+#: admin/settings.php:435
+msgid "Display a highlighted \"Sale!\" badge on discounted products."
+msgstr ""
+
+#: admin/settings.php:445
+msgid "Display an action button linking directly to the product cart action."
+msgstr ""
+
+#: includes/global-settings.php:491
+msgid "Display an animated shimmer placeholder while slide images are downloading."
+msgstr ""
+
+#: admin/settings.php:767
+msgid "Display the individual slide description text."
+msgstr ""
+
+#: admin/settings.php:757
+msgid "Display the individual slide title on top of the image."
+msgstr ""
+
+#: admin/settings.php:747
+msgid "Display the main title above the slider."
+msgstr ""
+
+#: admin/settings.php:425
+msgid "Display the product price badge on the top corner of the slide."
+msgstr ""
+
+#: includes/docs.php:296
+msgid "Displays an immersive horizontal filmstrip at the top/bottom where multiple slides are visible simultaneously with smooth continuous glide transitions."
+msgstr ""
+
+#: includes/docs.php:286
+msgid "Displays images in a dynamic masonry/grid photo album. When visitors click any image, a high-resolution Lightbox (FancyBox or LightGallery) opens with zoom, swipe, and thumbnail filmstrip preview."
+msgstr ""
+
+#: includes/docs.php:203
+msgid "Divi Builder:"
+msgstr ""
+
+#: includes/docs.php:23
+msgid "Documentation"
+msgstr ""
+
+#: includes/docs.php:22
+msgid "Documentation & Guide"
+msgstr ""
+
+#: includes/global-settings.php:519
+msgid "Dots Wave"
+msgstr ""
+
+#: includes/docs.php:156
+msgid "Drag & drop photos, paste YouTube/Vimeo URLs, or select Dynamic WordPress Posts / WooCommerce Products."
+msgstr ""
+
+#: includes/docs.php:315
+msgid "Drag images directly into the upload area or click to open the WordPress Media Library."
+msgstr ""
+
+#: includes/docs.php:317
+msgid "Drag slides by their handle icon to rearrange their order."
+msgstr ""
+
+#: includes/docs.php:264
+msgid "Drag the \"UR Image Slider\" widget into any column or section in Elementor."
+msgstr ""
+
+#: includes/docs.php:315
+msgid "Drag-and-Drop Uploader:"
+msgstr ""
+
+#: admin/settings.php:707
+msgid "Dramatic (1.20x)"
+msgstr ""
+
+#: includes/docs.php:189
+msgid "Dropdown Selection:"
+msgstr ""
+
+#: includes/global-settings.php:518
+msgid "Dual Ring"
+msgstr ""
+
+#: includes/docs.php:300
+msgid "Dual-Axis Carousel (Vertical / Horizontal Navigation)"
+msgstr ""
+
+#: includes/docs.php:508
+msgid "Dual-Layer Watermark Protection Engine"
+msgstr ""
+
+#: init.php:156 init.php:367 init.php:457
+msgid "Duplicate"
+msgstr ""
+
+#: admin/settings.php:171
+msgid "Duplicate Slider"
+msgstr ""
+
+#: init.php:455
+msgid "Duplicate this slider in draft"
+msgstr ""
+
+#: init.php:127
+msgid "Duplicating..."
+msgstr ""
+
+#: admin/settings.php:128
+msgid "Dynamic Content"
+msgstr ""
+
+#: admin/settings.php:298
+msgid "Dynamic Content Query Settings"
+msgstr ""
+
+#: admin/settings.php:372
+msgid "Dynamic Order By"
+msgstr ""
+
+#: admin/settings.php:390
+msgid "Dynamic Order Direction"
+msgstr ""
+
+#: includes/docs.php:321
+msgid "Dynamic WordPress Content (Posts, Pages & WooCommerce)"
+msgstr ""
+
+#: admin/settings.php:500
+msgid "Dynamic perspective carousel with multi-slide visible view"
+msgstr ""
+
+#: includes/docs.php:471
+msgid "Dyslexia & Accessibility Presets"
+msgstr ""
+
+#: init.php:128 init.php:1158
+msgid "Edit Duplicated Slider"
+msgstr ""
+
+#: init.php:287
+msgid "Edit Image Slider"
+msgstr ""
+
+#: admin/settings.php:1607
+msgid "Edit Slide Details"
+msgstr ""
+
+#: includes/analytics.php:919 includes/global-settings.php:967
+msgid "Edit Slider"
+msgstr "Редактировать слайдер"
+
+#: admin/settings.php:228 init.php:903
+msgid "Edit slide details"
+msgstr ""
+
+#: includes/docs.php:263
+msgid "Elementor Page Builder"
+msgstr ""
+
+#: includes/docs.php:202
+msgid "Elementor Widget:"
+msgstr ""
+
+#: includes/docs.php:199
+msgid "Elementor, Divi & Page Builders"
+msgstr ""
+
+#: includes/docs.php:228
+msgid "Embed sliders directly in template files (e.g. header.php, front-page.php) using WordPress do_shortcode function:"
+msgstr ""
+
+#: includes/docs.php:237
+msgid "Embedding Syntax Reference"
+msgstr ""
+
+#: includes/global-settings.php:546
+msgid "Enable Analytics Tracking"
+msgstr ""
+
+#: admin/settings.php:1479
+msgid "Enable Watermark"
+msgstr ""
+
+#: admin/settings.php:697
+msgid "Enable cinematic slow zoom and pan animation on active slide images."
+msgstr ""
+
+#: admin/settings.php:1411
+msgid "Enable fullscreen viewing option on the slider."
+msgstr ""
+
+#: admin/settings.php:1176
+msgid "Enable left/right arrows for manual sliding."
+msgstr ""
+
+#: includes/docs.php:413
+msgid "Enable or disable caption overlays globally across the slider."
+msgstr ""
+
+#: admin/settings.php:1152
+msgid "Enable small bullet indicators for slides."
+msgstr ""
+
+#: admin/settings.php:1142
+msgid "Enable thumbnails or detailed navigation at the bottom."
+msgstr ""
+
+#: admin/settings.php:1480
+msgid "Enable watermark protection for all slides in this slider (can be customized per slide in the slide editor)."
+msgstr ""
+
+#: includes/docs.php:499
+msgid "Enables an expand button in the corner to toggle full-browser immersive viewing."
+msgstr ""
+
+#: includes/docs.php:440
+msgid "Enables pagination dots. Choose between Circle or Square shapes, and set bullet size from 6px to 20px."
+msgstr ""
+
+#: includes/analytics.php:951
+msgid "Engagement Funnel"
+msgstr ""
+
+#: includes/docs.php:624
+msgid "Ensure your slider has at least 1 image uploaded or active dynamic posts found, and that its status is Published (not Draft). Also check that your theme calls wp_footer() in footer.php so jQuery scripts can execute."
+msgstr ""
+
+#: admin/settings.php:2835
+msgid "Enter Font Family Name:"
+msgstr ""
+
+#: admin/settings.php:1509
+msgid "Enter copyright or brand text. TrueType font OpenSans-Bold is applied with a smooth drop-shadow for contrast on any background."
+msgstr ""
+
+#: admin/settings.php:2509
+msgid "Enter link URL:"
+msgstr ""
+
+#: admin/settings.php:1697
+msgid "Enter slide description..."
+msgstr ""
+
+#: includes/global-settings.php:1307 includes/global-settings.php:1314
+#: includes/global-settings.php:1353 includes/global-settings.php:1360
+msgid "Error:"
+msgstr ""
+
+#: admin/settings.php:826
+msgid "Exact Fit (Stretch)"
+msgstr ""
+
+#: includes/docs.php:318
+msgid "Expand any slide to customize its Title, Rich Text Description, External Link (URL & Target), Alt text, CTA Button text, and custom watermark override."
+msgstr ""
+
+#: includes/analytics.php:667
+msgid "Export CSV"
+msgstr ""
+
+#: includes/global-settings.php:900
+msgid "Export Image Sliders"
+msgstr ""
+
+#: includes/global-settings.php:1002
+msgid "Export Selected Sliders (.JSON)"
+msgstr ""
+
+#: includes/analytics.php:661
+msgid "Export analytics events as CSV"
+msgstr ""
+
+#: includes/docs.php:571
+msgid "Export single, multiple, or all sliders with full image details, captions, and settings to a JSON backup file. Import JSON backups into any WordPress site running UR Image Slider."
+msgstr ""
+
+#: admin/settings.php:662
+msgid "Fade Animation"
+msgstr ""
+
+#: includes/global-settings.php:1409
+msgid "Failed to delete font."
+msgstr ""
+
+#: includes/analytics.php:214
+msgid "Failed to log analytics event."
+msgstr ""
+
+#: admin/settings.php:2620
+msgid "Failed to purge cache."
+msgstr ""
+
+#: admin/settings.php:2872 includes/global-settings.php:1352
+msgid "Failed to save font."
+msgstr ""
+
+#: includes/class-urisp-fonts.php:296
+msgid "Failed to save font. Please check the file URL."
+msgstr ""
+
+#: init.php:131
+msgid "Failed to update live preview. Please update the post manually."
+msgstr ""
+
+#: init.php:812
+msgid "Failed to upload files: "
+msgstr ""
+
+#: admin/settings.php:728
+msgid "Fast flick (25px threshold)"
+msgstr ""
+
+#: admin/settings.php:1654
+msgid "Fetch Thumbnail"
+msgstr ""
+
+#: includes/docs.php:326
+msgid "Fetch top N posts sorted by Publication Date, Title, Menu Order, ID, or Random."
+msgstr ""
+
+#: admin/settings.php:1615 admin/settings.php:2043
+msgid "Fetched Video Cover"
+msgstr ""
+
+#: admin/settings.php:2268
+msgid "Fetching video cover..."
+msgstr ""
+
+#: admin/settings.php:2267
+msgid "Fetching..."
+msgstr ""
+
+#: admin/settings.php:1061
+msgid "Filled"
+msgstr ""
+
+#: admin/settings.php:1733
+msgid "Filled Button"
+msgstr ""
+
+#: includes/docs.php:385
+msgid "Fills the entire slide area without letterboxing (recommended)."
+msgstr ""
+
+#: includes/docs.php:295
+msgid "Filmstrip Header Showcase"
+msgstr ""
+
+#: admin/settings.php:330
+msgid "Filter by Taxonomy"
+msgstr ""
+
+#: includes/docs.php:325
+msgid "Filter slides by Category, Tag, or custom taxonomy (e.g. \"Featured Products\")."
+msgstr ""
+
+#: includes/docs.php:486
+msgid "Fine-tune title size (10px - 32px) and description size (6px - 24px) for desktop and mobile screens."
+msgstr ""
+
+#: admin/settings.php:734
+msgid "Firm drag (80px threshold)"
+msgstr ""
+
+#: includes/docs.php:385
+msgid "Fits the whole image inside the slide without cropping."
+msgstr ""
+
+#: admin/settings.php:480
+msgid "Flagship slider with bottom title & desc navigation tabs"
+msgstr ""
+
+#: includes/global-settings.php:740 includes/global-settings.php:838
+msgid "Font Family Name"
+msgstr ""
+
+#: includes/global-settings.php:751
+msgid "Font File URL"
+msgstr ""
+
+#: admin/settings.php:858
+msgid "Font Style"
+msgstr ""
+
+#: includes/class-urisp-fonts.php:316
+msgid "Font deleted successfully."
+msgstr ""
+
+#: includes/class-urisp-fonts.php:318
+msgid "Font not found or could not be deleted."
+msgstr ""
+
+#: admin/settings.php:2870 includes/global-settings.php:1339
+msgid "Font saved successfully!"
+msgstr ""
+
+#: admin/settings.php:1519
+msgid "Font size in points (8 to 72). Automatically calibrated based on slide resolution."
+msgstr ""
+
+#: admin/settings.php:1760
+msgid "Force Enable Watermark (Always)"
+msgstr ""
+
+#: includes/global-settings.php:839
+msgid "Format"
+msgstr ""
+
+#: includes/global-settings.php:660
+msgid "Format CSS"
+msgstr ""
+
+#: includes/global-settings.php:658
+msgid "Format and Beautify CSS Code"
+msgstr ""
+
+#: includes/global-settings.php:1242
+msgid "Formatted!"
+msgstr ""
+
+#: admin/settings.php:977 admin/settings.php:991
+msgid "From Down"
+msgstr ""
+
+#: admin/settings.php:978 admin/settings.php:993
+msgid "From Left"
+msgstr ""
+
+#: admin/settings.php:979 admin/settings.php:994
+msgid "From Right"
+msgstr ""
+
+#: admin/settings.php:976 admin/settings.php:992
+msgid "From Up"
+msgstr ""
+
+#: includes/global-settings.php:501
+msgid "Frontend Loading Indicator"
+msgstr ""
+
+#: admin/settings.php:536
+msgid "Frosted blur & glow"
+msgstr ""
+
+#: admin/settings.php:687
+msgid "Full (Original)"
+msgstr ""
+
+#: admin/settings.php:798
+msgid "Full Width"
+msgstr "Полная ширина"
+
+#: includes/docs.php:281
+msgid "Full-width or custom-width hero showcase with slide titles & descriptions displayed in interactive bottom tabs with pointer indicators. Can be toggled to clean minimal hero by turning off Detailed Navigation in the Navigation tab."
+msgstr ""
+
+#: includes/docs.php:499
+msgid "Fullscreen Button:"
+msgstr ""
+
+#: admin/settings.php:1410
+msgid "Fullscreen Mode"
+msgstr ""
+
+#: admin/settings.php:1467
+msgid "GD Engine Ready"
+msgstr ""
+
+#: admin/settings.php:1469
+msgid "GD Not Found - CSS Fallback Active"
+msgstr ""
+
+#: includes/analytics.php:784
+msgid "GDPR compliant: IPs anonymized automatically"
+msgstr ""
+
+#: admin/settings.php:65
+msgid "General & Layout"
+msgstr ""
+
+#: includes/docs.php:109
+msgid "General Settings"
+msgstr ""
+
+#: includes/docs.php:358
+msgid "General Settings Reference"
+msgstr ""
+
+#: includes/docs.php:145
+msgid "Getting started with Ultimate Responsive Image Slider Pro takes only a few clicks:"
+msgstr ""
+
+#: admin/settings.php:535
+msgid "Glassmorphism"
+msgstr ""
+
+#: includes/global-settings.php:651
+msgid "Global Custom CSS"
+msgstr ""
+
+#: includes/docs.php:542
+msgid "Global Custom CSS:"
+msgstr ""
+
+#: admin/settings.php:1732
+msgid "Global Default"
+msgstr ""
+
+#: includes/global-settings.php:23 includes/global-settings.php:24
+#: includes/global-settings.php:406
+msgid "Global Settings"
+msgstr ""
+
+#: includes/global-settings.php:390
+msgid "Global Settings & Data Tools"
+msgstr ""
+
+#: includes/docs.php:115
+msgid "Global Settings & RBAC"
+msgstr ""
+
+#: includes/global-settings.php:423
+msgid "Global Settings saved successfully."
+msgstr ""
+
+#: includes/docs.php:535
+msgid "Global Settings, Performance & Role Permissions"
+msgstr ""
+
+#: admin/settings.php:1299
+msgid "Glow / Shadow"
+msgstr ""
+
+#: admin/settings.php:177
 msgid "Go to"
 msgstr "Перейти к"
 
-#: ultimate-responsive-image-slider.php:428
-msgid "All Slider"
-msgstr "Все слайдеры"
-
-#: ultimate-responsive-image-slider.php:428
-msgid "page to edit cloned slider."
-msgstr "страница для редактирования клонированного слайдера."
-
-#: ultimate-responsive-image-slider.php:510
-msgid "Use below shortcode in any Page/Post to publish your slider"
+#: includes/docs.php:634
+msgid "Go to General Settings → Image Scale Mode. If set to \"Cover\", images fill the container without distortion by cropping overflowing edges. Change it to \"Contain\" if you want the entire image visible without any cropping."
 msgstr ""
-"Используйте шорткод ниже в любой странице/посте, чтобы опубликовать свой "
-"слайдер"
 
-#: ultimate-responsive-image-slider.php:513
-msgid "To embed slider in any custom theme template"
-msgstr "Для вставки слайдера в любой пользовательский шаблон темы"
+#: includes/docs.php:629
+msgid "Go to Slider Settings → Navigation tab → toggle \"Show Slider Navigation\" to OFF. This hides the tabs and leaves a clean, minimal hero showcase."
+msgstr ""
 
-#: ultimate-responsive-image-slider.php:548
-msgid "Enter Slide Title Here"
-msgstr "Введите заголовок слайда здесь"
+#: includes/docs.php:639
+msgid "Go to UR Image Slider → All Image Sliders, and click the \"Duplicate\" button in the Actions column next to any slider. An exact replica will be created in Draft status immediately."
+msgstr ""
 
-#: ultimate-responsive-image-slider.php:551
+#: layouts/layout-1.php:154 layouts/layout-2.php:143 layouts/layout-3.php:168
+#: layouts/layout-4.php:143 layouts/layout-5.php:158
+msgid "Go to slide"
+msgstr ""
+
+#: includes/docs.php:161
+msgid "Go to the Layouts tab and pick 1 of the 5 layouts (Standard, Grid Lightbox, Thumbnails, Filmstrip, or Carousel)."
+msgstr ""
+
+#: includes/global-settings.php:563
+msgid "Grant dedicated gallery management, analytics viewing, and settings permissions to non-administrator user roles without giving them admin-level site options."
+msgstr ""
+
+#: includes/docs.php:546
+msgid "Grant slider management to non-administrators (e.g. Editors, Authors) without exposing dangerous site-wide settings:"
+msgstr ""
+
+#: includes/docs.php:184
+msgid "Gutenberg (Block Editor)"
+msgstr ""
+
+#: admin/settings.php:235 admin/settings.php:2208
+msgid "Has CTA Button"
+msgstr ""
+
+#: admin/settings.php:1692
+msgid "Heading (H3)"
+msgstr ""
+
+#: admin/settings.php:728
+msgid "High (25px)"
+msgstr ""
+
+#: includes/class-urisp-fonts.php:122
+msgid "Highly distinct character shapes recommended for informal accessible reading."
+msgstr ""
+
+#: admin/settings.php:675
+msgid "Horizontal"
+msgstr ""
+
+#: admin/settings.php:1095
+msgid "Hover Background / Link Color"
+msgstr ""
+
+#: admin/settings.php:1099
+msgid "Hover Text Color"
+msgstr ""
+
+#: includes/docs.php:173
+msgid "How to Publish & Embed Your Slider in Any Editor"
+msgstr ""
+
+#: admin/settings.php:1623
+msgid "Image"
+msgstr ""
+
+#: includes/docs.php:384
+msgid "Image Scale Mode"
+msgstr ""
+
+#: admin/settings.php:819
+msgid "Image Scaling Mode"
+msgstr ""
+
+#: admin/settings.php:682 includes/docs.php:400
+msgid "Image Source Size"
+msgstr ""
+
+#: includes/docs.php:570
+msgid "Import & Export Backup Tools"
+msgstr ""
+
+#: includes/global-settings.php:414
+msgid "Import / Export"
+msgstr ""
+
+#: includes/global-settings.php:1012
+msgid "Import Image Sliders"
+msgstr ""
+
+#: includes/global-settings.php:1044
+msgid "Import Sliders Now"
+msgstr ""
+
+#: includes/global-settings.php:285
+msgid "Imported Slider"
+msgstr ""
+
+#: includes/analytics.php:869
+msgid "Impressions"
+msgstr ""
+
+#: includes/docs.php:581
+msgid "Impressions:"
+msgstr ""
+
+#: includes/docs.php:436
+msgid "In Layout 1, toggles the bottom slide title/description navigation tabs with pointer arrows. Can be disabled for a minimal hero."
+msgstr ""
+
+#: includes/global-settings.php:996
+msgid "Include site-wide Global Settings & Custom CSS in export file"
+msgstr ""
+
+#: includes/docs.php:350
+msgid "Inline Playback vs Lightbox:"
+msgstr ""
+
+#: admin/settings.php:1689
+msgid "Insert Link"
+msgstr ""
+
+#: init.php:1440
+msgid "Insert Selected Shortcode"
+msgstr ""
+
+#: includes/docs.php:203
+msgid "Insert a Code or Shortcode module and paste your [URISP id=XXX] shortcode."
+msgstr ""
+
+#: includes/docs.php:248
+msgid "Insert the \"Ultimate Responsive Image Slider\" block, choose your slider from the dropdown, and see a live ServerSideRender preview."
+msgstr ""
+
+#: admin/settings.php:703
+msgid "Intensity:"
+msgstr ""
+
+#: includes/analytics.php:815
+msgid "Interaction Clicks"
+msgstr ""
+
+#: admin/settings.php:1421
+msgid "Interactions & Read More Settings"
+msgstr ""
+
+#: includes/docs.php:476
+msgid "Interactive typography preview cards render sample sentences live in the admin interface as you select different fonts or upload new styles, ensuring you see the exact visual presentation before publishing."
+msgstr ""
+
+#: includes/global-settings.php:454
+msgid "Invalid JSON file format. Please upload a file generated by Ultimate Responsive Image Slider Pro."
+msgstr ""
+
+#: includes/class-urisp-fonts.php:312
+msgid "Invalid font ID."
+msgstr ""
+
+#: init.php:1131
+msgid "Invalid slider ID or watermark module not loaded."
+msgstr ""
+
+#: init.php:147
+msgid "Invalid slider ID."
+msgstr ""
+
+#: includes/analytics.php:208
+msgid "Invalid tracking payload."
+msgstr ""
+
+#: admin/settings.php:1685
+msgid "Italic"
+msgstr ""
+
+#: includes/docs.php:392
+msgid "Ken Burns Effect"
+msgstr ""
+
+#: admin/settings.php:696
+msgid "Ken Burns Zoom Effect"
+msgstr ""
+
+#: includes/docs.php:447
+msgid "Keyboard Accessibility"
+msgstr ""
+
+#: admin/settings.php:688
+msgid "Large (max 1024px)"
+msgstr ""
+
+#: includes/analytics.php:744
+msgid "Last 30 Days"
+msgstr ""
+
+#: includes/analytics.php:743
+msgid "Last 7 Days"
+msgstr ""
+
+#: includes/analytics.php:745
+msgid "Last 90 Days"
+msgstr ""
+
+#: admin/settings.php:380
+msgid "Last Modified Date"
+msgstr ""
+
+#: includes/docs.php:415
+msgid "Layer Animation Transitions:"
+msgstr ""
+
+#: includes/analytics.php:868 init.php:347
+msgid "Layout"
+msgstr ""
+
+#: admin/settings.php:467
+msgid "Layout & Behavior Settings"
+msgstr ""
+
+#: includes/docs.php:279
+msgid "Layout 1"
+msgstr ""
+
+#: admin/settings.php:479
+msgid "Layout 1: Standard"
+msgstr ""
+
+#: includes/docs.php:284
+msgid "Layout 2"
+msgstr ""
+
+#: admin/settings.php:484
+msgid "Layout 2: Grid"
+msgstr ""
+
+#: includes/docs.php:289
+msgid "Layout 3"
+msgstr ""
+
+#: admin/settings.php:489
+msgid "Layout 3: Thumbnails"
+msgstr ""
+
+#: includes/docs.php:294
+msgid "Layout 4"
+msgstr ""
+
+#: admin/settings.php:494
+msgid "Layout 4: Filmstrip"
+msgstr ""
+
+#: includes/docs.php:299
+msgid "Layout 5"
+msgstr ""
+
+#: admin/settings.php:499
+msgid "Layout 5: Carousel"
+msgstr ""
+
+#: includes/global-settings.php:479
+msgid "Lazy Loading"
+msgstr ""
+
+#: includes/docs.php:540
+msgid "Lazy Loading:"
+msgstr ""
+
+#: admin/settings.php:1268 admin/settings.php:1314
+msgid "Left"
+msgstr ""
+
+#: includes/docs.php:113
+msgid "Lightbox & Fullscreen"
+msgstr ""
+
+#: includes/docs.php:495
+msgid "Lightbox & Fullscreen Preview"
+msgstr ""
+
+#: admin/settings.php:1389
+msgid "Lightbox & Fullscreen Settings"
+msgstr ""
+
+#: includes/docs.php:498
+msgid "Lightbox Engines:"
+msgstr ""
+
+#: admin/settings.php:1393
+msgid "Lightbox Options"
+msgstr ""
+
+#: admin/settings.php:1116
+msgid "Link Entire Slide Image"
+msgstr ""
+
+#: init.php:366
+msgid "Live Preview"
+msgstr ""
+
+#: admin/settings.php:913
+msgid "Live Preview:"
+msgstr ""
+
+#: init.php:590
+msgid "Live Slider Preview"
+msgstr ""
+
+#: includes/docs.php:475 includes/global-settings.php:840
+msgid "Live Typography Preview"
+msgstr ""
+
+#: init.php:1348
+msgid "Loaded existing %s cover from Media Library!"
+msgstr ""
+
+#: includes/global-settings.php:528
+msgid "Loading Icon Color"
+msgstr ""
+
+#: includes/global-settings.php:512
+msgid "Loading Icon Style"
+msgstr ""
+
+#: init.php:608
+msgid "Loading Preview..."
+msgstr ""
+
+#: includes/docs.php:579
+msgid "Located at UR Image Slider → Analytics:"
+msgstr ""
+
+#: includes/docs.php:536
+msgid "Located at UR Image Slider → Global Settings:"
+msgstr ""
+
+#: includes/docs.php:517
+msgid "Logo / PNG Watermarks"
+msgstr ""
+
+#: admin/settings.php:1499 admin/settings.php:1534
+msgid "Logo Image"
+msgstr ""
+
+#: admin/settings.php:1550
+msgid "Logo Scale / Size"
+msgstr ""
+
+#: admin/settings.php:734
+msgid "Low (80px)"
+msgstr ""
+
+#: admin/settings.php:906
+msgid "Manage Fonts"
+msgstr ""
+
+#: includes/analytics.php:724 includes/defaults.php:506
+msgid "Manage Global Settings"
+msgstr ""
+
+#: includes/defaults.php:498
+msgid "Manage Sliders"
+msgstr ""
+
+#: admin/settings.php:904
+msgid "Manage all custom and accessibility fonts in Global Settings"
+msgstr ""
+
+#: includes/docs.php:313
+msgid "Manual Uploads (Images & Videos)"
+msgstr ""
+
+#: admin/settings.php:456
+msgid "Manual slides are preserved safely in your database. Switch back to \"Upload Images / Manual\" anytime to view and edit them."
+msgstr ""
+
+#: admin/settings.php:361
+msgid "Maximum Slides Count"
+msgstr ""
+
+#: admin/settings.php:362
+msgid "Maximum number of dynamic slides to load (1 - 50)."
+msgstr ""
+
+#: includes/docs.php:582
+msgid "Measures user engagement as visitors swipe or click through slides."
+msgstr ""
+
+#: admin/settings.php:706
+msgid "Medium (1.12x)"
+msgstr ""
+
+#: admin/settings.php:731
+msgid "Medium (50px)"
+msgstr ""
+
+#: admin/settings.php:689
+msgid "Medium Large (max 768px)"
+msgstr ""
+
+#: includes/docs.php:241
+msgid "Method"
+msgstr ""
+
+#: admin/settings.php:959
+msgid "Middle Left"
+msgstr ""
+
+#: admin/settings.php:961
+msgid "Middle Right"
+msgstr ""
+
+#: admin/settings.php:1233
+msgid "Minimal"
+msgstr ""
+
+#: admin/settings.php:540
+msgid "Minimalist"
+msgstr ""
+
+#: init.php:270
+msgid "Missing slider ID."
+msgstr ""
+
+#: includes/docs.php:216
+msgid "Modal Insert:"
+msgstr ""
+
+#: includes/analytics.php:643
+msgid "Monitor audience impressions, slide completion rates, and call-to-action click engagement across all your sliders."
+msgstr ""
+
+#: admin/settings.php:382
+msgid "Most Commented"
+msgstr ""
+
+#: admin/settings.php:1425
+msgid "Mouse Wheel Navigation"
+msgstr ""
+
+#: admin/settings.php:485
+msgid "Multi-column thumbnail gallery grid with lightbox modal"
+msgstr ""
+
+#: includes/docs.php:188
+msgid "Native Block:"
+msgstr ""
+
+#: admin/settings.php:73 includes/docs.php:111
+msgid "Navigation & Arrows"
+msgstr ""
+
+#: admin/settings.php:1204
+msgid "Navigation Arrow Style"
+msgstr ""
+
+#: includes/docs.php:439
+msgid "Navigation Bullets"
+msgstr ""
+
+#: admin/settings.php:1339
+msgid "Navigation Colors"
+msgstr ""
+
+#: admin/settings.php:1137
+msgid "Navigation Configurations"
+msgstr ""
+
+#: admin/settings.php:1323
+msgid "Navigation Content (Layout 5)"
+msgstr ""
+
+#: includes/docs.php:425
+msgid "Navigation Controls & Accessibility"
+msgstr ""
+
+#: admin/settings.php:1185
+msgid "Navigation Icon Shape"
+msgstr ""
+
+#: admin/settings.php:1307
+msgid "Navigation Position (Layout 5)"
+msgstr ""
+
+#: admin/settings.php:2625
+msgid "Network error while purging cache."
+msgstr ""
+
+#: admin/settings.php:550
+msgid "Neumorphic"
+msgstr ""
+
+#: init.php:288
+msgid "New Image Slider"
+msgstr ""
+
+#: admin/settings.php:1742
+msgid "New Window (_blank)"
+msgstr ""
+
+#: admin/settings.php:1770
+msgid "Next"
+msgstr ""
+
+#: layouts/layout-1.php:143 layouts/layout-2.php:132 layouts/layout-3.php:157
+#: layouts/layout-4.php:132 layouts/layout-5.php:147
+msgid "Next Slide"
+msgstr ""
+
+#: admin/settings.php:585
+msgid "No"
+msgstr "Нет"
+
+#: includes/analytics.php:935
+msgid "No Analytics Data Recorded Yet"
+msgstr ""
+
+#: init.php:291
+msgid "No Image Slider found"
+msgstr ""
+
+#: init.php:292
+msgid "No Image Slider found in Trash"
+msgstr ""
+
+#: init.php:1443
+msgid "No Slider Found"
+msgstr ""
+
+#: layouts/layout-1.php:748 layouts/layout-2.php:608 layouts/layout-3.php:746
+#: layouts/layout-4.php:653 layouts/layout-5.php:864
+msgid "No Slides Found In Slider."
+msgstr ""
+
+#: includes/global-settings.php:831 includes/global-settings.php:1401
+msgid "No custom fonts uploaded yet"
+msgstr ""
+
+#: includes/global-settings.php:640
+msgid "No other user roles detected."
+msgstr ""
+
+#: includes/analytics.php:1036
+msgid "No recent events recorded yet."
+msgstr ""
+
+#: includes/global-settings.php:988
+msgid "No sliders found in your site yet."
+msgstr ""
+
+#: admin/settings.php:1300
+msgid "None"
+msgstr "Без масштабирования"
+
+#: admin/settings.php:827
+msgid "None (Original Image Size)"
+msgstr ""
+
+#: admin/settings.php:91
+msgid "Notice: Settings Reset to Default Values"
+msgstr ""
+
+#: admin/settings.php:1691
+msgid "Numbered List"
+msgstr ""
+
+#: admin/settings.php:1330
+msgid "Numbering (1, 2, 3...)"
+msgstr ""
+
+#: admin/settings.php:1120
+msgid "Open In New Window"
+msgstr ""
+
+#: admin/settings.php:1121
+msgid "Open In Same Window"
+msgstr ""
+
+#: admin/settings.php:1740
+msgid "Open Link In"
+msgstr ""
+
+#: admin/settings.php:1714
+msgid "Optional per-slide button"
+msgstr ""
+
+#: admin/settings.php:331
+msgid "Optionally filter content by a category or custom taxonomy."
+msgstr ""
+
+#: includes/docs.php:430
+msgid "Options & Usage"
+msgstr ""
+
+#: admin/settings.php:670
+msgid "Orientation for thumbnail carousel transition in Layout 5."
+msgstr ""
+
+#: admin/settings.php:1064
+msgid "Outlined"
+msgstr ""
+
+#: admin/settings.php:1734
+msgid "Outlined Button"
+msgstr ""
+
+#: includes/docs.php:259
+msgid "PHP Template Code"
+msgstr ""
+
+#: includes/docs.php:598
+msgid "PHP Template Implementation"
+msgstr ""
+
+#: init.php:855
+msgid "PHP Template Tag"
+msgstr ""
+
+#: includes/docs.php:225
+msgid "PHP Templates (Theme Devs)"
+msgstr ""
+
+#: init.php:293
+msgid "Parent Image Slider:"
+msgstr ""
+
+#: includes/docs.php:217
+msgid "Paste [URISP id=XXX] directly into Visual or Text mode at the desired cursor position."
+msgstr ""
+
+#: init.php:844
+msgid "Paste this shortcode into any Page, Post, Widget, or Page Builder:"
+msgstr ""
+
+#: admin/settings.php:582
+msgid "Pause on Hover"
+msgstr ""
+
+#: includes/docs.php:318
+msgid "Per-Slide Settings:"
+msgstr ""
+
+#: includes/docs.php:479
+msgid "Per-Slider Custom CSS"
+msgstr ""
+
+#: admin/settings.php:1755
+msgid "Per-slide watermark override"
+msgstr ""
+
+#: admin/settings.php:1551
+msgid "Percentage scale relative to the slide width (5% to 100%)."
+msgstr ""
+
+#: includes/global-settings.php:473
+msgid "Performance & Loading Features"
+msgstr ""
+
+#: includes/docs.php:538
+msgid "Performance & Optimization"
+msgstr ""
+
+#: includes/class-urisp-fonts.php:274 includes/class-urisp-fonts.php:307
+msgid "Permission denied."
+msgstr ""
+
+#: includes/docs.php:565
+msgid "Permission to configure global settings, role matrix, and run Import/Export backups."
+msgstr ""
+
+#: includes/docs.php:557
+msgid "Permission to create, edit, duplicate, and delete sliders."
+msgstr ""
+
+#: includes/docs.php:561
+msgid "Permission to view slider performance metrics, impressions, and CTR charts."
+msgstr ""
+
+#: admin/settings.php:1067
+msgid "Pill"
+msgstr ""
+
+#: admin/settings.php:1735
+msgid "Pill Button"
+msgstr ""
+
+#: admin/settings.php:1308
+msgid "Placement of the thumbnail / navigation box in Layout 5."
+msgstr ""
+
+#: admin/settings.php:1262
+msgid "Placement of the thumbnail carousel in Layout 3."
+msgstr ""
+
+#: includes/slide-loader.php:264
+msgid "Play Video"
+msgstr ""
+
+#: includes/global-settings.php:452
+msgid "Please choose a valid JSON export file to import."
+msgstr ""
+
+#: admin/settings.php:2398
+msgid "Please enter a valid YouTube or Vimeo URL."
+msgstr ""
+
+#: admin/settings.php:2260 init.php:1180
+msgid "Please enter a video URL first."
+msgstr ""
+
+#: includes/class-urisp-fonts.php:282
+msgid "Please provide a Font Family Name."
+msgstr ""
+
+#: includes/global-settings.php:1314
+msgid "Please provide or upload a font file URL."
+msgstr ""
+
+#: includes/class-urisp-fonts.php:286
+msgid "Please provide or upload a valid font file URL (.woff2, .woff, .ttf, .otf)."
+msgstr ""
+
+#: includes/elementor-widget.php:125
+msgid "Please select a slider from the widget settings panel on the left."
+msgstr ""
+
+#: admin/settings.php:2637
+msgid "Please select at least one slide to apply watermark action."
+msgstr ""
+
+#: includes/global-settings.php:441
+msgid "Please select at least one slider or check the Global Settings box to export."
+msgstr ""
+
+#: includes/global-settings.php:1307
+msgid "Please specify a Font Family Name."
+msgstr ""
+
+#: admin/settings.php:1298
+msgid "Pointer Arrow"
+msgstr ""
+
+#: admin/settings.php:952
+msgid "Position the caption card inside the slide viewport."
+msgstr ""
+
+#: includes/docs.php:414
+msgid "Position the card at Top Left, Top Center, Top Right, Center, Bottom Left, Bottom Center, or Bottom Right."
+msgstr ""
+
+#: includes/docs.php:324
+msgid "Post Types:"
+msgstr ""
+
+#: includes/docs.php:301
+msgid "Premium split-layout displaying the main slide beside a vertical or horizontal scrolling thumbnail carousel. Excellent for product showcases, case studies, and editorial articles."
+msgstr ""
+
+#: includes/docs.php:541
+msgid "Prevents slider CSS and JavaScript from loading on pages that do not contain an active slider."
+msgstr ""
+
+#: includes/global-settings.php:935 init.php:344
+msgid "Preview"
+msgstr "Просмотр"
+
+#: admin/settings.php:1769
+msgid "Previous"
+msgstr ""
+
+#: layouts/layout-1.php:138 layouts/layout-2.php:127 layouts/layout-3.php:152
+#: layouts/layout-4.php:127 layouts/layout-5.php:142
+msgid "Previous Slide"
+msgstr ""
+
+#: includes/docs.php:509
+msgid "Protect your photography and digital assets from unauthorized image theft with server-side watermark stamping (fully supported for both manual image uploads and dynamic WordPress / WooCommerce feeds):"
+msgstr ""
+
+#: includes/docs.php:165
+msgid "Publish & Embed"
+msgstr ""
+
+#: admin/settings.php:378
+msgid "Published Date"
+msgstr ""
+
+#: includes/global-settings.php:517
+msgid "Pulse Spinner"
+msgstr ""
+
+#: admin/settings.php:1472 includes/docs.php:525
+msgid "Purge Cache"
+msgstr ""
+
+#: includes/analytics.php:649
+msgid "Purge all tracking data across all sliders"
+msgstr ""
+
+#: includes/analytics.php:649
+msgid "Purge tracking data for this slider"
+msgstr ""
+
+#: admin/settings.php:2601
+msgid "Purging..."
+msgstr ""
+
+#: includes/docs.php:643
+msgid "Q: Can I restore my slider settings if I made a mistake?"
+msgstr ""
+
+#: includes/docs.php:638
+msgid "Q: How do I duplicate an existing slider?"
+msgstr ""
+
+#: includes/docs.php:628
+msgid "Q: In Layout 1, how do I remove the blue title boxes at the bottom?"
+msgstr ""
+
+#: includes/docs.php:633
+msgid "Q: Why do my images look cropped or cut off?"
+msgstr ""
+
+#: includes/docs.php:623
+msgid "Q: Why is my slider not displaying on the frontend?"
+msgstr ""
+
+#: includes/docs.php:105
+msgid "Quick Start & Embed"
+msgstr ""
+
+#: includes/docs.php:144
+msgid "Quick Start Guide"
+msgstr ""
+
+#: includes/docs.php:397
+msgid "Quick visual styles: Default, Minimal, Dark Mode, Elegant, and Cyber."
+msgstr ""
+
+#: admin/settings.php:381 admin/settings.php:604
+msgid "Random"
+msgstr "Случайный"
+
+#: includes/docs.php:67 includes/docs.php:126
+msgid "Rate 5-Stars (Free)"
+msgstr ""
+
+#: admin/settings.php:1125
+msgid "Read More Button Text:"
+msgstr ""
+
+#: admin/settings.php:1109
+msgid "Read More Link / Button"
+msgstr ""
+
+#: includes/analytics.php:999
+msgid "Recent Activity Feed"
+msgstr ""
+
+#: includes/docs.php:185
+msgid "Recommended"
+msgstr ""
+
+#: includes/docs.php:581
+msgid "Recorded whenever a slider scrolls into the visitor's active viewport."
+msgstr ""
+
+#: init.php:593
+msgid "Refresh Preview"
+msgstr ""
+
+#: includes/global-settings.php:816
+msgid "Registered Custom Fonts Library"
+msgstr ""
+
+#: admin/settings.php:1694
+msgid "Remove Formatting"
+msgstr ""
+
+#: admin/settings.php:1440
+msgid "Reset All Settings to Defaults"
+msgstr ""
+
+#: includes/analytics.php:648
+msgid "Reset Analytics"
+msgstr ""
+
+#: admin/settings.php:1448
+msgid "Reset Settings"
+msgstr ""
+
+#: admin/settings.php:54
+msgid "Reset Settings to Defaults"
+msgstr ""
+
+#: includes/docs.php:500
+msgid "Reset Settings:"
+msgstr ""
+
+#: includes/analytics.php:648
+msgid "Reset Slider Analytics"
+msgstr ""
+
+#: admin/settings.php:52
+msgid "Reset all configuration settings back to default values"
+msgstr ""
+
+#: admin/settings.php:1446
+msgid "Reset all settings to defaults"
+msgstr ""
+
+#: includes/docs.php:285
+msgid "Responsive Grid Lightbox Gallery"
+msgstr ""
+
+#: includes/global-settings.php:1038
+msgid "Restore Global Settings & Custom CSS (if present in the file)"
+msgstr ""
+
+#: admin/settings.php:1443
+msgid "Restore all layout, typography, navigation, colors, and watermark options to their original default values. Uploaded slides and images will not be affected."
+msgstr ""
+
+#: admin/settings.php:1658
+msgid "Revert"
+msgstr ""
+
+#: admin/settings.php:2344
+msgid "Reverted to original uploaded image."
+msgstr ""
+
+#: admin/settings.php:546
+msgid "Rich gradient accents"
+msgstr ""
+
+#: admin/settings.php:1269 admin/settings.php:1313
+msgid "Right"
+msgstr ""
+
+#: includes/docs.php:545
+msgid "Role-Based Access Control (RBAC)"
+msgstr ""
+
+#: includes/docs.php:500
+msgid "Safely restores all slider options to official plugin defaults with a single click without deleting your uploaded images."
+msgstr ""
+
+#: includes/dynamic-source.php:193
+msgid "Sale!"
+msgstr ""
+
+#: admin/settings.php:1743
+msgid "Same Window (_self)"
+msgstr ""
+
+#: admin/settings.php:1772
+msgid "Save & Close"
+msgstr ""
+
+#: admin/settings.php:100
+msgid "Save & Update Now"
+msgstr ""
+
+#: includes/global-settings.php:672
+msgid "Save Global Settings"
+msgstr ""
+
+#: init.php:290
+msgid "Search Image Slider"
+msgstr ""
+
+#: includes/docs.php:89
+msgid "Search documentation topics, settings, or shortcodes (e.g. Ken Burns, watermark, layout 1, video, autoplay)..."
+msgstr ""
+
+#: includes/docs.php:202
+msgid "Search for the \"UR Image Slider\" widget in Elementor panel, drag it into any section, and pick your slider."
+msgstr ""
+
+#: admin/settings.php:138 admin/settings.php:512 admin/settings.php:1829
+msgid "Select"
+msgstr ""
+
+#: includes/global-settings.php:922
+msgid "Select / Deselect All Sliders"
+msgstr ""
+
+#: admin/settings.php:155
+msgid "Select All"
+msgstr ""
+
+#: includes/docs.php:160
+msgid "Select Layout"
+msgstr ""
+
+#: init.php:1425
+msgid "Select Ultimate Responsive Image Slider Shortcode To Insert Into Content"
+msgstr ""
+
+#: init.php:1400
+msgid "Select Ultimate Responsive Image Slider Shortcode to insert into post"
+msgstr ""
+
+#: admin/settings.php:2575
+msgid "Select Watermark Logo Image"
+msgstr ""
+
+#: admin/settings.php:1535
+msgid "Select a transparent PNG or JPG logo to stamp onto slides. Alpha transparency is preserved flawlessly."
+msgstr ""
+
+#: admin/settings.php:1293
+msgid "Select active indicator style for selected thumbnail."
+msgstr ""
+
+#: includes/docs.php:189
+msgid "Select any slider from the dropdown. Live ServerSideRender instantly displays the real slides and navigation inside the editor!"
+msgstr ""
+
+#: admin/settings.php:1186
+msgid "Select corner radius / shape for arrows and fullscreen button."
+msgstr ""
+
+#: admin/settings.php:373
+msgid "Select criterion for sorting dynamic slides."
+msgstr ""
+
+#: admin/settings.php:472
+msgid "Select from 5 responsive visual architectures. Click any card to apply the layout immediately."
+msgstr ""
+
+#: admin/settings.php:2824 includes/global-settings.php:1272
+msgid "Select or Upload Font File (.woff2, .woff, .ttf, .otf)"
+msgstr ""
+
+#: admin/settings.php:223 init.php:898
+msgid "Select slide"
+msgstr ""
+
+#: includes/global-settings.php:903
+msgid "Select the sliders you want to export into a portable JSON backup file."
+msgstr ""
+
+#: includes/global-settings.php:513
+msgid "Select the visual animation style for the frontend loading icon."
+msgstr ""
+
+#: admin/settings.php:859
+msgid "Select typography for slide titles and descriptions, choose accessibility presets, or upload a custom font."
+msgstr ""
+
+#: admin/settings.php:311
+msgid "Select which post type to pull featured images and titles from."
+msgstr ""
+
+#: admin/settings.php:1368
+msgid "Selected Thumbnail Border / Active Color"
+msgstr ""
+
+#: admin/settings.php:1639
+msgid "Self-Hosted (MP4 / WebM)"
+msgstr ""
+
+#: admin/settings.php:1671
+msgid "Self-hosted video plays directly inside a native responsive HTML5 player with controls. Your uploaded slide image serves as the video cover."
+msgstr ""
+
+#: includes/global-settings.php:1415
+msgid "Server error while deleting font."
+msgstr ""
+
+#: admin/settings.php:2877
+msgid "Server error while saving font."
+msgstr ""
+
+#: includes/docs.php:521
+msgid "Server-Side Caching"
+msgstr ""
+
+#: admin/settings.php:925
+msgid "Set font size for the slide title and description overlay text."
+msgstr ""
+
+#: admin/settings.php:612
+msgid "Set the gap between slides in pixels."
+msgstr ""
+
+#: admin/settings.php:1034
+msgid "Set the transparency level of the text backgrounds."
+msgstr ""
+
+#: admin/settings.php:1277
+msgid "Set width and height for individual thumbnail images."
+msgstr ""
+
+#: includes/docs.php:362
+msgid "Setting Name"
+msgstr ""
+
+#: includes/global-settings.php:823
+msgid "Shared across all sliders on this site"
+msgstr ""
+
+#: admin/settings.php:1197
+msgid "Sharp"
+msgstr ""
+
+#: includes/global-settings.php:937 init.php:346
+msgid "Shortcode"
+msgstr ""
+
+#: includes/docs.php:251
+msgid "Shortcode (Standard)"
+msgstr ""
+
+#: includes/docs.php:191
+msgid "Shortcode Block:"
+msgstr ""
+
+#: includes/docs.php:591
+msgid "Shortcode Cheatsheet & Developer API"
+msgstr ""
+
+#: includes/docs.php:593
+msgid "Shortcode Parameters"
+msgstr ""
+
+#: shortcode.php:21
+msgid "Shortcode not added properly, Slider ID is missing into shortcode."
+msgstr ""
+
+#: includes/docs.php:255
+msgid "Shortcode with Layout Override"
+msgstr ""
+
+#: includes/docs.php:117
+msgid "Shortcodes & Dev API"
+msgstr ""
+
+#: admin/settings.php:444
+msgid "Show Add to Cart / View Button"
+msgstr ""
+
+#: admin/settings.php:1115
+msgid "Show Link / Button On Slide Text"
+msgstr ""
+
+#: admin/settings.php:1175
+msgid "Show Navigation Arrows"
+msgstr ""
+
+#: admin/settings.php:1151
+msgid "Show Navigation Bullets"
+msgstr "Показать точки навигации"
+
+#: admin/settings.php:434
+msgid "Show On-Sale Badge"
+msgstr ""
+
+#: admin/settings.php:424
+msgid "Show Product Price"
+msgstr ""
+
+#: admin/settings.php:766
+msgid "Show Slide Description"
+msgstr ""
+
+#: admin/settings.php:756
+msgid "Show Slide Title inside Slider"
+msgstr ""
+
+#: admin/settings.php:1141
+msgid "Show Slider Navigation"
+msgstr ""
+
+#: admin/settings.php:746
+msgid "Show Slider Title"
+msgstr ""
+
+#: includes/global-settings.php:502
+msgid "Show an animated spinner while the slider initializes on the frontend."
+msgstr ""
+
+#: includes/analytics.php:858
+msgid "Showing top %d sliders"
+msgstr ""
+
+#: admin/settings.php:1162
+msgid "Size:"
+msgstr ""
+
+#: includes/global-settings.php:490
+msgid "Skeleton Shimmer Loading"
+msgstr ""
+
+#: admin/settings.php:521
+msgid "Skin Preset"
+msgstr ""
+
+#: includes/docs.php:396
+msgid "Skin Presets"
+msgstr ""
+
+#: includes/slide-loader.php:388
+msgid "Slide %1$d of %2$d"
+msgstr ""
+
+#: admin/settings.php:1704
+msgid "Slide Alt Text"
+msgstr "Альтернативный текст слайда"
+
+#: admin/settings.php:659
+msgid "Slide Animation"
+msgstr ""
+
+#: includes/docs.php:377
+msgid "Slide Animation (horizontal translate) or Fade Animation (smooth cross-dissolve opacity)."
+msgstr ""
+
+#: includes/docs.php:411
+msgid "Slide Captions, Titles & CTA Buttons"
+msgstr ""
+
+#: includes/docs.php:326
+msgid "Slide Count & Ordering:"
+msgstr ""
+
+#: admin/settings.php:1682
 msgid "Slide Description"
 msgstr "Описание слайда"
 
-#: ultimate-responsive-image-slider.php:552
-msgid "Enter Slide Description Here"
-msgstr "Введите описание слайда здесь"
+#: admin/settings.php:611
+msgid "Slide Distance"
+msgstr ""
+
+#: includes/docs.php:417
+msgid "Slide Link Behavior:"
+msgstr ""
+
+#: admin/settings.php:1700
+msgid "Slide Link URL"
+msgstr ""
+
+#: admin/settings.php:1620
+msgid "Slide Media Type"
+msgstr ""
+
+#: admin/settings.php:592
+msgid "Slide Order"
+msgstr "Порядок слайдов"
+
+#: includes/docs.php:388
+msgid "Slide Ordering"
+msgstr ""
+
+#: admin/settings.php:924
+msgid "Slide Overlay Font Sizes"
+msgstr ""
+
+#: includes/docs.php:486
+msgid "Slide Overlay Font Sizes:"
+msgstr ""
+
+#: includes/docs.php:317
+msgid "Slide Reordering:"
+msgstr ""
+
+#: admin/settings.php:1677
+msgid "Slide Title"
+msgstr "Заголовок слайда"
+
+#: includes/docs.php:582
+msgid "Slide Transitions:"
+msgstr ""
+
+#: admin/settings.php:1006
+msgid "Slide Typography Colors"
+msgstr ""
+
+#: includes/analytics.php:805
+msgid "Slide Views"
+msgstr ""
+
+#: includes/analytics.php:761 includes/analytics.php:882
+msgid "Slider #%d"
+msgstr ""
+
+#: includes/analytics.php:1024
+msgid "Slider #%d (Slide %d)"
+msgstr ""
+
+#: admin/settings.php:50
+msgid "Slider Configuration Panel"
+msgstr ""
+
+#: admin/settings.php:117
+msgid "Slider Content Source"
+msgstr ""
+
+#: admin/settings.php:781
+msgid "Slider Dimensions"
+msgstr ""
+
+#: admin/settings.php:777
+msgid "Slider Dimensions & Scaling"
+msgstr ""
+
+#: admin/settings.php:471
+msgid "Slider Layout"
+msgstr ""
+
+#: includes/analytics.php:639
+msgid "Slider Performance & Analytics"
+msgstr ""
+
+#: includes/elementor-widget.php:84
+msgid "Slider Settings"
+msgstr ""
+
+#: includes/analytics.php:867 includes/global-settings.php:936 init.php:345
+msgid "Slider Title"
+msgstr ""
+
+#: admin/settings.php:653
+msgid "Slider Transition Effect"
+msgstr ""
+
+#: init.php:266
+msgid "Slider duplicated in draft successfully! Cloned ID: %d"
+msgstr ""
+
+#: init.php:1156
+msgid "Slider duplicated successfully in draft!"
+msgstr ""
+
+#: admin/settings.php:177 init.php:126
+msgid "Slider duplicated successfully in draft."
+msgstr ""
+
+#: includes/analytics.php:754
+msgid "Slider:"
+msgstr ""
+
+#: admin/settings.php:812
+msgid "Sliders are fully responsive and automatically adapt down to tablet and mobile screens."
+msgstr ""
+
+#: includes/analytics.php:797
+msgid "Sliders loaded by visitors"
+msgstr ""
+
+#: includes/global-settings.php:938 init.php:348
+msgid "Slides"
+msgstr ""
+
+#: includes/analytics.php:807
+msgid "Slides actively observed"
+msgstr ""
+
+#: admin/settings.php:299
+msgid "Slides are automatically fetched from published WordPress posts or custom post types using their Featured Images and Titles."
+msgstr ""
+
+#: admin/settings.php:669
+msgid "Sliding Direction (Layout 5)"
+msgstr ""
+
+#: admin/settings.php:551
+msgid "Soft tactile shadows"
+msgstr ""
+
+#: admin/settings.php:166
+msgid "Sort Ascending"
+msgstr ""
+
+#: admin/settings.php:167
+msgid "Sort Descending"
+msgstr ""
+
+#: admin/settings.php:391
+msgid "Sort order direction."
+msgstr ""
+
+#: init.php:152
+msgid "Source slider could not be found."
+msgstr ""
+
+#: admin/settings.php:1159
+msgid "Square Bullets"
+msgstr ""
+
+#: includes/docs.php:280
+msgid "Standard Hero Slider with Detailed Navigation Tabs"
+msgstr ""
+
+#: init.php:841
+msgid "Standard Shortcode"
+msgstr ""
+
+#: admin/settings.php:731
+msgid "Standard balanced (50px threshold)"
+msgstr ""
+
+#: admin/settings.php:1687
+msgid "Strikethrough"
+msgstr ""
+
+#: includes/docs.php:444
+msgid "Styles: Chevron, Angle, Caret, Arrow-Long, Triangle, and Modern Dot. Shapes: Circle, Curved (rounded rectangle), or Sharp (square)."
+msgstr ""
+
+#: admin/settings.php:705
+msgid "Subtle (1.06x)"
+msgstr ""
+
+#: includes/global-settings.php:1339
+msgid "Success:"
+msgstr ""
+
+#: includes/global-settings.php:432
+msgid "Successfully imported %d slider(s) and restored %d slide(s)!"
+msgstr ""
+
+#: includes/docs.php:339
+msgid "Supported Video Formats:"
+msgstr ""
+
+#: includes/global-settings.php:762
+msgid "Supported formats: <strong>.woff2</strong> (recommended), <strong>.woff</strong>, <strong>.ttf</strong>, <strong>.otf</strong>."
+msgstr ""
+
+#: includes/global-settings.php:1027
+msgid "Supports .json files generated by Ultimate Responsive Image Slider Pro"
+msgstr ""
+
+#: includes/docs.php:242
+msgid "Syntax / Instruction"
+msgstr ""
+
+#: includes/docs.php:102
+msgid "Table of Contents"
+msgstr ""
+
+#: includes/docs.php:325
+msgid "Taxonomy Filtering:"
+msgstr ""
+
+#: admin/settings.php:350
+msgid "Taxonomy Terms / Slugs"
+msgstr ""
+
+#: admin/settings.php:1518
+msgid "Text Font Size"
+msgstr ""
+
+#: admin/settings.php:1070 admin/settings.php:1736
+msgid "Text Only"
+msgstr ""
+
+#: admin/settings.php:1496
+msgid "Text Watermark"
+msgstr ""
+
+#: includes/docs.php:513
+msgid "Text Watermarks"
+msgstr ""
+
+#: includes/docs.php:106
+msgid "The 5 Slider Layouts"
+msgstr ""
+
+#: includes/docs.php:274
+msgid "The 5 Slider Layouts Explained"
+msgstr ""
+
+#: includes/docs.php:327
+msgid "The featured image becomes the slide background, post title becomes slide title, excerpt becomes description, and the post permalink becomes the slide link."
+msgstr ""
+
+#: includes/docs.php:311
+msgid "The first tab in your slider editor allows switching seamlessly between manual uploads and automated WordPress dynamic feeds."
+msgstr ""
+
+#: includes/global-settings.php:787
+msgid "These carefully curated typography styles are pre-configured and automatically embedded when selected in any slider:"
+msgstr ""
+
+#: admin/settings.php:1223
+msgid "Thin"
+msgstr ""
+
+#: includes/global-settings.php:744
+msgid "This name will appear in slider dropdowns and CSS font-family rules."
+msgstr ""
+
+#: admin/settings.php:1292
+msgid "Thumbnail Active Style"
+msgstr ""
+
+#: admin/settings.php:1364
+msgid "Thumbnail BG Color"
+msgstr ""
+
+#: admin/settings.php:1376
+msgid "Thumbnail Description Color"
+msgstr ""
+
+#: admin/settings.php:1276
+msgid "Thumbnail Dimensions"
+msgstr ""
+
+#: admin/settings.php:1257
+msgid "Thumbnail Navigation Settings (Layout 3 & Layout 5)"
+msgstr ""
+
+#: admin/settings.php:1261
+msgid "Thumbnail Position"
+msgstr "Позиция миниатюр"
+
+#: admin/settings.php:1372
+msgid "Thumbnail Title Color"
+msgstr ""
+
+#: layouts/layout-1.php:161 layouts/layout-2.php:150 layouts/layout-3.php:175
+#: layouts/layout-4.php:150 layouts/layout-5.php:165
+msgid "Thumbnail for slide"
+msgstr ""
+
+#: admin/settings.php:1331
+msgid "Thumbnails"
+msgstr ""
+
+#: admin/settings.php:379
+msgid "Title"
+msgstr ""
+
+#: admin/settings.php:1328
+msgid "Title & Description"
+msgstr ""
+
+#: includes/docs.php:413
+msgid "Title & Description Toggles:"
+msgstr ""
+
+#: admin/settings.php:742
+msgid "Title & Description Visibility"
+msgstr ""
+
+#: admin/settings.php:1016
+msgid "Title BG Color"
+msgstr ""
+
+#: admin/settings.php:1012
+msgid "Title Color"
+msgstr ""
+
+#: admin/settings.php:1329
+msgid "Title Only"
+msgstr ""
+
+#: admin/settings.php:930
+msgid "Title Size:"
+msgstr ""
+
+#: admin/settings.php:971
+msgid "Title Transition Effect"
+msgstr ""
+
+#: includes/docs.php:485
+msgid "Title text color, Description text color, Title background, Description background, and Background Opacity (from 0.0 transparent to 1.0 solid)."
+msgstr ""
+
+#: includes/docs.php:110
+msgid "Titles, Captions & CTAs"
+msgstr ""
+
+#: layouts/layout-1.php:148 layouts/layout-2.php:137 layouts/layout-3.php:162
+#: layouts/layout-4.php:137 layouts/layout-5.php:152
+msgid "Toggle Fullscreen"
+msgstr ""
+
+#: includes/docs.php:190
+msgid "Toolbar Controls:"
+msgstr ""
+
+#: includes/docs.php:215
+msgid "Toolbar Media Button:"
+msgstr ""
+
+#: admin/settings.php:1267 admin/settings.php:1315
+msgid "Top"
+msgstr "Сверху"
+
+#: admin/settings.php:957 admin/settings.php:1576
+msgid "Top Center"
+msgstr ""
+
+#: admin/settings.php:956 admin/settings.php:1577
+msgid "Top Left"
+msgstr ""
+
+#: includes/analytics.php:855
+msgid "Top Performing Sliders"
+msgstr ""
+
+#: admin/settings.php:958 admin/settings.php:1575
+msgid "Top Right"
+msgstr ""
+
+#: includes/analytics.php:795
+msgid "Total Impressions"
+msgstr ""
+
+#: includes/global-settings.php:908
+msgid "Total Sliders: %d"
+msgstr ""
+
+#: admin/settings.php:716 includes/docs.php:451
+msgid "Touch Swipe Sensitivity"
+msgstr ""
+
+#: includes/global-settings.php:547
+msgid "Track slider impressions, individual slide views, and CTA button clicks with GDPR-compliant IP anonymization."
+msgstr ""
+
+#: includes/docs.php:376
+msgid "Transition Effect"
+msgstr ""
+
+#: admin/settings.php:632 includes/docs.php:372
+msgid "Transition Speed"
+msgstr ""
+
+#: includes/docs.php:118
+msgid "Troubleshooting & FAQs"
+msgstr ""
+
+#: includes/docs.php:620
+msgid "Troubleshooting & Frequently Asked Questions"
+msgstr ""
+
+#: admin/settings.php:854
+msgid "Typography & Alignment"
+msgstr ""
+
+#: admin/settings.php:69
+msgid "Typography & Buttons"
+msgstr ""
+
+#: includes/global-settings.php:714
+msgid "Typography Library: Custom Fonts & Accessibility Presets"
+msgstr ""
+
+#: init.php:295
+msgid "UR Image Slider"
+msgstr ""
+
+#: includes/docs.php:275
+msgid "UR Image Slider includes 5 pre-built layout architectures designed for different web presentation needs:"
+msgstr ""
+
+#: includes/docs.php:176
+msgid "UR Image Slider integrates seamlessly with modern WordPress block workflows, popular drag-and-drop page builders, and classic editors alike:"
+msgstr ""
+
+#: includes/elementor-widget.php:57 includes/elementor-widget.php:124
+msgid "Ultimate Responsive Image Slider"
+msgstr ""
+
+#: init.php:283 init.php:284 init.php:876
+msgid "Ultimate Responsive Image Slider Pro"
+msgstr ""
+
+#: includes/docs.php:463
+msgid "Ultimate Responsive Image Slider Pro gives you total control over typography and color styling, with native support for proprietary font file uploads and pre-configured accessibility/dyslexia-friendly typography."
+msgstr ""
+
+#: includes/docs.php:57
+msgid "Ultimate Responsive Image Slider Pro — Documentation"
+msgstr ""
+
+#: includes/analytics.php:602
+msgid "Unauthorized access."
+msgstr ""
+
+#: includes/analytics.php:461 includes/analytics.php:537
+#: includes/global-settings.php:44 includes/global-settings.php:133
+#: includes/global-settings.php:236 includes/global-settings.php:361
+msgid "Unauthorized user"
+msgstr ""
+
+#: init.php:142 init.php:1124 init.php:1173
+msgid "Unauthorized user."
+msgstr ""
+
+#: includes/docs.php:496
+msgid "Under the Advanced Settings tab, configure fullscreen presentation options:"
+msgstr ""
+
+#: admin/settings.php:1686
+msgid "Underline"
+msgstr ""
+
+#: includes/global-settings.php:758
+msgid "Upload / Browse"
+msgstr ""
+
+#: admin/settings.php:125
+msgid "Upload Images / Manual"
+msgstr ""
+
+#: admin/settings.php:1540
+msgid "Upload Logo"
+msgstr ""
+
+#: includes/global-settings.php:730
+msgid "Upload New Custom Font"
+msgstr ""
+
+#: admin/settings.php:138
+msgid "Upload Slide"
+msgstr ""
+
+#: includes/global-settings.php:1015
+msgid "Upload a previously exported JSON backup file to restore sliders and configurations."
+msgstr ""
+
+#: includes/docs.php:468
+msgid "Upload custom web fonts (.woff2, .woff, .ttf, .otf) directly in Global Settings or via the \"+ Upload Font\" shortcut in any slider. The plugin handles secure MIME whitelisting, storage, and automatic CSS @font-face generation."
+msgstr ""
+
+#: includes/docs.php:518
+msgid "Upload transparent PNG or SVG brand logos with auto-scaling to keep watermarks proportional across images."
+msgstr ""
+
+#: includes/global-settings.php:717
+msgid "Upload your proprietary brand font files (.woff2, .woff, .ttf, .otf) or leverage pre-configured accessibility and dyslexia-friendly typography. All uploaded fonts become instantly selectable in the Typography settings of every slider without needing extra code."
+msgstr ""
+
+#: admin/settings.php:808 admin/settings.php:1866
+msgid "Use 1280x720"
+msgstr ""
+
+#: admin/settings.php:808 admin/settings.php:1863
+msgid "Use 480x320"
+msgstr ""
+
+#: admin/settings.php:2825 includes/global-settings.php:1273
+msgid "Use Selected Font"
+msgstr ""
+
+#: includes/docs.php:204
+msgid "Use any HTML, Code, or Shortcode element to embed seamlessly."
+msgstr ""
+
+#: admin/settings.php:2576
+msgid "Use as Watermark"
+msgstr ""
+
+#: init.php:858
+msgid "Use in theme template files (e.g. header.php, front-page.php):"
+msgstr ""
+
+#: includes/global-settings.php:832 includes/global-settings.php:1402
+msgid "Use the uploader above to add your first custom font file."
+msgstr ""
+
+#: includes/global-settings.php:600
+msgid "User Role"
+msgstr ""
+
+#: admin/settings.php:674
+msgid "Vertical"
+msgstr ""
+
+#: admin/settings.php:495
+msgid "Vertical / side-docked thumbnails filmstrip layout"
+msgstr ""
+
+#: admin/settings.php:545
+msgid "Vibrant"
+msgstr ""
+
+#: admin/settings.php:1626
+msgid "Video"
+msgstr ""
+
+#: admin/settings.php:232 admin/settings.php:2199 layouts/layout-1.php:724
+msgid "Video Slide"
+msgstr ""
+
+#: includes/docs.php:108 includes/docs.php:335
+msgid "Video Slide Integration"
+msgstr ""
+
+#: admin/settings.php:1634
+msgid "Video Type"
+msgstr ""
+
+#: admin/settings.php:1645
+msgid "Video URL"
+msgstr ""
+
+#: includes/docs.php:351
+msgid "Videos feature a play icon badge and overlay. Clicking play automatically pauses the slider autoplay and starts the video directly within the slide frame with responsive aspect ratio."
+msgstr ""
+
+#: includes/defaults.php:502
+msgid "View Analytics"
+msgstr ""
+
+#: init.php:289
+msgid "View Image Slider"
+msgstr ""
+
+#: init.php:870
+msgid "View Publishing Guide in Docs &rarr;"
+msgstr ""
+
+#: includes/defaults.php:503
+msgid "View visitor impressions, CTR, and export CSV reports."
+msgstr ""
+
+#: includes/analytics.php:870
+msgid "Views"
+msgstr ""
+
+#: includes/docs.php:448
+msgid "WCAG 2.1 AA compliant. Visitors can navigate slides using Left and Right Arrow keys, and activate buttons using Enter or Space."
+msgstr ""
+
+#: admin/settings.php:77
+msgid "Watermark"
+msgstr ""
+
+#: admin/settings.php:1584
+msgid "Watermark Opacity"
+msgstr ""
+
+#: admin/settings.php:1565
+msgid "Watermark Position"
+msgstr ""
+
+#: admin/settings.php:1753 includes/docs.php:114
+msgid "Watermark Protection"
+msgstr ""
+
+#: admin/settings.php:1460
+msgid "Watermark Protection Engine"
+msgstr ""
+
+#: admin/settings.php:1508
+msgid "Watermark Text"
+msgstr ""
+
+#: admin/settings.php:1490
+msgid "Watermark Type"
+msgstr ""
+
+#: init.php:1129
+msgid "Watermark cache purged successfully (%d files deleted)."
+msgstr ""
+
+#: admin/settings.php:2615
+msgid "Watermark cache purged successfully!"
+msgstr ""
+
+#: admin/settings.php:2653
+msgid "Watermark setting updated for selected slides. Click Update/Save to persist changes."
+msgstr ""
+
+#: admin/settings.php:240 admin/settings.php:2193 admin/settings.php:2649
+msgid "Watermark: Disabled"
+msgstr ""
+
+#: admin/settings.php:162
+msgid "Watermark: Force Disable"
+msgstr ""
+
+#: admin/settings.php:161
+msgid "Watermark: Force Enable"
+msgstr ""
+
+#: admin/settings.php:238 admin/settings.php:2191 admin/settings.php:2647
+msgid "Watermark: Force Enabled"
+msgstr ""
+
+#: admin/settings.php:160
+msgid "Watermark: Slider Default"
+msgstr ""
+
+#: includes/docs.php:522
+msgid "Watermarked versions are generated via PHP GD and cached in wp-content/uploads/urisp-watermarks/ for zero performance impact."
+msgstr ""
+
+#: includes/class-urisp-fonts.php:100
+msgid "Weighted bottoms prevent letter rotation and confusion for readers with dyslexia."
+msgstr ""
+
+#: includes/analytics.php:938
+msgid "When visitors view your sliders and click Call-To-Action buttons on the frontend, performance metrics will automatically populate here."
+msgstr ""
+
+#: includes/docs.php:348
+msgid "When you paste a YouTube or Vimeo link and click \"Fetch Cover Thumbnail\", the plugin connects to the provider API, downloads the high-definition video cover, and sets it as the slide poster image."
+msgstr ""
+
+#: includes/docs.php:380
+msgid "Width & Height Modes"
+msgstr ""
+
+#: admin/settings.php:413
+msgid "WooCommerce Product Display Options"
+msgstr ""
+
+#: admin/settings.php:417
+msgid "WooCommerce is not active"
+msgstr ""
+
+#: admin/settings.php:579
+msgid "Yes"
+msgstr "Да"
+
+#: includes/docs.php:644
+msgid "Yes! Open the slider editor, go to the Advanced tab, and click \"Reset to Default Settings\". This will safely reset all configuration options back to defaults while keeping all your uploaded slides and captions untouched."
+msgstr ""
+
+#: includes/docs.php:336
+msgid "You can mix image slides and video slides in the same gallery seamlessly."
+msgstr ""
+
+#: includes/docs.php:42
+msgid "You do not have sufficient permissions to access this page."
+msgstr ""
+
+#: includes/global-settings.php:783
+msgid "Zero Setup"
+msgstr ""
+
+#: includes/analytics.php:1016
+msgid "ago"
+msgstr ""
+
+#: admin/settings.php:1720
+msgid "e.g. Learn More, Shop Now"
+msgstr ""
+
+#: includes/global-settings.php:742
+msgid "e.g. MyBrand Sans or Proxima Soft"
+msgstr ""
+
+#: admin/settings.php:177
+msgid "page to edit duplicated slider."
+msgstr ""
+
+#: includes/analytics.php:976
+msgid "per impression"
+msgstr ""
+
+#: admin/settings.php:797 admin/settings.php:803
+msgid "px"
+msgstr ""
+
+#: includes/global-settings.php:925 includes/global-settings.php:1133
+msgid "selected"
+msgstr ""
+
+#: admin/settings.php:883
+msgid "♿ Dyslexia & Accessibility Presets"
+msgstr ""
+
+#: admin/settings.php:872 admin/settings.php:878
+msgid "🌟 Uploaded Custom Fonts"
+msgstr ""
+
+#: admin/settings.php:891
+msgid "🔤 Standard System Fonts"
+msgstr ""

@@ -3257,13 +3257,22 @@
 			this.horizontalPosition = typeof this.data.horizontal !== 'undefined' ? this.data.horizontal : 0;
 			this.verticalPosition = typeof this.data.vertical !== 'undefined' ? this.data.vertical : 0;
 
+			// Check if this layer is a caption card, text layer, or contains text/excerpts
+			var isTextLayer = this.$layer.hasClass( 'urisp-slide-caption-card' ) || 
+			                  this.$layer.hasClass( 'sp-image-text' ) || 
+			                  this.$layer.hasClass( 'desc-in' ) || 
+			                  this.$layer.hasClass( 'title-in' ) || 
+			                  this.$layer.find( '.desc-in, .title-in, h1, h2, h3, h4, h5, h6, p' ).length > 0;
+
 			// Set the horizontal position of the layer based on the data set
 			if ( this.horizontalProperty === 'center' ) {
 				
-				// prevent content wrapping while setting the width
-				if ( this.$layer.is( 'img' ) === false && ( typeof inlineStyle === 'undefined' || ( typeof inlineStyle !== 'undefined' && inlineStyle.indexOf( 'width' ) === -1 ) ) ) {
+				// prevent content wrapping while setting the width (skip for text/caption cards to preserve responsive wrapping)
+				if ( ! isTextLayer && this.$layer.is( 'img' ) === false && ( typeof inlineStyle === 'undefined' || ( typeof inlineStyle !== 'undefined' && inlineStyle.indexOf( 'width' ) === -1 ) ) ) {
 					this.$layer.css( 'white-space', 'nowrap' );
 					this.$layer.css( 'width', this.$layer.outerWidth( true ) );
+				} else if ( isTextLayer ) {
+					this.$layer.css( 'white-space', 'normal' );
 				}
 
 				this.$layer.css({ 'marginLeft': 'auto', 'marginRight': 'auto', 'left': this.horizontalPosition, 'right': 0 });
@@ -3274,10 +3283,12 @@
 			// Set the vertical position of the layer based on the data set
 			if ( this.verticalProperty === 'center' ) {
 
-				// prevent content wrapping while setting the height
-				if ( this.$layer.is( 'img' ) === false && ( typeof inlineStyle === 'undefined' || ( typeof inlineStyle !== 'undefined' && inlineStyle.indexOf( 'height' ) === -1 ) ) ) {
+				// prevent content wrapping while setting the height (skip for text/caption cards)
+				if ( ! isTextLayer && this.$layer.is( 'img' ) === false && ( typeof inlineStyle === 'undefined' || ( typeof inlineStyle !== 'undefined' && inlineStyle.indexOf( 'height' ) === -1 ) ) ) {
 					this.$layer.css( 'white-space', 'nowrap' );
 					this.$layer.css( 'height', this.$layer.outerHeight( true ) );
+				} else if ( isTextLayer ) {
+					this.$layer.css( 'white-space', 'normal' );
 				}
 
 				this.$layer.css({ 'marginTop': 'auto', 'marginBottom': 'auto', 'top': this.verticalPosition, 'bottom': 0 });
@@ -3582,13 +3593,13 @@
 						$slide = element.$slide;
 
 					if ( slideIndex === newIndex ) {
-						$slide.css({ 'opacity': 0, 'left': 0, 'top': 0, 'z-index': 20, visibility: 'visible' });
+						$slide.css({ 'transition': 'none', '-webkit-transition': 'none', 'opacity': 0, 'left': 0, 'top': 0, 'z-index': 20, visibility: 'visible' });
 						$nextSlide = $slide;
 					} else if ( slideIndex === that.selectedSlideIndex ) {
-						$slide.css({ 'opacity': 1, 'left': 0, 'top': 0, 'z-index': 10, visibility: 'visible' });
+						$slide.css({ 'transition': 'none', '-webkit-transition': 'none', 'opacity': 1, 'left': 0, 'top': 0, 'z-index': 10, visibility: 'visible' });
 						$previousSlide = $slide;
 					} else {
-						$slide.css({ 'opacity': 1, visibility: 'hidden', 'z-index': '' });
+						$slide.css({ 'transition': 'none', '-webkit-transition': 'none', 'opacity': 1, visibility: 'hidden', 'z-index': '' });
 					}
 				});
 
@@ -3673,27 +3684,37 @@
 			// Use CSS transitions if they are supported. If not, use JavaScript animation.
 			if ( this.supportedAnimation === 'css-3d' || this.supportedAnimation === 'css-2d' ) {
 
-				// There needs to be a delay between the moment the opacity is set
-				// and the moment the transitions starts.
-				setTimeout(function(){
-					var css = { 'opacity': opacity };
-					css[ that.vendorPrefix + 'transition' ] = 'opacity ' + that.settings.fadeDuration / 1000 + 's';
-					target.css( css );
-				}, 100 );
+				// Immediately trigger reflow so opacity: 0 applies before transition starts
+				if ( target.length && target[0] ) {
+					void target[0].offsetHeight;
+				}
 
-				target.on( this.transitionEvent, function( event ) {
-					if ( event.target !== event.currentTarget ) {
+				var dur = that.settings.fadeDuration / 1000;
+				var trans = 'opacity ' + dur + 's cubic-bezier(0.25, 1, 0.5, 1)';
+				target.css({
+					'opacity': opacity,
+					'transition': trans,
+					'-webkit-transition': trans
+				});
+
+				var called = false;
+				var onComplete = function( event ) {
+					if ( event && event.target && event.target !== event.currentTarget ) {
 						return;
 					}
-					
-					target.off( that.transitionEvent );
-					target.css( that.vendorPrefix + 'transition', '' );
-					target.removeAttr( 'data-transitioning');
+					if ( called ) return;
+					called = true;
+					target.off( that.transitionEvent + ' transitionend webkitTransitionEnd', onComplete );
+					target.css({ 'transition': '', '-webkit-transition': '' });
+					target.removeAttr( 'data-transitioning' );
 
 					if ( typeof callback === 'function' ) {
 						callback();
 					}
-				});
+				};
+
+				target.one( this.transitionEvent + ' transitionend webkitTransitionEnd', onComplete );
+				setTimeout( onComplete, that.settings.fadeDuration + 50 );
 			} else {
 				target.stop().animate({ 'opacity': opacity }, this.settings.fadeDuration, function() {
 					target.removeAttr( 'data-transitioning' );
@@ -3719,11 +3740,11 @@
 			// Indicates if fade will be used
 			fade: false,
 
-			// Indicates if the previous slide will be faded out (in addition to the next slide being faded in)
-			fadeOutPreviousSlide: true,
+			// Keep previous slide solid in background for smooth cross-dissolve with zero background flash
+			fadeOutPreviousSlide: false,
 
 			// Sets the duration of the fade effect
-			fadeDuration: 500
+			fadeDuration: 350
 		}
 	};
 
@@ -4073,26 +4094,35 @@
 			// Use CSS transitions if they are supported. If not, use JavaScript animation.
 			if ( this.supportedAnimation === 'css-3d' || this.supportedAnimation === 'css-2d' ) {
 				
-				// There needs to be a delay between the moment the opacity is set
-				// and the moment the transitions starts.
-				setTimeout(function(){
-					var css = { 'opacity': opacity };
-					css[ that.vendorPrefix + 'transition' ] = 'opacity ' + that.settings.captionFadeDuration / 1000 + 's';
-					that.$captionContainer.css( css );
-				}, 1 );
+				if ( that.$captionContainer.length && that.$captionContainer[0] ) {
+					void that.$captionContainer[0].offsetHeight;
+				}
 
-				this.$captionContainer.on( this.transitionEvent, function( event ) {
-					if ( event.target !== event.currentTarget ) {
+				var dur = that.settings.captionFadeDuration / 1000;
+				var trans = 'opacity ' + dur + 's cubic-bezier(0.25, 1, 0.5, 1)';
+				that.$captionContainer.css({
+					'opacity': opacity,
+					'transition': trans,
+					'-webkit-transition': trans
+				});
+
+				var called = false;
+				var onCaptionComplete = function( event ) {
+					if ( event && event.target && event.target !== event.currentTarget ) {
 						return;
 					}
-
-					that.$captionContainer.off( that.transitionEvent );
-					that.$captionContainer.css( that.vendorPrefix + 'transition', '' );
+					if ( called ) return;
+					called = true;
+					that.$captionContainer.off( that.transitionEvent + ' transitionend webkitTransitionEnd', onCaptionComplete );
+					that.$captionContainer.css({ 'transition': '', '-webkit-transition': '' });
 
 					if ( typeof callback === 'function' ) {
 						callback();
 					}
-				});
+				};
+
+				that.$captionContainer.one( this.transitionEvent + ' transitionend webkitTransitionEnd', onCaptionComplete );
+				setTimeout( onCaptionComplete, that.settings.captionFadeDuration + 50 );
 			} else {
 				this.$captionContainer.stop().animate({ 'opacity': opacity }, this.settings.captionFadeDuration, function() {
 					if ( typeof callback === 'function' ) {

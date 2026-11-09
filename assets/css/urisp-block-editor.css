@@ -1,0 +1,26 @@
+/* ==========================================================================
+   Ultimate Responsive Image Slider - Gutenberg Block Editor Styles
+   ========================================================================== */
+
+/* Hide loading overlay/spinner in editor preview */
+.wp-block-urisp-slider-select .urisp-frontend-loader-wrap,
+.editor-styles-wrapper .urisp-frontend-loader-wrap,
+.block-editor-block-list__block .urisp-frontend-loader-wrap {
+    display: none !important;
+}
+
+/* Ensure slide images and containers are fully visible */
+.wp-block-urisp-slider-select .slider-pro,
+.editor-styles-wrapper .slider-pro {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    max-width: 100% !important;
+    margin: 0 auto 20px auto !important;
+}
+
+.wp-block-urisp-slider-select .sp-image,
+.editor-styles-wrapper .sp-image {
+    max-width: 100% !important;
+    height: auto !important;
+}

@@ -5,7 +5,7 @@ Tags: slider, image slider, responsive slider, photo gallery, carousel
 Requires at least: 4.9
 Tested up to: 7.1
 Requires PHP: 7.0
-Stable tag: 3.5.20
+Stable tag: 4.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: ultimate-responsive-image-slider
@@ -343,6 +343,14 @@ Visit our [upgrade page](http://wpfrank.com/account/signup/ultimate-responsive-i
 10. **Easy Shortcode Generation** - Copy shortcodes directly from the dashboard and paste anywhere on your site
 
 == Changelog ==
+
+= 4.0.0 =
+* Major Architecture Upgrade: Modernized modular architecture with dedicated admin, includes, and layouts structures.
+* Seamless Auto-Migration Engine: Automated background migration for legacy v3.5.x sliders with 100% data preservation.
+* Full Backward Compatibility: Maintained complete compatibility for [URIS id=...] shortcode and existing configurations.
+* Anti-FOUC & Loading Guard: Implemented sp-no-js pre-initialization state and transparent image placeholders, eliminating multi-loader flickering.
+* Performance & Responsiveness: Optimized CSS/JS assets, improved touch swipe handling, and refined mobile layout scaling.
+* Release date: November 9, 2026
 
 = 3.5.20 =
 * Enhancement: Added seamless database version tracking and upgrade migration hooks for future updates.

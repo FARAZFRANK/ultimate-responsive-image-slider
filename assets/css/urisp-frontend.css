@@ -1,0 +1,1089 @@
+/**
+ * Ultimate Responsive Image Slider - Dedicated Frontend Stylesheet
+ * 
+ * Lightweight, zero-conflict frontend styles containing:
+ * - Loaders & Skeleton Shimmer
+ * - Modern Vector SVG Navigation Arrows & Fullscreen Controls
+ * - Thumbnail Strip Navigation
+ * - WooCommerce Dynamic Overlays & Cart Buttons
+ * - Video Slide Play Overlays & Inline Player Frame
+ * - Ken Burns Cinematic Zoom & Pan Keyframes
+ * - Call-To-Action (CTA) Button Builder Styles
+ * - WCAG 2.1 AA Accessibility & Screen Reader Live Region
+ * - Watermark Protection CSS Fallback Overlays
+ *
+ * @package Ultimate Responsive Image Slider
+ * @version 8.1.0
+ */
+
+/* ==========================================================================
+   1. Skeleton Shimmer & Frontend Loading Animation Styles
+   ========================================================================== */
+
+/* Skeleton Shimmer Loading Effect */
+.urisp-skeleton-loading {
+    position: relative !important;
+    overflow: hidden !important;
+    background: #e2e8f0 !important;
+}
+
+.urisp-skeleton-loading::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transform: translateX(-100%);
+    background-image: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0) 0,
+        rgba(255, 255, 255, 0.4) 20%,
+        rgba(255, 255, 255, 0.7) 60%,
+        rgba(255, 255, 255, 0)
+    );
+    animation: urispShimmer 1.8s infinite;
+    content: '';
+    z-index: 10;
+}
+
+@keyframes urispShimmer {
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+/* Anti-FOUC & Pre-Initialization Loading State Guard */
+.slider-pro.sp-no-js {
+    overflow: hidden !important;
+    max-width: 100%;
+    position: relative;
+}
+
+.slider-pro.sp-no-js .sp-layer,
+.slider-pro.sp-no-js .urisp-slide-caption-card,
+.slider-pro.sp-no-js .title-in,
+.slider-pro.sp-no-js .desc-in {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+}
+
+.slider-pro.sp-no-js .sp-slide:not(:first-child) {
+    display: none !important;
+}
+
+.slider-pro.sp-no-js .sp-thumbnails {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+}
+
+/* Frontend Loader Container */
+.urisp-frontend-loader-wrap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    min-height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ffffff;
+    z-index: 99;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+/* 1. Pulse Spinner */
+.urisp-loader-spinner {
+    width: 48px;
+    height: 48px;
+    border: 4px solid rgba(0, 0, 0, 0.08);
+    border-top-color: var(--urisp-loader-color, #6366f1);
+    border-radius: 50%;
+    animation: urispSpin 0.8s linear infinite;
+}
+@keyframes urispSpin {
+    to { transform: rotate(360deg); }
+}
+
+/* 2. Dual Ring */
+.urisp-loader-dual-ring {
+    display: inline-block;
+    width: 48px;
+    height: 48px;
+}
+.urisp-loader-dual-ring:after {
+    content: " ";
+    display: block;
+    width: 36px;
+    height: 36px;
+    margin: 4px;
+    border-radius: 50%;
+    border: 4px solid var(--urisp-loader-color, #6366f1);
+    border-color: var(--urisp-loader-color, #6366f1) transparent var(--urisp-loader-color, #6366f1) transparent;
+    animation: urispSpin 1.2s linear infinite;
+}
+
+/* 3. Dots Wave */
+.urisp-loader-dots-wave {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+.urisp-loader-dots-wave span {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: var(--urisp-loader-color, #6366f1);
+    animation: urispDotsWave 1.4s infinite ease-in-out both;
+}
+.urisp-loader-dots-wave span:nth-child(1) { animation-delay: -0.32s; }
+.urisp-loader-dots-wave span:nth-child(2) { animation-delay: -0.16s; }
+@keyframes urispDotsWave {
+    0%, 80%, 100% { transform: scale(0); }
+    40% { transform: scale(1.0); }
+}
+
+/* 4. Bouncing Cubes */
+.urisp-loader-bouncing-cubes {
+    width: 40px;
+    height: 40px;
+    position: relative;
+}
+.urisp-loader-bouncing-cubes .cube1, 
+.urisp-loader-bouncing-cubes .cube2 {
+    background-color: var(--urisp-loader-color, #6366f1);
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    animation: urispCubemove 1.8s infinite ease-in-out;
+}
+.urisp-loader-bouncing-cubes .cube2 {
+    animation-delay: -0.9s;
+}
+@keyframes urispCubemove {
+    25% { transform: translateX(24px) rotate(-90deg) scale(0.5); }
+    50% { transform: translateX(24px) translateY(24px) rotate(-179deg); }
+    50.1% { transform: translateX(24px) translateY(24px) rotate(-180deg); }
+    75% { transform: translateX(0px) translateY(24px) rotate(-270deg) scale(0.5); }
+    100% { transform: rotate(-360deg); }
+}
+
+
+/* ==========================================================================
+   2. Modern Vector SVG Chevrons, Arrows & Fullscreen Controls
+   ========================================================================== */
+
+.slider-pro .sp-arrow {
+    width: 44px !important;
+    height: 44px !important;
+    border-radius: 50% !important;
+    background: rgba(15, 23, 42, 0.45) !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.18) !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    margin-top: -7px !important;
+    z-index: 25 !important;
+    color: #ffffff;
+    -webkit-transform: none !important;
+    -ms-transform: none !important;
+    transform: none !important;
+}
+
+.slider-pro .sp-previous-arrow,
+.slider-pro .sp-next-arrow {
+    -webkit-transform: none !important;
+    -ms-transform: none !important;
+    transform: none !important;
+}
+
+.slider-pro.sp-rtl .sp-previous-arrow,
+.slider-pro.sp-rtl .sp-next-arrow {
+    -webkit-transform: rotate(180deg) !important;
+    -ms-transform: rotate(180deg) !important;
+    transform: rotate(180deg) !important;
+}
+
+.slider-pro.sp-horizontal .sp-previous-arrow,
+.slider-pro .sp-previous-arrow {
+    left: 16px !important;
+    right: auto !important;
+}
+
+.slider-pro.sp-horizontal .sp-next-arrow,
+.slider-pro .sp-next-arrow {
+    right: 16px !important;
+    left: auto !important;
+}
+
+.slider-pro .sp-arrow:hover {
+    background: rgba(15, 23, 42, 0.82) !important;
+    border-color: rgba(255, 255, 255, 0.4) !important;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4) !important;
+    transform: scale(1.08) !important;
+    -webkit-transform: scale(1.08) !important;
+}
+
+.slider-pro.sp-rtl .sp-arrow:hover {
+    transform: rotate(180deg) scale(1.08) !important;
+    -webkit-transform: rotate(180deg) scale(1.08) !important;
+}
+
+/* Clear legacy skewed pseudoelements */
+.slider-pro .sp-arrow::before,
+.slider-pro .sp-arrow::after {
+    display: none !important;
+    content: none !important;
+}
+
+/* Modern Vector SVG Chevrons */
+.slider-pro .sp-previous-arrow::before,
+.slider-pro .sp-next-arrow::before {
+    content: '' !important;
+    display: block !important;
+    width: 22px !important;
+    height: 22px !important;
+    background-color: currentColor !important;
+    -webkit-mask-size: contain !important;
+    mask-size: contain !important;
+    -webkit-mask-repeat: no-repeat !important;
+    mask-repeat: no-repeat !important;
+    -webkit-mask-position: center !important;
+    mask-position: center !important;
+    transition: transform 0.2s ease !important;
+    position: static !important;
+    transform: none !important;
+}
+
+/* 1. Chevron (Default Modern) */
+.slider-pro.urisp-arrow-chevron .sp-previous-arrow::before,
+.slider-pro .sp-previous-arrow::before {
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='15 18 9 12 15 6'%3E%3C/polyline%3E%3C/svg%3E") !important;
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='15 18 9 12 15 6'%3E%3C/polyline%3E%3C/svg%3E") !important;
+}
+
+.slider-pro.urisp-arrow-chevron .sp-next-arrow::before,
+.slider-pro .sp-next-arrow::before {
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='9 18 15 12 9 6'%3E%3C/polyline%3E%3C/svg%3E") !important;
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='9 18 15 12 9 6'%3E%3C/polyline%3E%3C/svg%3E") !important;
+}
+
+/* 2. Caret (Solid Triangle) */
+.slider-pro.urisp-arrow-caret .sp-previous-arrow::before {
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='black'%3E%3Cpath d='M15 18l-6-6 6-6v12z'/%3E%3C/svg%3E") !important;
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='black'%3E%3Cpath d='M15 18l-6-6 6-6v12z'/%3E%3C/svg%3E") !important;
+}
+
+.slider-pro.urisp-arrow-caret .sp-next-arrow::before {
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='black'%3E%3Cpath d='M9 6l6 6-6 6V6z'/%3E%3C/svg%3E") !important;
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='black'%3E%3Cpath d='M9 6l6 6-6 6V6z'/%3E%3C/svg%3E") !important;
+}
+
+/* 3. Thin (Hairline Modern) */
+.slider-pro.urisp-arrow-thin .sp-previous-arrow::before {
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='15 19 8 12 15 5'%3E%3C/polyline%3E%3C/svg%3E") !important;
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='15 19 8 12 15 5'%3E%3C/polyline%3E%3C/svg%3E") !important;
+}
+
+.slider-pro.urisp-arrow-thin .sp-next-arrow::before {
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='9 19 16 12 9 5'%3E%3C/polyline%3E%3C/svg%3E") !important;
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='9 19 16 12 9 5'%3E%3C/polyline%3E%3C/svg%3E") !important;
+}
+
+/* 4. Bold (Heavy Geometric) */
+.slider-pro.urisp-arrow-bold .sp-previous-arrow::before {
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='15 18 9 12 15 6'%3E%3C/polyline%3E%3C/svg%3E") !important;
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='15 18 9 12 15 6'%3E%3C/polyline%3E%3C/svg%3E") !important;
+}
+
+.slider-pro.urisp-arrow-bold .sp-next-arrow::before {
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='9 18 15 12 9 6'%3E%3C/polyline%3E%3C/svg%3E") !important;
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='9 18 15 12 9 6'%3E%3C/polyline%3E%3C/svg%3E") !important;
+}
+
+/* 5. Minimal (Stem + Arrowhead) */
+.slider-pro.urisp-arrow-minimal .sp-previous-arrow::before {
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='19' y1='12' x2='5' y2='12'%3E%3C/line%3E%3Cpolyline points='12 19 5 12 12 5'%3E%3C/polyline%3E%3C/svg%3E") !important;
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='19' y1='12' x2='5' y2='12'%3E%3C/line%3E%3Cpolyline points='12 19 5 12 12 5'%3E%3C/polyline%3E%3C/svg%3E") !important;
+}
+
+.slider-pro.urisp-arrow-minimal .sp-next-arrow::before {
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='5' y1='12' x2='19' y2='12'%3E%3C/line%3E%3Cpolyline points='12 5 19 12 12 19'%3E%3C/polyline%3E%3C/svg%3E") !important;
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='5' y1='12' x2='19' y2='12'%3E%3C/line%3E%3Cpolyline points='12 5 19 12 12 19'%3E%3C/polyline%3E%3C/svg%3E") !important;
+}
+
+.slider-pro .sp-previous-arrow:hover::before {
+    transform: translateX(-2px) !important;
+}
+
+.slider-pro .sp-next-arrow:hover::before {
+    transform: translateX(2px) !important;
+}
+
+/* Modern Floating Fullscreen Button */
+.slider-pro .sp-full-screen-button {
+    width: 38px !important;
+    height: 38px !important;
+    border-radius: 50% !important;
+    background: rgba(15, 23, 42, 0.45) !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.18) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25) !important;
+    top: 14px !important;
+    right: 14px !important;
+    transform: none !important;
+    -webkit-transform: none !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    z-index: 30 !important;
+    font-size: 0 !important;
+    color: #ffffff;
+}
+
+.slider-pro .sp-full-screen-button:hover {
+    background: rgba(15, 23, 42, 0.82) !important;
+    border-color: rgba(255, 255, 255, 0.4) !important;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35) !important;
+    transform: scale(1.08) !important;
+    -webkit-transform: scale(1.08) !important;
+}
+
+.slider-pro .sp-full-screen-button::before {
+    content: '' !important;
+    display: block !important;
+    width: 18px !important;
+    height: 18px !important;
+    background-color: currentColor !important;
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3'%3E%3C/path%3E%3C/svg%3E") !important;
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3'%3E%3C/path%3E%3C/svg%3E") !important;
+    -webkit-mask-size: contain !important;
+    mask-size: contain !important;
+    -webkit-mask-repeat: no-repeat !important;
+    mask-repeat: no-repeat !important;
+    -webkit-mask-position: center !important;
+    mask-position: center !important;
+}
+
+/* Exit Fullscreen Icon when in Fullscreen Mode */
+.slider-pro.sp-full-screen .sp-full-screen-button::before {
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3'%3E%3C/path%3E%3C/svg%3E") !important;
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3'%3E%3C/path%3E%3C/svg%3E") !important;
+}
+
+/* Modern Thumbnail Strip Arrows */
+.slider-pro .sp-thumbnail-arrow {
+    width: 28px !important;
+    height: 36px !important;
+    background: rgba(15, 23, 42, 0.6) !important;
+    backdrop-filter: blur(4px) !important;
+    -webkit-backdrop-filter: blur(4px) !important;
+    border-radius: 4px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: all 0.2s ease !important;
+}
+
+.slider-pro .sp-thumbnail-arrow:hover {
+    background: rgba(15, 23, 42, 0.9) !important;
+}
+
+.slider-pro .sp-thumbnail-arrow::before,
+.slider-pro .sp-thumbnail-arrow::after {
+    display: none !important;
+    content: none !important;
+}
+
+.slider-pro .sp-previous-thumbnail-arrow::before,
+.slider-pro .sp-next-thumbnail-arrow::before {
+    content: '' !important;
+    display: block !important;
+    width: 14px !important;
+    height: 14px !important;
+    background-color: #ffffff !important;
+    -webkit-mask-size: contain !important;
+    mask-size: contain !important;
+    -webkit-mask-repeat: no-repeat !important;
+    mask-repeat: no-repeat !important;
+    -webkit-mask-position: center !important;
+    mask-position: center !important;
+    position: static !important;
+    transform: none !important;
+}
+
+.slider-pro .sp-previous-thumbnail-arrow::before {
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='15 18 9 12 15 6'%3E%3C/polyline%3E%3C/svg%3E") !important;
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='15 18 9 12 15 6'%3E%3C/polyline%3E%3C/svg%3E") !important;
+}
+
+.slider-pro .sp-next-thumbnail-arrow::before {
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='9 18 15 12 9 6'%3E%3C/polyline%3E%3C/svg%3E") !important;
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='9 18 15 12 9 6'%3E%3C/polyline%3E%3C/svg%3E") !important;
+}
+
+
+/* ==========================================================================
+   3. WooCommerce Slider Integration Styles
+   ========================================================================== */
+.urisp-woo-badge {
+    position: absolute;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.2;
+    padding: 6px 14px;
+    border-radius: 9999px;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    z-index: 25;
+    pointer-events: none;
+    user-select: none;
+}
+
+.urisp-woo-sale-badge {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    color: #ffffff !important;
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 1px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.urisp-woo-price-badge {
+    background: rgba(15, 23, 42, 0.88);
+    color: #38bdf8 !important;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.urisp-woo-price-badge del {
+    color: #94a3b8 !important;
+    font-weight: 400;
+    font-size: 11px;
+    margin-right: 6px;
+}
+
+.urisp-woo-price-badge ins {
+    text-decoration: none;
+    color: #4ade80 !important;
+    font-weight: 800;
+}
+
+.urisp-woo-cart-btn {
+    position: absolute;
+    display: inline-flex !important;
+    align-items: center;
+    gap: 6px;
+    background: #4f46e5 !important;
+    color: #ffffff !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    padding: 8px 18px !important;
+    border-radius: 8px !important;
+    text-decoration: none !important;
+    box-shadow: 0 4px 14px rgba(79, 70, 229, 0.4) !important;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    z-index: 25;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+.urisp-woo-cart-btn:hover {
+    background: #4338ca !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(79, 70, 229, 0.5) !important;
+    color: #ffffff !important;
+}
+
+.urisp-woo-cart-btn .dashicons {
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+    line-height: 16px;
+}
+
+
+/* ==========================================================================
+   4. Video Slide Integration Styles
+   ========================================================================== */
+.urisp-slide-video-badge {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    background: rgba(15, 23, 42, 0.85);
+    color: #38bdf8;
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    z-index: 5;
+    pointer-events: none;
+}
+
+.urisp-slide-video-badge .dashicons {
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+    line-height: 16px;
+}
+
+.urisp-video-play-overlay {
+    position: absolute !important;
+    top: 42% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    width: 68px !important;
+    height: 68px !important;
+    z-index: 28 !important;
+    pointer-events: auto !important;
+    display: flex;
+    align-items: center !important;
+    justify-content: center !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+.urisp-video-play-overlay.urisp-video-hidden,
+.sp-slide.urisp-video-playing .urisp-video-play-overlay {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+}
+
+.sp-slide.urisp-video-playing .urisp-slide-caption-card,
+.sp-slide.urisp-video-playing .sp-image-text,
+.sp-slide.urisp-video-playing .sp-caption {
+    opacity: 0 !important;
+    pointer-events: none !important;
+    visibility: hidden !important;
+    transition: opacity 0.25s ease;
+}
+
+.urisp-video-play-btn {
+    width: 68px;
+    height: 68px;
+    background: rgba(15, 23, 42, 0.72);
+    backdrop-filter: blur(12px) saturate(160%);
+    -webkit-backdrop-filter: blur(12px) saturate(160%);
+    border: 2.5px solid rgba(255, 255, 255, 0.88);
+    border-radius: 50%;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45), 0 0 20px rgba(99, 102, 241, 0.35);
+    transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+    outline: none;
+    padding: 0;
+    margin: 0;
+}
+
+.urisp-video-play-btn:hover {
+    background: #4f46e5;
+    border-color: #ffffff;
+    transform: scale(1.12);
+    box-shadow: 0 12px 36px rgba(79, 70, 229, 0.65), 0 0 24px rgba(255, 255, 255, 0.5);
+}
+
+.urisp-video-play-btn svg {
+    margin-left: 4px;
+    transition: transform 0.22s ease;
+}
+
+.urisp-video-play-btn:hover svg {
+    transform: scale(1.08);
+}
+
+@media (max-width: 640px) {
+    .urisp-video-play-overlay {
+        width: 52px !important;
+        height: 52px !important;
+        top: 38% !important;
+    }
+    .urisp-video-play-btn {
+        width: 52px;
+        height: 52px;
+    }
+    .urisp-video-play-btn svg {
+        width: 22px;
+        height: 22px;
+        margin-left: 3px;
+    }
+}
+
+.urisp-video-inline-frame {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    border: none !important;
+    z-index: 35 !important;
+    background: #000000 !important;
+}
+
+.urisp-thumb-video-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    background: #6366f1;
+    color: #ffffff;
+    border-radius: 4px;
+    margin-right: 6px;
+    vertical-align: -2px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+    flex-shrink: 0;
+}
+
+.urisp-thumb-video-badge svg {
+    margin-left: 1px;
+}
+
+
+/* ==========================================================================
+   5. Ken Burns Cinematic Zoom & Pan Effect
+   ========================================================================== */
+
+.slider-pro.urisp-has-kenburns .sp-slides-container,
+.slider-pro.urisp-has-kenburns .sp-slide,
+.slider-pro.urisp-has-kenburns .sp-mask {
+    overflow: hidden !important;
+}
+
+.slider-pro.urisp-has-kenburns .sp-slide .sp-image,
+.slider-pro.urisp-has-kenburns .sp-slide .sp-image-container img,
+.slider-pro.urisp-has-kenburns .sp-slide img.sp-image {
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1) !important;
+    transform-origin: center center !important;
+    backface-visibility: hidden !important;
+    -webkit-backface-visibility: hidden !important;
+}
+
+.slider-pro.urisp-has-kenburns .sp-slide.sp-selected .sp-image,
+.slider-pro.urisp-has-kenburns .sp-slide.sp-selected .sp-image-container img,
+.slider-pro.urisp-has-kenburns .sp-slide.sp-selected img.sp-image {
+    animation-duration: 9s !important;
+    animation-timing-function: ease-in-out !important;
+    animation-iteration-count: infinite !important;
+    animation-direction: alternate !important;
+    animation-fill-mode: both !important;
+    will-change: transform !important;
+}
+
+/* Subtle Intensity */
+.slider-pro.urisp-has-kenburns.urisp-kb-subtle .sp-slide.sp-selected .sp-image,
+.slider-pro.urisp-has-kenburns.urisp-kb-subtle .sp-slide.sp-selected .sp-image-container img,
+.slider-pro.urisp-has-kenburns.urisp-kb-subtle .sp-slide.sp-selected img.sp-image {
+    animation-name: urisp-kenburns-subtle !important;
+}
+
+/* Medium Intensity */
+.slider-pro.urisp-has-kenburns.urisp-kb-medium .sp-slide.sp-selected .sp-image,
+.slider-pro.urisp-has-kenburns.urisp-kb-medium .sp-slide.sp-selected .sp-image-container img,
+.slider-pro.urisp-has-kenburns.urisp-kb-medium .sp-slide.sp-selected img.sp-image {
+    animation-name: urisp-kenburns-medium !important;
+}
+
+/* Dramatic Intensity */
+.slider-pro.urisp-has-kenburns.urisp-kb-dramatic .sp-slide.sp-selected .sp-image,
+.slider-pro.urisp-has-kenburns.urisp-kb-dramatic .sp-slide.sp-selected .sp-image-container img,
+.slider-pro.urisp-has-kenburns.urisp-kb-dramatic .sp-slide.sp-selected img.sp-image {
+    animation-name: urisp-kenburns-dramatic !important;
+}
+
+/* Smooth reset when slide is unselected */
+.slider-pro.urisp-has-kenburns .sp-slide:not(.sp-selected) .sp-image,
+.slider-pro.urisp-has-kenburns .sp-slide:not(.sp-selected) .sp-image-container img,
+.slider-pro.urisp-has-kenburns .sp-slide:not(.sp-selected) img.sp-image {
+    animation: none !important;
+    transform: scale(1) translate(0, 0) !important;
+}
+
+@keyframes urisp-kenburns-subtle {
+    0% {
+        transform: scale(1) translate(0, 0);
+    }
+    100% {
+        transform: scale(1.06) translate(-1%, -0.8%);
+    }
+}
+
+@keyframes urisp-kenburns-medium {
+    0% {
+        transform: scale(1) translate(0, 0);
+    }
+    100% {
+        transform: scale(1.12) translate(-1.5%, -1.2%);
+    }
+}
+
+@keyframes urisp-kenburns-dramatic {
+    0% {
+        transform: scale(1) translate(0, 0);
+    }
+    100% {
+        transform: scale(1.20) translate(-2.5%, -2%);
+    }
+}
+
+
+/* ==========================================================================
+   6. Call-To-Action (CTA) Button Builder Frontend Styles
+   ========================================================================== */
+.urisp-cta-wrap {
+    display: inline-block;
+    box-sizing: border-box;
+}
+
+.urisp-cta-wrap.sp-layer {
+    z-index: 25;
+    pointer-events: auto;
+}
+
+.urisp-cta-wrap.urisp-cta-inline {
+    margin-top: 14px;
+    display: block;
+}
+
+/* Unified Slide Caption Card & Actions Wrap */
+.slider-pro .urisp-slide-caption-card,
+.urisp-slide-caption-card {
+    box-sizing: border-box !important;
+    pointer-events: auto;
+    z-index: 20;
+    max-width: 85% !important;
+    width: auto !important;
+    width: -webkit-fit-content !important;
+    width: -moz-fit-content !important;
+    width: fit-content !important;
+    white-space: normal !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+    padding: 16px 22px;
+    border-radius: 12px;
+}
+
+.slider-pro .urisp-slide-caption-card .title-in,
+.urisp-slide-caption-card .title-in,
+.slider-pro .title-in {
+    font-weight: 700;
+    line-height: 1.35;
+    margin: 0 0 8px 0;
+    padding: 0;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    white-space: normal !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+}
+
+.slider-pro .urisp-slide-caption-card .desc-in,
+.urisp-slide-caption-card .desc-in,
+.slider-pro .desc-in {
+    line-height: 1.55;
+    margin: 0;
+    padding: 0;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    white-space: normal !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+}
+
+.slider-pro .urisp-slide-actions-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+    margin-top: 14px;
+}
+
+.slider-pro .urisp-slide-actions-wrap .urisp-cta-wrap.urisp-cta-inline {
+    margin-top: 0 !important;
+    display: inline-flex !important;
+}
+
+.slider-pro .urisp-slide-actions-wrap a.read-more-color.urisp-cta-btn {
+    margin-top: 0 !important;
+    display: inline-flex !important;
+}
+
+.slider-pro .urisp-slide-caption-card[data-position*="Left"] .urisp-slide-actions-wrap,
+.slider-pro .urisp-slide-caption-card.align-left .urisp-slide-actions-wrap {
+    justify-content: flex-start;
+}
+
+.slider-pro .urisp-slide-caption-card[data-position*="Right"] .urisp-slide-actions-wrap,
+.slider-pro .urisp-slide-caption-card.align-right .urisp-slide-actions-wrap {
+    justify-content: flex-end;
+}
+
+.slider-pro .urisp-slide-caption-card[data-position*="Center"] .urisp-slide-actions-wrap,
+.slider-pro .urisp-slide-caption-card.align-center .urisp-slide-actions-wrap {
+    justify-content: center;
+}
+
+@media (max-width: 768px) {
+    .slider-pro .urisp-slide-caption-card {
+        padding: 12px 16px;
+        max-width: 90%;
+    }
+    .slider-pro .urisp-slide-caption-card .title-in {
+        font-size: 16px !important;
+        margin-bottom: 4px;
+    }
+    .slider-pro .urisp-slide-caption-card .desc-in {
+        font-size: 13px !important;
+    }
+    .slider-pro .urisp-slide-actions-wrap {
+        margin-top: 10px;
+        gap: 8px;
+    }
+}
+
+.urisp-cta-wrap a.urisp-cta-btn,
+.slider-pro a.urisp-cta-btn {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none !important;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.4;
+    padding: 10px 22px;
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    box-sizing: border-box;
+    white-space: nowrap;
+    text-align: center;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+    outline: none;
+}
+
+/* Filled Style */
+.slider-pro a.urisp-cta-btn.urisp-cta-filled {
+    background-color: var(--urisp-cta-bg, #6366f1) !important;
+    color: var(--urisp-cta-text, #ffffff) !important;
+    border: 2px solid var(--urisp-cta-bg, #6366f1) !important;
+    border-radius: 6px;
+}
+
+.slider-pro a.urisp-cta-btn.urisp-cta-filled:hover,
+.slider-pro a.urisp-cta-btn.urisp-cta-filled:focus {
+    background-color: var(--urisp-cta-hover-bg, #4f46e5) !important;
+    color: var(--urisp-cta-hover-text, #ffffff) !important;
+    border-color: var(--urisp-cta-hover-bg, #4f46e5) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.28);
+}
+
+/* Outlined Style */
+.slider-pro a.urisp-cta-btn.urisp-cta-outlined {
+    background-color: transparent !important;
+    color: var(--urisp-cta-bg, #6366f1) !important;
+    border: 2px solid var(--urisp-cta-bg, #6366f1) !important;
+    border-radius: 6px;
+}
+
+.slider-pro a.urisp-cta-btn.urisp-cta-outlined:hover,
+.slider-pro a.urisp-cta-btn.urisp-cta-outlined:focus {
+    background-color: var(--urisp-cta-hover-bg, #4f46e5) !important;
+    color: var(--urisp-cta-hover-text, #ffffff) !important;
+    border-color: var(--urisp-cta-hover-bg, #4f46e5) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.28);
+}
+
+/* Pill Style */
+.slider-pro a.urisp-cta-btn.urisp-cta-pill {
+    background-color: var(--urisp-cta-bg, #6366f1) !important;
+    color: var(--urisp-cta-text, #ffffff) !important;
+    border: 2px solid var(--urisp-cta-bg, #6366f1) !important;
+    border-radius: 9999px;
+    padding: 10px 26px;
+}
+
+.slider-pro a.urisp-cta-btn.urisp-cta-pill:hover,
+.slider-pro a.urisp-cta-btn.urisp-cta-pill:focus {
+    background-color: var(--urisp-cta-hover-bg, #4f46e5) !important;
+    color: var(--urisp-cta-hover-text, #ffffff) !important;
+    border-color: var(--urisp-cta-hover-bg, #4f46e5) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.28);
+}
+
+/* Text Only Style */
+.slider-pro a.urisp-cta-btn.urisp-cta-text {
+    background-color: transparent !important;
+    color: var(--urisp-cta-bg, #6366f1) !important;
+    border: 2px solid transparent !important;
+    border-radius: 6px;
+    padding: 6px 12px;
+    box-shadow: none !important;
+    text-decoration: underline !important;
+}
+
+.slider-pro a.urisp-cta-btn.urisp-cta-text:hover,
+.slider-pro a.urisp-cta-btn.urisp-cta-text:focus {
+    background-color: transparent !important;
+    color: var(--urisp-cta-hover-bg, #4f46e5) !important;
+    border-color: transparent !important;
+    transform: translateY(-1px);
+    box-shadow: none !important;
+    text-decoration: none !important;
+}
+
+.slider-pro a.urisp-cta-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.slider-pro a.read-more-color.urisp-cta-btn {
+    margin-top: 10px !important;
+    display: inline-flex !important;
+}
+
+@media (max-width: 640px) {
+    .slider-pro a.urisp-cta-btn {
+        padding: 8px 16px !important;
+        font-size: 13px !important;
+    }
+}
+
+
+/* ==========================================================================
+   7. WCAG 2.1 AA Accessibility Styles
+   ========================================================================== */
+.urisp-sr-announce,
+.slider-pro .screen-reader-text,
+.screen-reader-text.urisp-sr-announce {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+}
+
+/* Accessible focus outlines for keyboard navigation */
+.slider-pro:focus-visible {
+    outline: 3px solid #6366f1 !important;
+    outline-offset: 3px !important;
+}
+
+.slider-pro .sp-arrow:focus-visible,
+.slider-pro .sp-button:focus-visible,
+.slider-pro .sp-full-screen-button:focus-visible,
+.slider-pro .sp-thumbnail:focus-visible,
+.slider-pro a.urisp-cta-btn:focus-visible {
+    outline: 2px solid #ffffff !important;
+    outline-offset: 2px !important;
+    box-shadow: 0 0 0 4px #6366f1 !important;
+}
+
+
+/* ==========================================================================
+   8. Watermark Protection CSS Fallback Overlay
+   ========================================================================== */
+.urisp-watermark-overlay {
+    position: absolute;
+    z-index: 12;
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-select: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.urisp-wm-text {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-weight: 700;
+    color: #ffffff;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.9), 0 2px 6px rgba(0, 0, 0, 0.6);
+    line-height: 1.2;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+}
+
+.urisp-wm-logo {
+    display: block;
+    height: auto;
+    max-width: 100%;
+}
+
+.urisp-wm--top-left     { top: 16px; left: 16px; }
+.urisp-wm--top-center   { top: 16px; left: 50%; transform: translateX(-50%); }
+.urisp-wm--top-right    { top: 16px; right: 16px; }
+.urisp-wm--center       { top: 50%; left: 50%; transform: translate(-50%, -50%); }
+.urisp-wm--bottom-left  { bottom: 16px; left: 16px; }
+.urisp-wm--bottom-center{ bottom: 16px; left: 50%; transform: translateX(-50%); }
+.urisp-wm--bottom-right { bottom: 16px; right: 16px; }
+
+/* ==========================================================================
+   10. Smooth 60fps GPU Hardware Acceleration & Instant Responsiveness
+   ========================================================================== */
+.slider-pro {
+    position: relative;
+}
+
+.slider-pro .sp-slides-container,
+.slider-pro .sp-mask {
+    position: relative;
+    overflow: hidden;
+}
+
+.slider-pro .sp-slides {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    will-change: transform;
+}
+
+.slider-pro .sp-slide {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    will-change: opacity;
+}
+
+/* Ensure clean 2D stacking during cross-fade transitions without transform fighting */
+.slider-pro.sp-fade .sp-slide,
+.slider-pro .sp-slide[data-transitioning] {
+    -webkit-transform: none !important;
+    transform: none !important;
+}
+
+.slider-pro .sp-image {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    max-width: 100%;
+}
+

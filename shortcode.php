@@ -92,14 +92,14 @@ function uris_shortcode( $Id ) {
 	}
 	$RISP_Arrow_Style               = ! empty( $settings['arrow_style'] ) ? $settings['arrow_style'] : 'chevron';
 	$RISP_Font_Style                = ! empty( $settings['font_family'] ) ? $settings['font_family'] : 'Arial, Helvetica, sans-serif';
-	$RISP_L1_Thumbnail_Style_Color  = ! empty( $settings['thumbnail_style_color'] ) ? $settings['thumbnail_style_color'] : '#0080FF';
-	$RISP_L3_Thumbnail_Style_Color  = ! empty( $settings['thumbnail_style_color'] ) ? $settings['thumbnail_style_color'] : '#0080FF';
+	$RISP_L1_Thumbnail_Style_Color  = ! empty( $settings['thumbnail_style_color'] ) ? $settings['thumbnail_style_color'] : '#000000';
+	$RISP_L3_Thumbnail_Style_Color  = ! empty( $settings['thumbnail_style_color'] ) ? $settings['thumbnail_style_color'] : '#000000';
 
 	// Layout 1 settings
 	$RISP_L1_Auto_Slideshow         = isset( $settings['auto_slideshow'] ) ? (int) $settings['auto_slideshow'] : 1;
 	$RISP_L1_Slider_Transition_Speed = ! empty( $settings['transition_speed'] ) ? $settings['transition_speed'] : 5000;
 	$RISP_L1_Slide_Distance         = isset( $settings['slide_distance'] ) ? $settings['slide_distance'] : 5;
-	$RISP_L1_Slider_Transition_Effect = ! empty( $settings['transition_effect'] ) ? $settings['transition_effect'] : 1;
+	$RISP_L1_Slider_Transition_Effect = isset( $settings['transition_effect'] ) ? (int) $settings['transition_effect'] : 1;
 	$RISP_L1_Transition             = $RISP_L1_Slider_Transition_Effect;
 	$RISP_L1_Width                  = ! empty( $settings['width_mode'] ) ? $settings['width_mode'] : 'custom';
 	$RISP_L1_Height                 = ! empty( $settings['height_mode'] ) ? $settings['height_mode'] : 'custom';

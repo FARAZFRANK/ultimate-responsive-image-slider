@@ -47,16 +47,38 @@ jQuery(function(jQuery) {
 					}
 				});
 			}
-			this.admin_thumb_ul.on('click', '.uris-slide-delete-icon', function() {
+			this.admin_thumb_ul.on('click', '.uris-slide-delete-icon', function(e) {
+				e.preventDefault();
+				var $slide = jQuery(this).closest('.uris-slide');
 				var confirmMsg = (typeof urisp_uploader_i18n !== 'undefined' && urisp_uploader_i18n.delete_slide_confirm) ? urisp_uploader_i18n.delete_slide_confirm : 'Are you sure you want to delete this slide?';
-				if (confirm(confirmMsg)) {
-					jQuery(this).parent().fadeOut(1000, function() {
+				var title = (typeof urisp_uploader_i18n !== 'undefined' && urisp_uploader_i18n.delete_slide_title) ? urisp_uploader_i18n.delete_slide_title : 'Delete Slide';
+				var deleteText = (typeof urisp_uploader_i18n !== 'undefined' && urisp_uploader_i18n.delete_btn) ? urisp_uploader_i18n.delete_btn : 'Delete';
+				var cancelText = (typeof urisp_uploader_i18n !== 'undefined' && urisp_uploader_i18n.cancel_btn) ? urisp_uploader_i18n.cancel_btn : 'Cancel';
+
+				var doDelete = function() {
+					$slide.fadeOut(350, function() {
 						jQuery(this).remove();
 						uris_slider.updateBulkDeleteUI();
 						if (typeof window.urisp_schedule_preview_reload === 'function') {
 							window.urisp_schedule_preview_reload();
 						}
 					});
+				};
+
+				if (window.urispModal && window.urispModal.confirm) {
+					urispModal.confirm({
+						title: title,
+						message: confirmMsg,
+						confirmText: deleteText,
+						cancelText: cancelText,
+						type: 'danger'
+					}).then(function(confirmed) {
+						if (confirmed) {
+							doDelete();
+						}
+					});
+				} else if (confirm(confirmMsg)) {
+					doDelete();
 				}
 				return false;
 			});
@@ -170,9 +192,13 @@ jQuery(function(jQuery) {
 				if (count === 0) return false;
 
 				var confirmMsg = (typeof urisp_uploader_i18n !== 'undefined' && urisp_uploader_i18n.delete_selected_confirm) ? urisp_uploader_i18n.delete_selected_confirm : 'Are you sure you want to delete the selected slide(s)?';
-				if (confirm(confirmMsg)) {
+				var title = (typeof urisp_uploader_i18n !== 'undefined' && urisp_uploader_i18n.delete_selected_title) ? urisp_uploader_i18n.delete_selected_title : 'Delete Selected Slides';
+				var deleteText = (typeof urisp_uploader_i18n !== 'undefined' && urisp_uploader_i18n.delete_btn) ? urisp_uploader_i18n.delete_btn : 'Delete';
+				var cancelText = (typeof urisp_uploader_i18n !== 'undefined' && urisp_uploader_i18n.cancel_btn) ? urisp_uploader_i18n.cancel_btn : 'Cancel';
+
+				var doDeleteSelected = function() {
 					$checked.each(function() {
-						jQuery(this).closest('.uris-slide').fadeOut(500, function() {
+						jQuery(this).closest('.uris-slide').fadeOut(350, function() {
 							jQuery(this).remove();
 							uris_slider.updateBulkDeleteUI();
 							if (typeof window.urisp_schedule_preview_reload === 'function') {
@@ -180,6 +206,22 @@ jQuery(function(jQuery) {
 							}
 						});
 					});
+				};
+
+				if (window.urispModal && window.urispModal.confirm) {
+					urispModal.confirm({
+						title: title,
+						message: confirmMsg,
+						confirmText: deleteText + ' (' + count + ')',
+						cancelText: cancelText,
+						type: 'danger'
+					}).then(function(confirmed) {
+						if (confirmed) {
+							doDeleteSelected();
+						}
+					});
+				} else if (confirm(confirmMsg)) {
+					doDeleteSelected();
 				}
 				return false;
 			});
@@ -245,14 +287,35 @@ jQuery(function(jQuery) {
 				file_frame.open();
 			});
 			
-			jQuery('#uris-delete-all-slide').on('click', function() {
+			jQuery('#uris-delete-all-slide').on('click', function(e) {
+				e.preventDefault();
 				var confirmMsg = (typeof urisp_uploader_i18n !== 'undefined' && urisp_uploader_i18n.delete_all_confirm) ? urisp_uploader_i18n.delete_all_confirm : 'Are you sure you want to delete all the slides?';
-				if (confirm(confirmMsg)) {
+				var title = (typeof urisp_uploader_i18n !== 'undefined' && urisp_uploader_i18n.delete_all_title) ? urisp_uploader_i18n.delete_all_title : 'Delete All Slides';
+				var deleteText = (typeof urisp_uploader_i18n !== 'undefined' && urisp_uploader_i18n.delete_btn) ? urisp_uploader_i18n.delete_btn : 'Delete All';
+				var cancelText = (typeof urisp_uploader_i18n !== 'undefined' && urisp_uploader_i18n.cancel_btn) ? urisp_uploader_i18n.cancel_btn : 'Cancel';
+
+				var doDeleteAll = function() {
 					uris_slider.admin_thumb_ul.empty();
 					uris_slider.updateBulkDeleteUI();
 					if (typeof window.urisp_schedule_preview_reload === 'function') {
 						window.urisp_schedule_preview_reload();
 					}
+				};
+
+				if (window.urispModal && window.urispModal.confirm) {
+					urispModal.confirm({
+						title: title,
+						message: confirmMsg,
+						confirmText: deleteText,
+						cancelText: cancelText,
+						type: 'danger'
+					}).then(function(confirmed) {
+						if (confirmed) {
+							doDeleteAll();
+						}
+					});
+				} else if (confirm(confirmMsg)) {
+					doDeleteAll();
 				}
 				return false;
 			});
@@ -337,12 +400,29 @@ jQuery(function(jQuery) {
 						}
 					} else {
 						var failMsg = (typeof urisp_uploader_i18n !== 'undefined' && urisp_uploader_i18n.upload_failed) ? urisp_uploader_i18n.upload_failed : 'Failed to upload files: ';
-						alert(failMsg + (response.data || 'Unknown error'));
+						var errMsg = failMsg + (response.data || 'Unknown error');
+						if (window.urispModal && window.urispModal.alert) {
+							urispModal.alert({
+								title: 'Upload Failed',
+								message: errMsg,
+								type: 'danger'
+							});
+						} else {
+							alert(errMsg);
+						}
 					}
 				},
 				error: function() {
 					var errText = (typeof urisp_uploader_i18n !== 'undefined' && urisp_uploader_i18n.upload_error) ? urisp_uploader_i18n.upload_error : 'An error occurred while uploading files.';
-					alert(errText);
+					if (window.urispModal && window.urispModal.alert) {
+						urispModal.alert({
+							title: 'Upload Error',
+							message: errText,
+							type: 'danger'
+						});
+					} else {
+						alert(errText);
+					}
 				}
 			}).always(function() {
 				uploader.removeClass('loading');

@@ -116,7 +116,16 @@ function urisp_reload_preview() {
 		} else {
 			var i18n = (typeof uris_ajax_object !== 'undefined' && uris_ajax_object.i18n) ? uris_ajax_object.i18n : {};
 			var serverMessage = (response.data && typeof response.data === 'object' && response.data.message) ? response.data.message : '';
-			alert(serverMessage || i18n.preview_error || 'Failed to update live preview. Please update the post manually.');
+			var errNotice = serverMessage || i18n.preview_error || 'Failed to update live preview. Please update the post manually.';
+			if (window.urispModal && window.urispModal.alert) {
+				urispModal.alert({
+					title: 'Preview Notice',
+					message: errNotice,
+					type: 'warning'
+				});
+			} else {
+				alert(errNotice);
+			}
 			jQuery('#urisp-preview-overlay').fadeOut(120);
 		}
 	}).fail(function() {

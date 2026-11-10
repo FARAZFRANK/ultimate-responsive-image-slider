@@ -223,12 +223,14 @@ Whether your theme is a lightweight block theme, multipurpose builder theme, or 
 
 ## 📝 Changelog
 
-### **v4.0.0** *(Current Release - November 9, 2026)*
-- 🏗️ **Modern Modular Architecture**: Refactored codebase into clean, modular components (`admin/`, `includes/`, `layouts/`).
-- 🔄 **Automated Migration Engine**: Seamlessly transforms legacy v3.5.x data structures into canonical unified settings format with zero data loss.
-- 🛡️ **Complete Backward Compatibility**: Preserves all existing `[URIS id=...]` shortcodes and slider settings.
+### **v4.0.0** *(Current Release - November 10, 2026)*
+- 📦 **Unlocked Import & Export System**: Fully unlocked selective and bulk JSON Import & Export tools in Global Settings with automated media library resolution and cross-version compatibility.
+- 🎬 **Slide Animation Fix**: Resolved Slider Transition Effect where "Slide Animation" was inadvertently overridden by fade animation due to PHP empty check.
+- 📌 **Sticky Tabs & Tab Persistence**: Made the slider configuration tab bar sticky on scroll and added server-side tab state persistence upon saving.
+- 🎨 **Beautified Admin Dialogs**: Replaced native browser alert and confirm popups with modern, accessible modal cards and toast notifications.
+- 🖼️ **Thumbnail Styling**: Defaulted selected slide thumbnail active border color to classic black (`#000000`) with backward-compatible legacy pointer color synchronization.
 - ⚡ **Anti-FOUC & Loading Guard**: Implemented `sp-no-js` pre-initialization state and transparent image placeholders, eliminating multi-loader flickering and floating caption cards on load.
-- 🚀 **Performance Optimization**: Minimized asset payloads, improved touch gestures, and optimized layout rendering.
+- 🏗️ **Modern Modular Architecture**: Refactored codebase into clean, modular components (`admin/`, `includes/`, `layouts/`).
 
 ### **v3.5.20** *(October 28, 2026)*
 - 🔄 **Database Version Tracking**: Added automated DB versioning (`uris_plugin_version`, `uris_db_version`) and upgrade migration hooks for future updates.

@@ -56,33 +56,41 @@ if ( ! function_exists( 'urisp_toggle_html' ) ) {
             </button>
         </div>
 
+        <?php
+        $active_admin_tab = ( isset( $post ) && isset( $post->ID ) ) ? get_post_meta( $post->ID, '_urisp_active_admin_tab', true ) : '';
+        if ( empty( $active_admin_tab ) ) {
+            $active_admin_tab = 'urisp-tab-add-images';
+        }
+        ?>
+        <input type="hidden" name="urisp_active_admin_tab" id="urisp_active_admin_tab" value="<?php echo esc_attr( $active_admin_tab ); ?>" />
+
         <div class="urisp-tabs-nav">
-            <div class="urisp-nav-tab active" data-target="urisp-tab-add-images">
+            <div class="urisp-nav-tab <?php echo ( $active_admin_tab === 'urisp-tab-add-images' ) ? 'active' : ''; ?>" data-target="urisp-tab-add-images">
                 <span class="dashicons dashicons-database"></span>
                 <span><?php esc_html_e('Content Source', 'ultimate-responsive-image-slider'); ?></span>
             </div>
-            <div class="urisp-nav-tab" data-target="urisp-tab-general">
+            <div class="urisp-nav-tab <?php echo ( $active_admin_tab === 'urisp-tab-general' ) ? 'active' : ''; ?>" data-target="urisp-tab-general">
                 <span class="dashicons dashicons-layout"></span>
                 <span><?php esc_html_e('General & Layout', 'ultimate-responsive-image-slider'); ?></span>
             </div>
-            <div class="urisp-nav-tab" data-target="urisp-tab-typography">
+            <div class="urisp-nav-tab <?php echo ( $active_admin_tab === 'urisp-tab-typography' ) ? 'active' : ''; ?>" data-target="urisp-tab-typography">
                 <span class="dashicons dashicons-editor-textcolor"></span>
                 <span><?php esc_html_e('Typography & Buttons', 'ultimate-responsive-image-slider'); ?></span>
             </div>
-            <div class="urisp-nav-tab" data-target="urisp-tab-navigation">
+            <div class="urisp-nav-tab <?php echo ( $active_admin_tab === 'urisp-tab-navigation' ) ? 'active' : ''; ?>" data-target="urisp-tab-navigation">
                 <span class="dashicons dashicons-ellipsis"></span>
                 <span><?php esc_html_e('Navigation & Arrows', 'ultimate-responsive-image-slider'); ?></span>
             </div>
-            <div class="urisp-nav-tab" data-target="urisp-tab-advanced">
+            <div class="urisp-nav-tab <?php echo ( $active_admin_tab === 'urisp-tab-advanced' ) ? 'active' : ''; ?>" data-target="urisp-tab-advanced">
                 <span class="dashicons dashicons-admin-generic"></span>
                 <span><?php esc_html_e('Advanced Settings', 'ultimate-responsive-image-slider'); ?></span>
             </div>
-            <div class="urisp-nav-tab" data-target="urisp-tab-watermark">
+            <div class="urisp-nav-tab <?php echo ( $active_admin_tab === 'urisp-tab-watermark' ) ? 'active' : ''; ?>" data-target="urisp-tab-watermark">
                 <span class="dashicons dashicons-shield"></span>
                 <span><?php esc_html_e('Watermark', 'ultimate-responsive-image-slider'); ?></span>
                 <span style="background: #f59e0b; color: #fff; font-size: 10px; font-weight: 800; padding: 2px 6px; border-radius: 4px; margin-left: 6px;">PRO</span>
             </div>
-            <div class="urisp-nav-tab" data-target="urisp-tab-upgrade" style="background: rgba(245, 158, 11, 0.08); border-color: rgba(245, 158, 11, 0.3);">
+            <div class="urisp-nav-tab <?php echo ( $active_admin_tab === 'urisp-tab-upgrade' ) ? 'active' : ''; ?>" data-target="urisp-tab-upgrade" style="background: rgba(245, 158, 11, 0.08); border-color: rgba(245, 158, 11, 0.3);">
                 <span class="dashicons dashicons-star-filled" style="color: #f59e0b;"></span>
                 <span style="color: #d97706; font-weight: 700;"><?php esc_html_e('Upgrade to Pro', 'ultimate-responsive-image-slider'); ?></span>
             </div>
@@ -112,7 +120,7 @@ if ( ! function_exists( 'urisp_toggle_html' ) ) {
 
         <div class="urisp-tabs-content-wrapper">
 
-<div id="urisp-tab-add-images" class="urisp-tab-content active">
+<div id="urisp-tab-add-images" class="urisp-tab-content <?php echo ( $active_admin_tab === 'urisp-tab-add-images' ) ? 'active' : ''; ?>">
     
     <!-- Content Source Switcher Card -->
     <div class="urisp-card" style="margin-bottom: 25px;">
@@ -466,7 +474,7 @@ if ( ! function_exists( 'urisp_toggle_html' ) ) {
     </div>
 </div>
 
-<div id="urisp-tab-general" class="urisp-tab-content">
+<div id="urisp-tab-general" class="urisp-tab-content <?php echo ( $active_admin_tab === 'urisp-tab-general' ) ? 'active' : ''; ?>">
     
     <!-- Card 1: Layout & Behavior Settings -->
     <div class="urisp-card">
@@ -890,7 +898,7 @@ if ( ! function_exists( 'urisp_toggle_html' ) ) {
     </div>
 </div>
 
-<div id="urisp-tab-typography" class="urisp-tab-content">
+<div id="urisp-tab-typography" class="urisp-tab-content <?php echo ( $active_admin_tab === 'urisp-tab-typography' ) ? 'active' : ''; ?>">
     
     <!-- Preload Google Fonts & Custom Font-Faces for Live Preview -->
     <?php wp_enqueue_style( 'urisp-google-preview-fonts', 'https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=Comic+Neue:wght@400;700&family=Lexend:wght@400;600&display=swap', array(), RISP_PLUGIN_VER ); ?>
@@ -1177,7 +1185,7 @@ if ( ! function_exists( 'urisp_toggle_html' ) ) {
     </div>
 </div>
 
-<div id="urisp-tab-navigation" class="urisp-tab-content">
+<div id="urisp-tab-navigation" class="urisp-tab-content <?php echo ( $active_admin_tab === 'urisp-tab-navigation' ) ? 'active' : ''; ?>">
     
     <!-- Card 1: Navigation Configurations -->
     <div class="urisp-card">
@@ -1399,7 +1407,7 @@ if ( ! function_exists( 'urisp_toggle_html' ) ) {
                     </div>
                     <div class="urisp-color-item" data-layouts="3,5">
                         <label><?php esc_html_e('Selected Thumbnail Border / Active Color', 'ultimate-responsive-image-slider'); ?></label>
-                        <input name="urisp_settings[thumbnail_style_color]" type="text" value="<?php echo esc_attr($settings['thumbnail_style_color']); ?>" class="my-color-field" data-default-color="#0080FF" />
+                        <input name="urisp_settings[thumbnail_style_color]" type="text" value="<?php echo esc_attr(! empty($settings['thumbnail_style_color']) ? $settings['thumbnail_style_color'] : '#000000'); ?>" class="my-color-field" data-default-color="#000000" />
                     </div>
                     <div class="urisp-color-item" data-layouts="1,5">
                         <label><?php esc_html_e('Thumbnail Title Color', 'ultimate-responsive-image-slider'); ?></label>
@@ -1460,7 +1468,7 @@ if ( ! function_exists( 'urisp_toggle_html' ) ) {
     </div>
 </div>
 
-<div id="urisp-tab-advanced" class="urisp-tab-content">
+<div id="urisp-tab-advanced" class="urisp-tab-content <?php echo ( $active_admin_tab === 'urisp-tab-advanced' ) ? 'active' : ''; ?>">
     
     <!-- Card 1: Fullscreen Controls (Active Free Feature) -->
     <div class="urisp-card">
@@ -1554,7 +1562,7 @@ if ( ! function_exists( 'urisp_toggle_html' ) ) {
     </div>
 </div>
 
-<div id="urisp-tab-watermark" class="urisp-tab-content">
+<div id="urisp-tab-watermark" class="urisp-tab-content <?php echo ( $active_admin_tab === 'urisp-tab-watermark' ) ? 'active' : ''; ?>">
     <div style="margin-bottom: 24px; padding: 20px 24px; background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%); border: 1px solid #fde68a; border-radius: 12px; display: flex; align-items: center; justify-content: space-between; gap: 20px; box-shadow: 0 2px 8px rgba(245, 158, 11, 0.1);">
         <div style="display: flex; align-items: center; gap: 16px;">
             <div style="width: 44px; height: 44px; border-radius: 10px; background: #f59e0b; color: #fff; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 4px 10px rgba(245, 158, 11, 0.3);">
@@ -1718,7 +1726,7 @@ if ( ! function_exists( 'urisp_toggle_html' ) ) {
 
         
         <!-- Upgrade to Pro Tab Content -->
-        <div id="urisp-tab-upgrade" class="urisp-tab-content">
+        <div id="urisp-tab-upgrade" class="urisp-tab-content <?php echo ( $active_admin_tab === 'urisp-tab-upgrade' ) ? 'active' : ''; ?>">
     <!-- Upgrade to Pro Hero Banner -->
     <div style="background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 45%, #312e81 100%); color: #fff; padding: 40px 32px; border-radius: 16px; box-shadow: 0 10px 30px rgba(15, 23, 42, 0.25); text-align: center; margin-bottom: 30px; position: relative; overflow: hidden; border: 1px solid rgba(255,255,255,0.08);">
         <!-- Background Ambient Glow -->
@@ -2315,20 +2323,73 @@ jQuery(document).ready(function($) {
         }
     }
 
-    // Tab Switching Logic
-    $(document).on('click', '.urisp-nav-tab', function(e) {
-        e.preventDefault();
-        var target = $(this).data('target');
-        if (!target) return;
+    // Tab Switching & Persistence Logic
+    var currentPostId = $('#post_ID').val() || '<?php echo isset($post->ID) ? (int)$post->ID : 0; ?>';
+
+    function urispActivateTab(target, updateUrl) {
+        if (!target || !$('#' + target).length) return;
         $('.urisp-nav-tab').removeClass('active');
-        $(this).addClass('active');
+        $('.urisp-nav-tab[data-target="' + target + '"]').addClass('active');
         $('.urisp-tab-content').removeClass('active');
         $('#' + target).addClass('active');
+
+        $('#urisp_active_admin_tab').val(target);
+
+        if (currentPostId) {
+            try {
+                sessionStorage.setItem('urisp_active_tab_' + currentPostId, target);
+                localStorage.setItem('urisp_active_tab_' + currentPostId, target);
+            } catch (err) {}
+        }
+
+        if (updateUrl !== false && window.history && window.history.replaceState) {
+            try {
+                window.history.replaceState(null, null, '#' + target);
+            } catch (err) {}
+        }
 
         if (typeof window.urisp_init_color_pickers === 'function') {
             setTimeout(function() {
                 window.urisp_init_color_pickers($('#' + target));
             }, 50);
+        }
+    }
+
+    $(document).on('click', '.urisp-nav-tab', function(e) {
+        e.preventDefault();
+        var target = $(this).data('target');
+        if (!target) return;
+        urispActivateTab(target, true);
+    });
+
+    // Check stored tab on page load (URL hash, sessionStorage, localStorage, or hidden input)
+    var initialHash = window.location.hash ? window.location.hash.replace('#', '') : '';
+    var storedTab = '';
+    if (initialHash && $('#' + initialHash).length) {
+        storedTab = initialHash;
+    } else if (currentPostId) {
+        try {
+            storedTab = sessionStorage.getItem('urisp_active_tab_' + currentPostId) || localStorage.getItem('urisp_active_tab_' + currentPostId);
+        } catch (err) {}
+    }
+    if (!storedTab) {
+        storedTab = $('#urisp_active_admin_tab').val();
+    }
+    if (storedTab && $('#' + storedTab).length) {
+        urispActivateTab(storedTab, false);
+    }
+
+    // Save active tab before post form submits
+    $('form#post').on('submit', function() {
+        var currentActiveTab = $('.urisp-nav-tab.active').data('target');
+        if (currentActiveTab) {
+            $('#urisp_active_admin_tab').val(currentActiveTab);
+            if (currentPostId) {
+                try {
+                    sessionStorage.setItem('urisp_active_tab_' + currentPostId, currentActiveTab);
+                    localStorage.setItem('urisp_active_tab_' + currentPostId, currentActiveTab);
+                } catch (err) {}
+            }
         }
     });
 
@@ -2402,8 +2463,24 @@ jQuery(document).ready(function($) {
         if ($(this).data('is-pro') == '1' || $(this).hasClass('urisp-pro-locked-card')) {
             e.preventDefault();
             e.stopPropagation();
-            if (confirm('This layout is available exclusively in Ultimate Responsive Image Slider Pro. Would you like to view Pro features?')) {
+            var proMsg = <?php echo wp_json_encode(__('This layout is available exclusively in Ultimate Responsive Image Slider Pro. Would you like to view Pro features?', 'ultimate-responsive-image-slider')); ?>;
+            var openPro = function() {
                 window.open('https://wpfrank.com/plugins/ultimate-responsive-image-slider-pro/', '_blank');
+            };
+            if (window.urispModal && window.urispModal.confirm) {
+                urispModal.confirm({
+                    title: <?php echo wp_json_encode(__('Pro Feature', 'ultimate-responsive-image-slider')); ?>,
+                    message: proMsg,
+                    confirmText: <?php echo wp_json_encode(__('View Pro Features', 'ultimate-responsive-image-slider')); ?>,
+                    cancelText: <?php echo wp_json_encode(__('Maybe Later', 'ultimate-responsive-image-slider')); ?>,
+                    type: 'info'
+                }).then(function(confirmed) {
+                    if (confirmed) {
+                        openPro();
+                    }
+                });
+            } else if (confirm(proMsg)) {
+                openPro();
             }
             return false;
         }
@@ -2651,7 +2728,16 @@ jQuery(document).ready(function($) {
         if (slideType === 'video' && videoUrl) {
             var isVimeo = videoUrl.match(/(?:vimeo\.com\/(?:video\/)?)([0-9]+)/i);
             if (!isVimeo) {
-                alert('<?php echo esc_js(__("YouTube and Self-Hosted videos are available in Ultimate Responsive Image Slider Pro. Free version supports Vimeo only.", "ultimate-responsive-image-slider")); ?>');
+                var vimeoNotice = '<?php echo esc_js(__("YouTube and Self-Hosted videos are available in Ultimate Responsive Image Slider Pro. Free version supports Vimeo only.", "ultimate-responsive-image-slider")); ?>';
+                if (window.urispModal && window.urispModal.alert) {
+                    urispModal.alert({
+                        title: <?php echo wp_json_encode(__('Pro Feature Notice', 'ultimate-responsive-image-slider')); ?>,
+                        message: vimeoNotice,
+                        type: 'info'
+                    });
+                } else {
+                    alert(vimeoNotice);
+                }
                 slideType = 'image';
                 videoUrl = '';
             }
@@ -3066,116 +3152,149 @@ jQuery(document).ready(function($) {
 
     function urispResetSettingsToDefaults() {
         if (!window.urisp_default_settings) {
-            alert(<?php echo wp_json_encode(__('Default settings could not be loaded.', 'ultimate-responsive-image-slider')); ?>);
-            return;
-        }
-
-        var confirmMsg = <?php echo wp_json_encode(__("Are you sure you want to reset all slider settings to their default values?\n\nYour uploaded slides, images, and content will NOT be affected.\n\nClick OK to reset the settings in this form, then click the 'Update' button to save permanently.", 'ultimate-responsive-image-slider')); ?>;
-        if (!confirm(confirmMsg)) {
-            return;
-        }
-
-        var defaults = window.urisp_default_settings;
-
-        // Iterate through all default settings
-        $.each(defaults, function(key, defaultVal) {
-            // 1. Radio buttons (segmented controls, radio choices, etc.)
-            var $radios = $('input[name="urisp_settings[' + key + ']"][type="radio"]');
-            if ($radios.length > 0) {
-                $radios.prop('checked', false);
-                var $match = $radios.filter(function() {
-                    return String($(this).val()) === String(defaultVal);
+            var loadErrMsg = <?php echo wp_json_encode(__('Default settings could not be loaded.', 'ultimate-responsive-image-slider')); ?>;
+            if (window.urispModal && window.urispModal.alert) {
+                urispModal.alert({
+                    title: <?php echo wp_json_encode(__('Error', 'ultimate-responsive-image-slider')); ?>,
+                    message: loadErrMsg,
+                    type: 'danger'
                 });
-                if ($match.length > 0) {
-                    $match.prop('checked', true).trigger('change');
-                }
-                // Visual radio pickers (arrow style, skin preset)
-                if (key === 'arrow_style') {
-                    $('.urisp-arrow-style-picker .urisp-arrow-choice').removeClass('active');
-                    $match.closest('.urisp-arrow-choice').addClass('active');
-                }
-                if (key === 'skin_preset') {
-                    $('.urisp-skin-preset-picker .urisp-skin-choice').removeClass('active');
-                    $match.closest('.urisp-skin-choice').addClass('active');
-                }
-                return;
+            } else {
+                alert(loadErrMsg);
             }
-
-            // 2. Checkboxes / Toggles
-            var $checkbox = $('input[name="urisp_settings[' + key + ']"][type="checkbox"]');
-            if ($checkbox.length > 0) {
-                var isChecked = (defaultVal == 1 || defaultVal === true || defaultVal === '1');
-                $checkbox.prop('checked', isChecked).trigger('change');
-                return;
-            }
-
-            // 3. Color Pickers (wp-color-picker)
-            var $colorInput = $('input[name="urisp_settings[' + key + ']"].urisp-color-field, input[name="urisp_settings[' + key + ']"].wp-color-picker');
-            if ($colorInput.length > 0) {
-                if (typeof $.fn.wpColorPicker === 'function' && $colorInput.closest('.wp-picker-container').length) {
-                    $colorInput.wpColorPicker('color', defaultVal);
-                } else {
-                    $colorInput.val(defaultVal).trigger('input').trigger('change');
-                }
-                return;
-            }
-
-            // 4. Range Sliders
-            var $range = $('input[name="urisp_settings[' + key + ']"][type="range"]');
-            if ($range.length > 0) {
-                $range.val(defaultVal).trigger('input').trigger('change');
-                return;
-            }
-
-            // 5. Select Dropdowns
-            var $select = $('select[name="urisp_settings[' + key + ']"]');
-            if ($select.length > 0) {
-                $select.val(defaultVal).trigger('change');
-                return;
-            }
-
-            // 6. Textareas / Inputs (text, number, url, hidden)
-            var $input = $('input[name="urisp_settings[' + key + ']"]:not([type="radio"]):not([type="checkbox"]):not([type="range"]), textarea[name="urisp_settings[' + key + ']"]');
-            if ($input.length > 0) {
-                $input.val(defaultVal).trigger('input').trigger('change');
-                return;
-            }
-        });
-
-        // Reset Watermark live previews & badges
-        $('#urisp-wm-logo-preview').hide();
-        $('#urisp_wm_opacity_badge').text((defaults['watermark_opacity'] || 50) + '%');
-        $('#urisp_wm_text_size_badge').text((defaults['watermark_size'] || 24) + 'pt');
-        $('#urisp_wm_image_size_badge').text((defaults['watermark_image_size'] || 15) + '%');
-
-        // Layout-specific conditional updates
-        if (typeof urispApplyLayoutConditionalVisibility === 'function') {
-            urispApplyLayoutConditionalVisibility(defaults['slider_layout'] || 3);
-        }
-        if (typeof urispUpdateSourceVisibility === 'function') {
-            urispUpdateSourceVisibility();
+            return;
         }
 
-        // Mark form as dirty so WordPress and preview know changes exist
-        window.urisp_form_is_dirty = true;
+        var confirmMsg = <?php echo wp_json_encode(__("Are you sure you want to reset all slider settings to their default values?\n\nYour uploaded slides, images, and content will NOT be affected.\n\nClick Reset to apply default settings in this form, then click 'Update' to save permanently.", 'ultimate-responsive-image-slider')); ?>;
 
-        // Trigger preview reload if preview modal is active
-        if (typeof window.urisp_schedule_preview_reload === 'function') {
-            window.urisp_schedule_preview_reload();
+        var executeReset = function() {
+            var defaults = window.urisp_default_settings;
+
+            // Iterate through all default settings
+            $.each(defaults, function(key, defaultVal) {
+                // 1. Radio buttons (segmented controls, radio choices, etc.)
+                var $radios = $('input[name="urisp_settings[' + key + ']"][type="radio"]');
+                if ($radios.length > 0) {
+                    $radios.prop('checked', false);
+                    var $match = $radios.filter(function() {
+                        return String($(this).val()) === String(defaultVal);
+                    });
+                    if ($match.length > 0) {
+                        $match.prop('checked', true).trigger('change');
+                    }
+                    // Visual radio pickers (arrow style, skin preset)
+                    if (key === 'arrow_style') {
+                        $('.urisp-arrow-style-picker .urisp-arrow-choice').removeClass('active');
+                        $match.closest('.urisp-arrow-choice').addClass('active');
+                    }
+                    if (key === 'skin_preset') {
+                        $('.urisp-skin-preset-picker .urisp-skin-choice').removeClass('active');
+                        $match.closest('.urisp-skin-choice').addClass('active');
+                    }
+                    return;
+                }
+
+                // 2. Checkboxes / Toggles
+                var $checkbox = $('input[name="urisp_settings[' + key + ']"][type="checkbox"]');
+                if ($checkbox.length > 0) {
+                    var isChecked = (defaultVal == 1 || defaultVal === true || defaultVal === '1');
+                    $checkbox.prop('checked', isChecked).trigger('change');
+                    return;
+                }
+
+                // 3. Color Pickers (wp-color-picker)
+                var $colorInput = $('input[name="urisp_settings[' + key + ']"].urisp-color-field, input[name="urisp_settings[' + key + ']"].wp-color-picker');
+                if ($colorInput.length > 0) {
+                    if (typeof $.fn.wpColorPicker === 'function' && $colorInput.closest('.wp-picker-container').length) {
+                        $colorInput.wpColorPicker('color', defaultVal);
+                    } else {
+                        $colorInput.val(defaultVal).trigger('input').trigger('change');
+                    }
+                    return;
+                }
+
+                // 4. Range Sliders
+                var $range = $('input[name="urisp_settings[' + key + ']"][type="range"]');
+                if ($range.length > 0) {
+                    $range.val(defaultVal).trigger('input').trigger('change');
+                    return;
+                }
+
+                // 5. Select Dropdowns
+                var $select = $('select[name="urisp_settings[' + key + ']"]');
+                if ($select.length > 0) {
+                    $select.val(defaultVal).trigger('change');
+                    return;
+                }
+
+                // 6. Textareas / Inputs (text, number, url, hidden)
+                var $input = $('input[name="urisp_settings[' + key + ']"]:not([type="radio"]):not([type="checkbox"]):not([type="range"]), textarea[name="urisp_settings[' + key + ']"]');
+                if ($input.length > 0) {
+                    $input.val(defaultVal).trigger('input').trigger('change');
+                    return;
+                }
+            });
+
+            // Reset Watermark live previews & badges
+            $('#urisp-wm-logo-preview').hide();
+            $('#urisp_wm_opacity_badge').text((defaults['watermark_opacity'] || 50) + '%');
+            $('#urisp_wm_text_size_badge').text((defaults['watermark_size'] || 24) + 'pt');
+            $('#urisp_wm_image_size_badge').text((defaults['watermark_image_size'] || 15) + '%');
+
+            // Layout-specific conditional updates
+            if (typeof urispApplyLayoutConditionalVisibility === 'function') {
+                urispApplyLayoutConditionalVisibility(defaults['slider_layout'] || 3);
+            }
+            if (typeof urispUpdateSourceVisibility === 'function') {
+                urispUpdateSourceVisibility();
+            }
+
+            // Mark form as dirty so WordPress and preview know changes exist
+            window.urisp_form_is_dirty = true;
+
+            // Trigger preview reload if preview modal is active
+            if (typeof window.urisp_schedule_preview_reload === 'function') {
+                window.urisp_schedule_preview_reload();
+            }
+
+            // Show note banner at the top and scroll to it
+            var $banner = $('#urisp-reset-notice-banner');
+            $banner.stop(true, true).slideDown(300);
+            if ($banner.length) {
+                $('html, body').animate({
+                    scrollTop: $banner.offset().top - 80
+                }, 300);
+            }
+
+            // Show beautified alert dialog
+            var alertMsg = <?php echo wp_json_encode(__("All slider settings have been reset to default values!\n\nPlease note: You must click the 'Update' button to save these changes permanently.", 'ultimate-responsive-image-slider')); ?>;
+            if (window.urispModal && window.urispModal.alert) {
+                urispModal.alert({
+                    title: <?php echo wp_json_encode(__('Settings Reset', 'ultimate-responsive-image-slider')); ?>,
+                    message: alertMsg,
+                    type: 'success',
+                    confirmText: <?php echo wp_json_encode(__('Got It', 'ultimate-responsive-image-slider')); ?>
+                });
+            } else {
+                alert(alertMsg);
+            }
+        };
+
+        if (window.urispModal && window.urispModal.confirm) {
+            urispModal.confirm({
+                title: <?php echo wp_json_encode(__('Reset Settings', 'ultimate-responsive-image-slider')); ?>,
+                message: confirmMsg,
+                confirmText: <?php echo wp_json_encode(__('Reset to Defaults', 'ultimate-responsive-image-slider')); ?>,
+                cancelText: <?php echo wp_json_encode(__('Cancel', 'ultimate-responsive-image-slider')); ?>,
+                type: 'warning'
+            }).then(function(confirmed) {
+                if (confirmed) {
+                    executeReset();
+                }
+            });
+        } else if (confirm(confirmMsg)) {
+            executeReset();
         }
-
-        // Show note banner at the top and scroll to it
-        var $banner = $('#urisp-reset-notice-banner');
-        $banner.stop(true, true).slideDown(300);
-        if ($banner.length) {
-            $('html, body').animate({
-                scrollTop: $banner.offset().top - 80
-            }, 300);
-        }
-
-        // Show browser alert popup as requested
-        var alertMsg = <?php echo wp_json_encode(__("All slider settings have been reset to default values!\n\nPlease note: You must click the 'Update' button to save these changes permanently.", 'ultimate-responsive-image-slider')); ?>;
-        alert(alertMsg);
     }
 
     // ==========================================

@@ -50,6 +50,7 @@ function uris_get_legacy_free_key_map() {
 		'WRIS_L3_Slider_Scale_Mode'             => 'scale_mode',
 		'WRIS_L3_Navigation_Button_Color'       => 'navigation_bullet_color',
 		'WRIS_L3_Navigation_Button_Active_Color'=> 'navigation_bullet_active_color',
+		'WRIS_L3_Navigation_Pointer_Color'      => 'thumbnail_style_color',
 	);
 }
 

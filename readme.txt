@@ -345,12 +345,13 @@ Visit our [upgrade page](http://wpfrank.com/account/signup/ultimate-responsive-i
 == Changelog ==
 
 = 4.0.0 =
-* Major Architecture Upgrade: Modernized modular architecture with dedicated admin, includes, and layouts structures.
-* Seamless Auto-Migration Engine: Automated background migration for legacy v3.5.x sliders with 100% data preservation.
-* Full Backward Compatibility: Maintained complete compatibility for [URIS id=...] shortcode and existing configurations.
-* Anti-FOUC & Loading Guard: Implemented sp-no-js pre-initialization state and transparent image placeholders, eliminating multi-loader flickering.
-* Performance & Responsiveness: Optimized CSS/JS assets, improved touch swipe handling, and refined mobile layout scaling.
-* Release date: November 9, 2026
+* Feature: Unlocked and restored full JSON Import & Export in Global Settings for selective and bulk slider migration and backups.
+* Fix: Resolved Slider Transition Effect issue where "Slide Animation" was overridden by fade effect due to PHP empty check.
+* Enhancement: Added sticky settings tab navigation bar and persistent active tab state on save/reload.
+* UI/UX: Beautified all admin confirmation alerts and prompts with modern custom modal dialogs and toast notices.
+* Styling: Set default selected thumbnail active border color to black (#000000) with legacy pointer color synchronization.
+* Architecture & Performance: Modernized modular architecture with anti-FOUC loading guards, eliminated multi-loader flickering, and optimized responsive scaling.
+* Release date: November 10, 2026
 
 = 3.5.20 =
 * Enhancement: Added seamless database version tracking and upgrade migration hooks for future updates.

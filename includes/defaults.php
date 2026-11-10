@@ -39,7 +39,7 @@ function uris_get_default_settings() {
 		// Layout 3 specific
 		'navigation_position'      => 'bottom',
 		'thumbnail_style'          => 'border',
-		'thumbnail_style_color'    => '#0080FF',
+		'thumbnail_style_color'    => '#000000',
 		'thumbnail_width'          => 120,
 		'thumbnail_height'         => 100,
 

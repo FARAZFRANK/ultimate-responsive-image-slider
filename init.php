@@ -146,7 +146,11 @@ class URIS_Free {
 		wp_enqueue_script( 'wp-color-picker' );
 		wp_enqueue_script( 'wpfrank-urisp-color-picker-script', RISP_PLUGIN_URL . 'assets/js/wl-color-picker.js', array( 'jquery', 'wp-color-picker' ), $ver, true );
 
-		wp_enqueue_script( 'wpfrank-urisp-ajax-script', RISP_PLUGIN_URL . 'assets/js/uris-ajax-script.js', array( 'jquery' ), $ver, true );
+		$modal_js_file = defined( 'RISP_PLUGIN_DIR_PATH' ) ? RISP_PLUGIN_DIR_PATH . 'assets/js/urisp-modal.js' : '';
+		$modal_ver = ( $modal_js_file && file_exists( $modal_js_file ) ) ? filemtime( $modal_js_file ) : $ver;
+		wp_enqueue_script( 'wpfrank-urisp-modal-js', RISP_PLUGIN_URL . 'assets/js/urisp-modal.js', array(), $modal_ver, true );
+
+		wp_enqueue_script( 'wpfrank-urisp-ajax-script', RISP_PLUGIN_URL . 'assets/js/uris-ajax-script.js', array( 'jquery', 'wpfrank-urisp-modal-js' ), $ver, true );
 		wp_localize_script( 'wpfrank-urisp-ajax-script', 'uris_ajax_object', array(
 			'ajax_url'      => admin_url( 'admin-ajax.php' ),
 			'nonce'         => wp_create_nonce( 'urisp_ajax_nonce' ),
@@ -546,6 +550,14 @@ class URIS_Free {
 						$btn.text('<?php echo esc_js( __( 'Copied!', 'ultimate-responsive-image-slider' ) ); ?>');
 					}
 
+					if (window.urispModal && window.urispModal.toast) {
+						window.urispModal.toast({
+							message: '<?php echo esc_js( __( 'Shortcode copied to clipboard!', 'ultimate-responsive-image-slider' ) ); ?>',
+							type: 'success',
+							duration: 2500
+						});
+					}
+
 					setTimeout(function() {
 						$btn.removeClass('urisp-copied').removeData('urisp-is-copied');
 						$btn.css({
@@ -763,12 +775,23 @@ class URIS_Free {
 	 */
 	public function urisp_settings_meta_box_function($post) {
 		// admin js
+		$modal_js_file = defined( 'RISP_PLUGIN_DIR_PATH' ) ? RISP_PLUGIN_DIR_PATH . 'assets/js/urisp-modal.js' : '';
+		$modal_ver = ( $modal_js_file && file_exists( $modal_js_file ) ) ? filemtime( $modal_js_file ) : ( defined('RISP_PLUGIN_VER') ? RISP_PLUGIN_VER : false );
+		$uploader_js_file = defined( 'RISP_PLUGIN_DIR_PATH' ) ? RISP_PLUGIN_DIR_PATH . 'assets/js/urisp-multiple-media-uploader.js' : '';
+		$uploader_ver = ( $uploader_js_file && file_exists( $uploader_js_file ) ) ? filemtime( $uploader_js_file ) : ( defined('RISP_PLUGIN_VER') ? RISP_PLUGIN_VER : false );
+
+		wp_enqueue_script( 'wpfrank-urisp-modal-js', RISP_PLUGIN_URL . 'assets/js/urisp-modal.js', array(), $modal_ver, true );
 		wp_enqueue_script('media-upload');
-		wp_enqueue_script('wpfrank-urisp-media-uploader-js', RISP_PLUGIN_URL . 'assets/js/urisp-multiple-media-uploader.js', array('jquery', 'jquery-ui-sortable'), defined('RISP_PLUGIN_VER') ? RISP_PLUGIN_VER : false, true);
+		wp_enqueue_script('wpfrank-urisp-media-uploader-js', RISP_PLUGIN_URL . 'assets/js/urisp-multiple-media-uploader.js', array('jquery', 'jquery-ui-sortable', 'wpfrank-urisp-modal-js'), $uploader_ver, true);
 		wp_localize_script( 'wpfrank-urisp-media-uploader-js', 'urisp_uploader_i18n', array(
 			'delete_slide_confirm'    => __( 'Are you sure you want to delete this slide?', 'ultimate-responsive-image-slider' ),
+			'delete_slide_title'      => __( 'Delete Slide', 'ultimate-responsive-image-slider' ),
 			'delete_selected_confirm' => __( 'Are you sure you want to delete the selected slide(s)?', 'ultimate-responsive-image-slider' ),
+			'delete_selected_title'   => __( 'Delete Selected Slides', 'ultimate-responsive-image-slider' ),
 			'delete_all_confirm'      => __( 'Are you sure you want to delete all the slides?', 'ultimate-responsive-image-slider' ),
+			'delete_all_title'        => __( 'Delete All Slides', 'ultimate-responsive-image-slider' ),
+			'delete_btn'              => __( 'Delete', 'ultimate-responsive-image-slider' ),
+			'cancel_btn'              => __( 'Cancel', 'ultimate-responsive-image-slider' ),
 			'upload_failed'           => __( 'Failed to upload files: ', 'ultimate-responsive-image-slider' ),
 			'upload_error'            => __( 'An error occurred while uploading files.', 'ultimate-responsive-image-slider' ),
 		) );
@@ -974,6 +997,10 @@ class URIS_Free {
 		if ( ! isset( $_POST['urisp_settings_nonce'] ) || ! wp_verify_nonce( sanitize_key( wp_unslash( $_POST['urisp_settings_nonce'] ) ), 'urisp_save_settings' ) ) return;
 		if ( ! urisp_current_user_can( 'manage_urisp_sliders' ) ) return;
 
+		if ( isset( $_POST['urisp_active_admin_tab'] ) ) {
+			update_post_meta( $PostID, '_urisp_active_admin_tab', sanitize_key( wp_unslash( $_POST['urisp_active_admin_tab'] ) ) );
+		}
+
 		if(isset($PostID) && isset($_POST['urisp_settings'])) {
 			require_once( RISP_PLUGIN_DIR_PATH . 'includes/defaults.php' );
 			$defaults = urisp_get_default_settings();
@@ -1073,6 +1100,7 @@ class URIS_Free {
 			$RISP_Settings_Array['RISP_L3_Thumbnail_Style'] = $unified_settings['thumbnail_style'];
 			$RISP_Settings_Array['RISP_L3_Thumbnail_Width'] = $unified_settings['thumbnail_width'];
 			$RISP_Settings_Array['RISP_L3_Thumbnail_Height'] = $unified_settings['thumbnail_height'];
+			$RISP_Settings_Array['WRIS_L3_Navigation_Pointer_Color'] = $unified_settings['thumbnail_style_color'];
 			
 			$RISP_Settings_Array['RISP_L5_Sliding_Direction'] = $unified_settings['sliding_direction'];
 			$RISP_Settings_Array['RISP_L5_Slider_Navigation_Content'] = $unified_settings['navigation_content'];

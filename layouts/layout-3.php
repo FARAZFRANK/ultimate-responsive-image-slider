@@ -90,7 +90,7 @@ $slider_instance_id = ( $urisp_l3_instance_count > 1 ) ? $post_id . '-' . $urisp
 			slideAnimationDuration: 400,
 			fadeDuration: 350,
 			fadeOutPreviousSlide: false,
-			fade: <?php echo ( ! empty( $RISP_L3_Slider_Transition_Effect ) && (int) $RISP_L3_Slider_Transition_Effect === 1 ) ? "true" : "false"; ?>,
+			fade: <?php echo ( isset( $RISP_L3_Slider_Transition_Effect ) && (int) $RISP_L3_Slider_Transition_Effect === 1 ) ? "true" : "false"; ?>,
 			smallSize: 500,
 			mediumSize: 1000,
 			largeSize: 3000,

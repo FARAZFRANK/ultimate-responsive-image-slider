@@ -148,20 +148,173 @@ To embed directly within theme templates (such as `header.php`, `front-page.php`
 
 ---
 
-## ⚙️ Configuration & Settings
+## ⚙️ Comprehensive Settings & Configuration Guide
 
-Ultimate Responsive Image Slider offers granular configuration options:
+Ultimate Responsive Image Slider v4.0.0 provides an exhaustive, granular configuration panel organized into intuitive tabs. Below is the complete reference of every single setting, option, and functionality available in the Free edition.
 
-| Setting Category | Description |
-| :--- | :--- |
-| **Slider Dimensions** | Set custom width and height (px / %) for desktop and responsive scaling. |
-| **Slide Transition** | Choose between `Slide` and `Fade` animations. |
-| **Transition Speed** | Configure autoplay timing (default 5000ms / 5s). |
-| **Navigation Controls** | Show/hide navigation arrows, bullet dots, and thumbnail navigation. |
-| **Thumbnail Styles** | Configure thumbnail size, positioning (bottom/top), and active borders. |
-| **Color Schemes** | Customize arrow colors, active bullet colors, and caption backgrounds. |
-| **Slide Text Overlays** | Toggle display of slide title and rich descriptions. |
-| **Custom CSS** | Inject custom CSS declarations directly without touching theme files. |
+---
+
+### 1. Slide Management & Uploader (`Tab: Add Images`)
+* **WordPress Media Library Integration:** Upload new photos or select existing images in bulk directly from your WordPress Media Library.
+* **Drag-and-Drop Reordering:** Easily rearrange slide display order by dragging slide cards into your preferred sequence.
+* **Per-Slide Title:** Add an optional title overlay for each slide (displays inside the caption card and improves image SEO).
+* **Per-Slide Rich-Text Description:** Write formatted slide captions using the built-in WYSIWYG formatting toolbar:
+  - **Bold (`B`)** & **Italic (`I`)** text styling.
+  - **Hyperlinks:** Insert clickable links with anchor text directly inside descriptions.
+  - **Lists:** Bulleted (`UL`) and Numbered (`OL`) list formatting.
+  - **Headings:** Format sub-headings (`H3`).
+  - **Clear Formatting:** One-click reset to clean unformatted text.
+* **Slide Custom Link & Target:** Assign a custom destination URL to any individual slide. Choose whether links open in a **New Tab (`_blank`)** or the **Same Window (`_self`)**.
+* **SEO Alt Text Input:** Set dedicated `alt` attributes on every slide image for search engine indexing and screen reader accessibility.
+* **Free Vimeo Video Slides:** Embed Vimeo videos directly into your slider:
+  - Enter any standard Vimeo URL.
+  - **Fetch Thumbnail:** Automatically retrieves and sets the high-resolution Vimeo video cover photo.
+  - **Revert:** Instantly restore the original uploaded slide image if needed.
+  - **Inline Playback:** Clicking the play icon swaps the image with an inline, responsive Vimeo player.
+* **Slide ID Display & Removal:** View individual internal slide IDs and delete unwanted slides with a single click.
+
+---
+
+### 2. Slider Dimensions & Responsive Engine (`Tab: General > Card 3`)
+* **Slider Sizing Mode (`width_mode`):**
+  - **`Boxed (Container)`:** Fits neatly within your theme's content container or page column width (scales down responsively).
+  - **`Full Width`:** Expands edge-to-edge across 100% of the browser viewport with zero horizontal scroll and zero blank gaps.
+  - **`Full Screen (Window)`:** Fills 100% of both browser window width and height.
+* **Base Canvas Dimensions (`slider_width` × `slider_height`):**
+  - Custom pixel inputs with **1px step precision** (`step="1"`), accepting any exact pixel values without HTML5 validation notices.
+* **Live Dynamic Aspect Ratio Badge:**
+  - Automatically calculates and displays the exact geometric aspect ratio in real time (e.g., `16:9 Widescreen (1.78)`, `4:3 Classic (1.33)`, `Banner / Ultrawide (3.20)`, `1:1 Square (1.00)`).
+* **1-Click Quick Presets:**
+  - `16:9 Full HD (1920×1080)` — Recommended for widescreen hero banners.
+  - `16:9 HD (1280×720)` — Optimal balance of resolution and performance.
+  - `4:3 Classic (1024×768)` — Ideal for standard photo portfolios and catalogs.
+  - `Banner / Ultrawide (1920×600)` — Perfect for slim header banners.
+  - `Square 1:1 (800×800)` — Great for product showcases and Instagram-style galleries.
+  - `Use Recommended` — One-click reset to standard optimal dimensions.
+* **Height Sizing Mode (`height_mode`):**
+  - **`Responsive (Aspect Ratio)`:** Height scales proportionally with width across all desktop, tablet, and mobile devices, preventing any vertical gaps.
+  - **`Auto Height (Dynamic)`:** Height automatically expands or shrinks to fit each slide image's natural dimensions (`autoHeight: true`).
+  - **`Fixed Height`:** Slider maintains a rigid, fixed pixel height regardless of viewport width changes.
+* **Variable Slide Widths (`auto_slide_size`):**
+  - Allows slides of varying aspect ratios to sit side-by-side naturally without distortion.
+
+---
+
+### 3. Core Engine, Transitions & Autoplay (`Tab: General > Card 2`)
+* **Auto Slideshow (`auto_slideshow`):**
+  - **`Auto Play (Continuous)`:** Automatically cycles through slides continuously.
+  - **`Pause on Hover`:** Automatically cycles through slides, but pauses when a visitor hovers their cursor over the slider.
+  - **`Disable (Manual Navigation)`:** Disables auto-rotation; slides only change when visitors click arrows, bullets, or thumbnails.
+* **Transition Speed (`transition_speed`):**
+  - Set the autoplay rotation interval in milliseconds (e.g., `5000` = 5 seconds between slides).
+* **Slider Transition Effect (`transition_effect`):**
+  - **`Slide Animation`:** Smooth horizontal sliding carousel motion between images.
+  - **`Fade Animation`:** Elegant cross-fade dissolve opacity transition between slides.
+* **Slide Distance (`slide_distance`):**
+  - Adjust spacing in pixels between adjacent slides (set `0` for seamless edge-to-edge banners, or `5`, `10`, `20` px for modern card separation).
+* **Image Source Size (`image_size`):**
+  - Choose which WordPress image crop to load: **Full (Original)**, **Large (max 1024px)**, or **Medium Large (max 768px)**. Using "Large" significantly improves Google Core Web Vitals and mobile loading times.
+* **Touch Swipe Sensitivity (`touch_swipe_threshold`):**
+  - **High (`25px`):** Fast flick gesture response for mobile devices.
+  - **Medium (`50px`):** Balanced, standard gesture response.
+  - **Low (`80px`):** Requires a deliberate, firm drag before switching slides.
+* **Image Scale Mode (`scale_mode`):**
+  - **`cover`:** Fills the entire slide container proportionally, cropping excess edges if ratios differ.
+  - **`contain`:** Scales the image so the entire photo is visible without cropping.
+  - **`exact`:** Stretches the image to match the container dimensions exactly.
+* **Auto Scale Layers (`auto_scale`):**
+  - Allows uploaded images smaller than the canvas width to scale up to fit the slider dimensions.
+* **Slide Display Order (`slide_order`):**
+  - **`ASC` (Ascending):** Slides display in the order uploaded or dragged in the manager.
+  - **`DESC` (Descending):** Reverses slide display order.
+  - **`shuffle` (Randomized):** Shuffles slide order randomly on every page refresh.
+
+---
+
+### 4. Slide Captions, Typography & Actions (`Tab: Typography & Content`)
+* **Content Visibility Toggles:**
+  - **`slide_title`:** Show/hide the overall slider title header (`<h3>`) rendered above the slider.
+  - **`show_slide_title`:** Toggle individual slide titles inside the caption overlay card.
+  - **`show_slide_desc`:** Toggle individual slide descriptions.
+* **Typography & Fonts (`font_style`):**
+  - Choose from clean web-safe and modern Google font families: *Arial, Georgia, Helvetica, Times New Roman, Tahoma, Verdana, Trebuchet MS, Impact, Open Sans, Roboto, Lato, Montserrat, Oswald*.
+  - Live preview box demonstrates font rendering in real time.
+* **Caption Colors & Typography Sizing:**
+  - **Title Color & Font Size:** Set custom hex color and pixel font size (default `16px`).
+  - **Description Color & Font Size:** Set custom hex color and pixel font size (default `14px`).
+* **Frosted Caption Card Styling (`bg_color_opacity` & `slide_in_title_bg_color`):**
+  - Set custom caption card background color.
+  - Adjust background opacity via a live slider from `0.0` (fully transparent) to `1.0` (solid color), creating modern frosted glass overlays.
+  - Protected by `data-no-scale` overrides: caption text remains crisp and legible without shrinking when canvas dimensions scale.
+* **Text Alignment & Placement (`text_alignment`):**
+  - Position the caption card anywhere on the slide: *Bottom Center, Bottom Left, Bottom Right, Top Center, Top Left, Top Right, Center*.
+* **Caption Animation Transition (`title_transition`):**
+  - Animate captions into view when the active slide changes: *Slide Up, Slide Down, Slide Left, Slide Right*.
+* **Call-to-Action (CTA) & Read More Button Styling:**
+  - **Button Style (`cta_button_style`):** `Filled` (solid button), `Outline` (ghost button with border), or `Text` (inline text link).
+  - **Button Background / Link Color:** Custom color picker (Default `#FFFFFF`).
+  - **Button Text Color:** Custom color picker (Default `#000000`).
+  - **Hover Background Color:** Custom color picker (Default `#000000`).
+  - **Hover Text Color:** Custom color picker (Default `#FFFFFF`).
+  - **Read More Placement (`read_more_link_on`):** Display link as a button on the caption card, make the **Entire Slide Image clickable**, or disable links.
+  - **Button Label Text (`read_more_link_text`):** Fully customizable label (e.g., "Read More", "Buy Now", "View Portfolio").
+  - **Link Open Window (`read_more_link_open`):** Open in New Window (`_blank`) or Same Window (`_self`).
+
+---
+
+### 5. Navigation Controls & Thumbnail Carousel (`Tab: Navigation`)
+* **Sliding Navigation Arrows (`sliding_arrow`):**
+  - **Show/Hide Arrows:** Toggle navigation arrow buttons on/off.
+  - **Arrow Icon Color (`navigation_arrow_color`):** Custom color picker for chevron/caret icons.
+  - **Arrow Background Color (`navigation_arrow_bg_color`):** Custom color picker for the arrow circle/pill.
+  - **Arrow Shape (`navigation_arrow_radius`):** `Circle` (50% round), `Curved` (8px rounded rectangle), or `Sharp` (0px crisp square).
+  - **Arrow Icon Style (`arrow_style`):** Choose between modern `Chevron` or solid triangle `Caret`.
+* **Bullet Pagination Dots (`navigation_button`):**
+  - **Show/Hide Bullets:** Toggle pagination dot indicator bar below slides.
+  - **Bullet Shape (`navigation_button_style`):** `Circle` (50% round dots) or `Square` (0% crisp squares).
+  - **Bullet Color (`navigation_button_color`):** Sets border color for inactive dots and solid background for the active selected slide.
+  - **Bullet Size (`navigation_button_size`):** Adjust dot diameter in pixels (e.g., `10px`, `12px`, `16px`).
+* **Thumbnail Strip Carousel (`detailed_navigation`):**
+  - **Show/Hide Thumbnails:** Toggle the interactive thumbnail strip on or off.
+  - **Thumbnail Position (`navigation_position`):** Position thumbnail carousel at the **Bottom** (below slide image) or **Top** (above slide image).
+  - **Thumbnail Dimensions (`thumbnail_width` × `thumbnail_height`):** Set exact pixel width and height for thumbnail cards (default `120×100 px`).
+  - **Thumbnail Active Highlight Style (`thumbnail_style`):**
+    - `Border`: Highlights active slide with a crisp 4px solid border.
+    - `Pointer`: Adds an elegant directional pointer triangle arrow indicating the active slide.
+  - **Selected Thumbnail Border Color (`thumbnail_style_color`):** Custom color picker (default `#000000` classic black).
+  - **Thumbnail Caption Colors:** Customize `thumbnail_title_color` and `thumbnail_desc_color`.
+* **Fullscreen Presentation Button (`fullscreen`):**
+  - Toggle dedicated fullscreen icon button allowing visitors to expand the slider into a distraction-free fullscreen presentation.
+
+---
+
+### 6. Global Settings, Performance & Data Tools (`Admin Menu > Global Settings`)
+* **Native Image Lazy Loading (`lazy_load`):**
+  - Loads transparent placeholder data and defers off-screen slide images until they enter the viewport, dramatically improving page speed and Lighthouse scores.
+* **Anti-FOUC Preloader Spinner (`show_loader`):**
+  - Displays a smooth, modern CSS preloader animation with customizable brand accent color (`loader_color`), preventing Flash of Unstyled Content (FOUC) while high-res images load.
+* **Selective & Bulk JSON Export (`Import / Export`):**
+  - **Selective Export:** Select one, multiple, or all sliders from a list.
+  - **One-Click JSON Generation:** Exports portable `.json` backup files containing all slider configurations, slide titles, descriptions, image URLs, and settings.
+* **JSON Slider Import & Restore (`Import / Export`):**
+  - Upload any URIS export JSON file to instantly restore or clone sliders across different WordPress installations.
+  - Features automated WordPress Media Library resolution to map uploaded image URLs seamlessly.
+
+---
+
+### 7. Accessibility, SEO & Developer Features
+* **WCAG 2.1 AA Keyboard Navigation:** Navigate slides effortlessly using `ArrowLeft`, `ArrowRight`, `Space`, and `Enter` keys.
+* **Screen Reader Accessibility:** Includes `role="region"`, `aria-roledescription="carousel"`, labeled arrow and thumbnail controls, and dynamic live screen-reader slide announcements (`Slide X of Y: Title`).
+* **Universal Shortcode Aliases:**
+  - Standard: `[URIS id=123]`
+  - Lowercase: `[uris id=123]`
+  - Pro Alias: `[URISP id=123]`
+  - Extended: `[ultimate-responsive-image-slider id=123]`
+* **Theme PHP Template Tag:**
+  ```php
+  <?php echo do_shortcode('[URIS id=123]'); ?>
+  ```
+* **Page Builder Support:** 100% compatible with Gutenberg Shortcode block, Elementor Shortcode widget, Divi Code module, Beaver Builder, WPBakery, and all major WordPress builders.
 
 ---
 

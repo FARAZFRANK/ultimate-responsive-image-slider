@@ -132,20 +132,95 @@ Highlight your best blog posts, news, or announcements in a rotating slider.
 
 *That's it! Your beautiful responsive slider is live.*
 
+### Complete Settings & Features Guide (v4.0.0 Free Edition)
+
+Every single setting in Ultimate Responsive Image Slider is built for maximum flexibility, usability, and speed:
+
+**1. Slide Management & Uploader (Tab: Add Images)**
+* **Media Library Integration:** Upload photos or select existing images in bulk directly from WordPress.
+* **Drag-and-Drop Reordering:** Easily rearrange slide display order by dragging slide cards.
+* **Slide Title:** Add an optional title overlay for each slide for display and image SEO.
+* **Slide Rich-Text Description:** Write formatted captions using the built-in toolbar: Bold (B), Italic (I), Hyperlinks, Bulleted Lists (UL), Numbered Lists (OL), Headings (H3), and Clear Formatting.
+* **Slide Custom Link & Target:** Assign a custom URL to each slide. Choose between New Tab (_blank) and Same Window (_self).
+* **SEO Alt Text:** Dedicated alt attribute inputs for search engine indexing and accessibility.
+* **Vimeo Video Slides:** Embed Vimeo videos directly into your slider with automated cover thumbnail fetching and inline responsive playback.
+* **Slide ID & Removal:** View internal slide IDs and delete unwanted slides with 1 click.
+
+**2. Slider Dimensions & Responsive Sizing Engine (Tab: General > Card 3)**
+* **Slider Sizing Mode:**
+  - `Boxed (Container)`: Keeps slider centered within your theme's content container width.
+  - `Full Width`: Expands 100% edge-to-edge across the screen with zero gap between slides and thumbnails.
+  - `Full Screen (Window)`: Fills 100% of both browser window width and height.
+* **Base Canvas Dimensions:** Custom pixel width and height inputs with 1px step precision (step="1") to avoid HTML5 validation notices.
+* **Live Dynamic Aspect Ratio Badge:** Automatically calculates and displays the exact ratio (16:9 Widescreen, 4:3 Classic, Ultrawide Banner, 1:1 Square).
+* **1-Click Quick Presets:** 16:9 Full HD (1920x1080), 16:9 HD (1280x720), 4:3 Classic (1024x768), Ultrawide Banner (1920x600), Square (800x800), and Recommended reset.
+* **Height Sizing Mode:**
+  - `Responsive (Aspect Ratio)`: Proportional scaling across desktop, tablet, and mobile with zero blank spaces.
+  - `Auto Height (Dynamic)`: Automatically expands/contracts to match each slide image's natural proportions.
+  - `Fixed Height`: Strict fixed height in pixels.
+* **Variable Slide Widths:** Supports natural slide aspect ratios side-by-side without distortion.
+
+**3. Core Slideshow Engine, Transitions & Autoplay (Tab: General > Card 2)**
+* **Auto Slideshow:** 3 configurable states: Auto Play (Continuous), Pause on Mouse Hover, or Disable (Manual Navigation).
+* **Transition Speed:** Set exact autoplay rotation interval in milliseconds (e.g. 5000ms = 5s).
+* **Slider Transition Effect:** Choose between horizontal Slide Animation or smooth Fade Animation.
+* **Slide Distance:** Adjust spacing in pixels between adjacent slides (0px for seamless banner, 5px, 10px, 20px).
+* **Image Source Crop Size:** Choose WordPress image crop (Full Original, Large max 1024px, Medium Large max 768px) to optimize Google Core Web Vitals.
+* **Touch Swipe Sensitivity:** High (25px fast flick), Medium (50px balanced), Low (80px firm drag).
+* **Image Scale Mode:** Cover (crop fill), Contain (fit all), or Exact (stretch to fit).
+* **Auto Scale Layers:** Allows smaller uploaded images to scale up to canvas width.
+* **Slide Order:** Ascending (ASC), Descending (DESC), or Shuffle (randomized on every page load).
+
+**4. Slide Captions, Typography & Actions (Tab: Typography & Content)**
+* **Header & Caption Toggles:** Show/hide overall slider title (H3) above viewport; toggle individual slide titles and descriptions.
+* **Typography & Fonts:** Choose from classic web-safe and modern Google font families with live preview.
+* **Caption Colors & Sizes:** Full hex color pickers and pixel font sizes for both title and description.
+* **Frosted Glass Caption Card:** Set background color and opacity slider (0.0 to 1.0) with no-scale protection.
+* **Text Alignment & Placement:** 9 anchor positions: Bottom Center, Bottom Left, Bottom Right, Top Center, Top Left, Top Right, Center.
+* **Caption Animation:** Choose slide-in animation direction: Up, Down, Left, Right.
+* **Call-to-Action (CTA) & Read More:** Button style (Filled, Outline, Text), custom background and hover colors, customizable button text, and link placement.
+
+**5. Navigation Controls & Thumbnail Carousel (Tab: Navigation)**
+* **Navigation Arrows:** Toggle arrows on/off, custom arrow color, background color, shape (Circle, Curved, Sharp), and style (Chevron vs Caret).
+* **Bullet Pagination Dots:** Toggle bullets on/off, bullet shape (Circle vs Square), custom color, and size (px).
+* **Thumbnail Carousel Navigation:** Toggle thumbnails on/off, position (Bottom or Top), custom thumbnail dimensions (width x height), active style (4px border vs pointer triangle), and default black (#000000) active border color.
+* **Fullscreen Button:** Toggle dedicated fullscreen icon button for distraction-free viewing.
+
+**6. Global Settings & Data Tools (Admin Menu > Global Settings)**
+* **Native Image Lazy Loading:** Preloads transparent placeholders and defers off-screen images to boost PageSpeed.
+* **Anti-FOUC Preloader Spinner:** Smooth loading animation with custom brand color.
+* **Selective & Bulk JSON Export:** One-click backup of single, multiple, or all sliders into a portable JSON file.
+* **JSON Slider Import & Restore:** Upload any URIS export JSON to restore or migrate sliders across sites with automatic media library mapping.
+
+**7. Accessibility & Developer Integration**
+* **WCAG 2.1 AA Keyboard Navigation:** Navigate slides effortlessly using ArrowLeft, ArrowRight, Space, and Enter keys.
+* **Screen Reader Accessibility:** Live screen reader announcements, carousel ARIA roles, and keyboard focus outlines.
+* **Shortcode Aliases:** [URIS id=123], [uris id=123], [URISP id=123], [ultimate-responsive-image-slider id=123].
+* **PHP Template Tag:** `<?php echo do_shortcode('[URIS id=123]'); ?>`
+
 ### Free vs Pro Version
 
 **Free Version Includes:**
-- Unlimited sliders and slides
-- Responsive design
-- Drag-and-drop interface
-- 2 transition effects (Fade & Slide)
-- Navigation arrows and bullets
-- Thumbnail navigation
-- Auto-play with adjustable speed
-- Custom dimensions
-- Image titles and descriptions
-- Color customization
-- SEO-friendly alt text
+- Unlimited sliders and unlimited slides
+- 100% responsive layout with touch swipe gesture support
+- Drag-and-drop slide manager with rich text WYSIWYG editor
+- 3 Sizing Modes (Boxed, Full Width, Full Screen Window)
+- 3 Height Modes (Responsive Aspect Ratio, Auto Height, Fixed Height)
+- 1-Click Quick Canvas Dimension Presets with dynamic aspect ratio calculation
+- 2 Transition Effects (Slide Animation and Cross-Fade Animation)
+- Autoplay with Pause on Hover and custom delay timing
+- Full navigation controls: Arrows, Bullets, and Thumbnail Carousel
+- Customizable arrow shapes (Circle, Curved, Sharp) and icon styles (Chevron, Caret)
+- Bullet shapes (Circle, Square) and custom sizes
+- Thumbnail positioning (Top, Bottom) and active styles (Border, Pointer Triangle)
+- Full typography, font family, color, and frosted caption card opacity controls
+- Call-to-action buttons with custom links and hover states
+- Vimeo video slide embedding with automatic thumbnail fetching
+- Native image lazy loading and anti-FOUC preloader
+- Selective & bulk JSON Import/Export backup tools
+- WCAG 2.1 AA keyboard and screen reader accessibility
+- SEO-friendly alt tags and slide titles
+- Clean, semantic HTML5 with zero theme conflicts (tested with top 15 themes)
 
 **[Upgrade to Pro](http://wpfrank.com/account/signup/ultimate-responsive-image-slider-pro/) for Premium Features:**
 

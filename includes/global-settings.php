@@ -81,7 +81,7 @@ class URISP_Global_Settings {
 
 		$export_type  = isset( $_POST['export_type'] ) ? sanitize_key( wp_unslash( $_POST['export_type'] ) ) : 'selected';
 		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-		$raw_selected = isset( $_POST['urisp_export_slider_ids'] ) && is_array( $_POST['urisp_export_slider_ids'] ) ? (array) $_POST['urisp_export_slider_ids'] : array();
+		$raw_selected = isset( $_POST['urisp_export_slider_ids'] ) && is_array( $_POST['urisp_export_slider_ids'] ) ? (array) wp_unslash( $_POST['urisp_export_slider_ids'] ) : array();
 		$selected_ids = array_filter( array_map( 'absint', $raw_selected ) );
 
 		$query_args = array(
@@ -205,7 +205,8 @@ class URISP_Global_Settings {
 
 		check_admin_referer( 'urisp_import_sliders_action', 'urisp_import_nonce' );
 
-		$uploaded_tmp = isset( $_FILES['urisp_import_file']['tmp_name'] ) ? $_FILES['urisp_import_file']['tmp_name'] : '';
+		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Validated via is_uploaded_file() below.
+		$uploaded_tmp = isset( $_FILES['urisp_import_file']['tmp_name'] ) ? sanitize_text_field( wp_unslash( $_FILES['urisp_import_file']['tmp_name'] ) ) : '';
 		if ( empty( $uploaded_tmp ) || ! is_uploaded_file( $uploaded_tmp ) ) {
 			wp_safe_redirect( add_query_arg( array(
 				'post_type'   => 'ris_gallery',
@@ -571,7 +572,7 @@ class URISP_Global_Settings {
 
 			<!-- Alerts / Notices -->
 			<?php
-			// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			// phpcs:disable WordPress.Security.NonceVerification.Recommended -- Safe read-only UI alert display based on query parameters.
 			if ( isset( $_GET['urisp_status'] ) && 'import_success' === sanitize_key( wp_unslash( $_GET['urisp_status'] ) ) ) :
 				$imported_cnt = isset( $_GET['count'] ) ? absint( $_GET['count'] ) : 0;
 			?>
@@ -587,7 +588,6 @@ class URISP_Global_Settings {
 			<?php endif; ?>
 
 			<?php
-			// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			if ( isset( $_GET['urisp_error'] ) ) :
 				$err_code = sanitize_key( wp_unslash( $_GET['urisp_error'] ) );
 				$err_msg  = __( 'An error occurred. Please try again.', 'ultimate-responsive-image-slider' );
@@ -609,7 +609,10 @@ class URISP_Global_Settings {
 						<?php echo esc_html( $err_msg ); ?>
 					</p>
 				</div>
-			<?php endif; ?>
+			<?php 
+			endif; 
+			// phpcs:enable WordPress.Security.NonceVerification.Recommended
+			?>
 
 			<!-- Alerts / Notices -->
 			<?php

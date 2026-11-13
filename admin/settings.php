@@ -929,7 +929,8 @@ if ( ! function_exists( 'urisp_toggle_html' ) ) {
                 <p><?php esc_html_e('Maintain uniform height while allowing slide widths to adjust automatically to content (SliderPro autoSlideSize).', 'ultimate-responsive-image-slider'); ?></p>
             </div>
             <div class="urisp-setting-field">
-                <?php echo urisp_toggle_html('auto_slide_size', ! empty($settings['auto_slide_size']) ? 1 : 0); ?>
+                <?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Pre-escaped HTML toggle markup.
+                echo urisp_toggle_html('auto_slide_size', ! empty($settings['auto_slide_size']) ? 1 : 0); ?>
             </div>
         </div>
 

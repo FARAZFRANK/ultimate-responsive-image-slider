@@ -91,7 +91,8 @@ function uris_shortcode( $Id ) {
 		$RISP_Arrow_Border_Radius = '50%';
 	}
 	$RISP_Arrow_Style               = ! empty( $settings['arrow_style'] ) ? $settings['arrow_style'] : 'chevron';
-	$RISP_Font_Style                = ! empty( $settings['font_family'] ) ? $settings['font_family'] : 'Arial, Helvetica, sans-serif';
+	$RISP_Font_Style                = ! empty( $settings['font_style'] ) ? $settings['font_style'] : ( ! empty( $settings['font_family'] ) ? $settings['font_family'] : 'Arial, Helvetica, sans-serif' );
+	$RISP_Touch_Swipe_Threshold     = ! empty( $settings['touch_swipe_threshold'] ) ? absint( $settings['touch_swipe_threshold'] ) : 50;
 	$RISP_L1_Thumbnail_Style_Color  = ! empty( $settings['thumbnail_style_color'] ) ? $settings['thumbnail_style_color'] : '#000000';
 	$RISP_L3_Thumbnail_Style_Color  = ! empty( $settings['thumbnail_style_color'] ) ? $settings['thumbnail_style_color'] : '#000000';
 

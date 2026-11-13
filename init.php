@@ -1085,7 +1085,7 @@ class URIS_Free {
 				$RISP_Settings_Array['RISP_L'.$i.'_Navigation_Button_Style'] = $unified_settings['navigation_button_style'];
 				$RISP_Settings_Array['RISP_L'.$i.'_Slider_Transition_Speed'] = $unified_settings['transition_speed'];
 				$RISP_Settings_Array['RISP_L'.$i.'_Slider_Width'] = $unified_settings['slider_width'];
-				$legacy_w = ( isset( $unified_settings['width_mode'] ) && $unified_settings['width_mode'] === 'fullWidth' ) ? 'fullWidth' : 'custom';
+				$legacy_w = ( isset( $unified_settings['width_mode'] ) && in_array( $unified_settings['width_mode'], array( 'fullWidth', 'fullWindow' ), true ) ) ? $unified_settings['width_mode'] : 'custom';
 				$RISP_Settings_Array['RISP_L'.$i.'_Width'] = $legacy_w;
 				$RISP_Settings_Array['RISP_L'.$i.'_Slider_Height'] = $unified_settings['slider_height'];
 				$RISP_Settings_Array['RISP_L'.$i.'_Height'] = $unified_settings['height_mode'];
@@ -1105,7 +1105,7 @@ class URIS_Free {
 			$RISP_Settings_Array['RISP_L5_Sliding_Direction'] = $unified_settings['sliding_direction'];
 			$RISP_Settings_Array['RISP_L5_Slider_Navigation_Content'] = $unified_settings['navigation_content'];
 			$RISP_Settings_Array['RISP_L5_Slider_Navigation_Position'] = ! empty( $unified_settings['navigation_position_l5'] ) ? $unified_settings['navigation_position_l5'] : $unified_settings['navigation_position'];
-			$RISP_Settings_Array['RISP_Read_More_Link_Color'] = isset( $unified_settings['read_more_link_color'] ) ? $unified_settings['read_more_link_color'] : '#0080FF';
+			$RISP_Settings_Array['RISP_Read_More_Link_Color'] = isset( $unified_settings['read_more_link_color'] ) ? $unified_settings['read_more_link_color'] : '#ffffff';
 			
 			$RISP_Gallery_Settings = "WRIS_Gallery_Settings_".$PostID;
 			update_post_meta($PostID, $RISP_Gallery_Settings, $RISP_Settings_Array);

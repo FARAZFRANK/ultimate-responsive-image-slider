@@ -71,12 +71,12 @@ function uris_shortcode( $Id ) {
 	$RISP_Read_More_Link_ON         = isset( $settings['read_more_link_on'] ) ? $settings['read_more_link_on'] : 'slide';
 	$RISP_Read_More_Link_Text       = ! empty( $settings['read_more_link_text'] ) ? $settings['read_more_link_text'] : __( 'Read More', 'ultimate-responsive-image-slider' );
 	$RISP_Read_More_Link_Open       = ( ! empty( $settings['read_more_link_open'] ) && in_array( $settings['read_more_link_open'], array( '_blank', '_new' ), true ) ) ? '_blank' : '_self';
-	$RISP_Read_More_Link_Color      = ! empty( $settings['read_more_link_color'] ) ? $settings['read_more_link_color'] : ( ! empty( $settings['cta_button_bg_color'] ) ? $settings['cta_button_bg_color'] : '#6366f1' );
+	$RISP_Read_More_Link_Color      = ! empty( $settings['read_more_link_color'] ) ? $settings['read_more_link_color'] : ( ! empty( $settings['cta_button_bg_color'] ) ? $settings['cta_button_bg_color'] : '#ffffff' );
 
 	$RISP_CTA_Button_Style          = ! empty( $settings['cta_button_style'] ) ? $settings['cta_button_style'] : 'filled';
 	$RISP_CTA_Button_BG_Color       = ! empty( $settings['cta_button_bg_color'] ) ? $settings['cta_button_bg_color'] : $RISP_Read_More_Link_Color;
-	$RISP_CTA_Button_Text_Color     = ! empty( $settings['cta_button_text_color'] ) ? $settings['cta_button_text_color'] : '#ffffff';
-	$RISP_CTA_Button_Hover_Color    = ! empty( $settings['cta_button_hover_color'] ) ? $settings['cta_button_hover_color'] : '#4f46e5';
+	$RISP_CTA_Button_Text_Color     = ! empty( $settings['cta_button_text_color'] ) ? $settings['cta_button_text_color'] : '#000000';
+	$RISP_CTA_Button_Hover_Color    = ! empty( $settings['cta_button_hover_color'] ) ? $settings['cta_button_hover_color'] : '#000000';
 	$RISP_CTA_Button_Hover_Text_Color = ! empty( $settings['cta_button_hover_text_color'] ) ? $settings['cta_button_hover_text_color'] : '#ffffff';
 	$RISP_Naviagtion_Button_Color   = ! empty( $settings['navigation_button_color'] ) ? $settings['navigation_button_color'] : ( ! empty( $settings['navigation_bullet_color'] ) ? $settings['navigation_bullet_color'] : '#0080FF' );
 	$RISP_Naviagtion_Button_Size    = ! empty( $settings['navigation_button_size'] ) ? intval( $settings['navigation_button_size'] ) : ( ! empty( $settings['navigation_bullet_size'] ) ? intval( $settings['navigation_bullet_size'] ) : 10 );

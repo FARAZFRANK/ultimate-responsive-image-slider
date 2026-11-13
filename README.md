@@ -223,12 +223,18 @@ Whether your theme is a lightweight block theme, multipurpose builder theme, or 
 
 ## 📝 Changelog
 
-### **v4.0.0** *(Current Release - November 10, 2026)*
+### **v4.0.0** *(Current Release - November 13, 2026)*
+- 📐 **Slider Dimensions & Responsive Engine Redesign**: Re-engineered canvas sizing with dedicated Sizing Modes (Boxed, Full Width, Full Screen Window), Height Modes (Responsive Aspect Ratio, Auto Height Dynamic, Fixed Height), and Variable Slide Widths (`autoSlideSize`).
+- ⚡ **Aspect Ratio Presets & Real-Time Badge**: Added 1-click Quick Presets (`1920×1080`, `1280×720`, `1024×768`, `1920×600`, `800×800`) with dynamic live aspect ratio calculation and informative hints.
+- 🛠️ **Full Width Gap Elimination**: Completely eliminated the large blank space between the slide image and thumbnail strip in Full Width mode by properly passing base canvas dimensions and calculated aspect ratios to the SliderPro engine.
+- 🔤 **Caption Typography Scaling Fix**: Resolved slide title and description font auto-scaling issues when slider dimensions change using no-scale overrides for crisp, legible captions across all screen sizes.
+- ✅ **HTML5 Input Validation**: Fixed browser validation tooltip warnings when entering non-multiple-of-10 dimensions (such as `1024×768`) by adjusting input step increments.
 - 📦 **Unlocked Import & Export System**: Fully unlocked selective and bulk JSON Import & Export tools in Global Settings with automated media library resolution and cross-version compatibility.
 - 🎬 **Slide Animation Fix**: Resolved Slider Transition Effect where "Slide Animation" was inadvertently overridden by fade animation due to PHP empty check.
 - 📌 **Sticky Tabs & Tab Persistence**: Made the slider configuration tab bar sticky on scroll and added server-side tab state persistence upon saving.
 - 🎨 **Beautified Admin Dialogs**: Replaced native browser alert and confirm popups with modern, accessible modal cards and toast notifications.
 - 🖼️ **Thumbnail Styling**: Defaulted selected slide thumbnail active border color to classic black (`#000000`) with backward-compatible legacy pointer color synchronization.
+- 🎯 **Button & Link Color Defaults**: Configured default button/link styling to high-contrast monochrome (White button with Black text, inverted on hover).
 - ⚡ **Anti-FOUC & Loading Guard**: Implemented `sp-no-js` pre-initialization state and transparent image placeholders, eliminating multi-loader flickering and floating caption cards on load.
 - 🏗️ **Modern Modular Architecture**: Refactored codebase into clean, modular components (`admin/`, `includes/`, `layouts/`).
 

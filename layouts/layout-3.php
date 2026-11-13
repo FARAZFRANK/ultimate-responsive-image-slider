@@ -61,23 +61,43 @@ $slider_instance_id = ( $urisp_l3_instance_count > 1 ) ? $post_id . '-' . $urisp
 			thumbnailPointer: true, 
 			<?php } ?>
 			
-			//width
+			// Sizing & Dimensions
 			<?php 
-			$current_width_mode = ! empty( $RISP_L3_Width ) ? $RISP_L3_Width : ( ! empty( $settings['width_mode'] ) ? $settings['width_mode'] : 'custom' );
-			$current_slider_width = ! empty( $RISP_L3_Slider_Width ) ? $RISP_L3_Slider_Width : ( ! empty( $settings['slider_width'] ) ? $settings['slider_width'] : 1280 );
-			if ( $current_width_mode === 'fullWidth' ) { ?>
+			$current_width_mode    = ! empty( $RISP_L3_Width ) ? $RISP_L3_Width : ( ! empty( $settings['width_mode'] ) ? $settings['width_mode'] : 'custom' );
+			$current_height_mode   = ! empty( $RISP_L3_Height ) ? $RISP_L3_Height : ( ! empty( $settings['height_mode'] ) ? $settings['height_mode'] : 'custom' );
+			$current_slider_width  = ! empty( $RISP_L3_Slider_Width ) ? absint( $RISP_L3_Slider_Width ) : ( ! empty( $settings['slider_width'] ) ? absint( $settings['slider_width'] ) : 1280 );
+			$current_slider_height = ! empty( $RISP_L3_Slider_Height ) ? absint( $RISP_L3_Slider_Height ) : ( ! empty( $settings['slider_height'] ) ? absint( $settings['slider_height'] ) : 720 );
+			if ( $current_slider_width < 100 ) $current_slider_width = 1280;
+			if ( $current_slider_height < 50 ) $current_slider_height = 720;
+			$aspect_ratio_calc = round( $current_slider_width / max( $current_slider_height, 1 ), 4 );
+
+			if ( $current_width_mode === 'fullWindow' ) { ?>
+			forceSize: 'fullWindow',
+			width: <?php echo esc_js( $current_slider_width ); ?>,
+			height: <?php echo esc_js( $current_slider_height ); ?>,
+			<?php } elseif ( $current_width_mode === 'fullWidth' ) { ?>
 			forceSize: 'fullWidth',
+			width: <?php echo esc_js( $current_slider_width ); ?>,
 			<?php } else { ?>
-			width: <?php echo ( absint( $current_slider_width ) > 100 ) ? absint( $current_slider_width ) : 1280; ?>,
+			forceSize: 'none',
+			width: <?php echo esc_js( $current_slider_width ); ?>,
 			<?php } ?>
 			
-			//height
-			<?php if($RISP_L3_Height == "custom") { ?>
-			height: <?php if($RISP_L3_Slider_Height != "") echo absint($RISP_L3_Slider_Height); else echo "500"; ?>,
-			<?php } ?>
-			<?php if($RISP_L3_Height == "auto") { ?>
+			// Height Configuration
+			<?php if ( $current_height_mode === 'auto' ) { ?>
 			autoHeight: true,
+			<?php } elseif ( $current_height_mode === 'fixed' ) { ?>
+			height: <?php echo esc_js( $current_slider_height ); ?>,
+			aspectRatio: -1,
+			autoHeight: false,
+			<?php } else { ?>
+			height: <?php echo esc_js( $current_slider_height ); ?>,
+			aspectRatio: <?php echo esc_js( $aspect_ratio_calc ); ?>,
+			autoHeight: false,
 			<?php } ?>
+
+			autoSlideSize: <?php echo ! empty( $settings['auto_slide_size'] ) ? 'true' : 'false'; ?>,
+			responsive: true,
 			imageScaleMode: '<?php echo esc_attr($RISP_Slider_Scale_Mode); ?>',
 			allowScaleUp: <?php if($RISP_Slider_Auto_Scale == 1) echo "true"; else echo "false"; ?>,
 			//thumbnail
@@ -87,6 +107,7 @@ $slider_instance_id = ( $urisp_l3_instance_count > 1 ) ? $post_id . '-' . $urisp
 			arrows: <?php if($RISP_L3_Sliding_Arrow == 1) echo "true"; else echo "false"; ?>,
 			buttons: <?php if($RISP_L3_Navigation_Button == 1) echo "true"; else echo "false"; ?>,
 			waitForLayers: false,
+			autoScaleLayers: false,
 			slideAnimationDuration: 400,
 			fadeDuration: 350,
 			fadeOutPreviousSlide: false,
@@ -289,11 +310,15 @@ ob_start();
 
 <?php echo esc_attr( $s_id ); ?>,
 <?php echo esc_attr( $s_cls ); ?> {
-	--urisp-cta-bg: <?php echo esc_attr( ! empty( $RISP_CTA_Button_BG_Color ) ? $RISP_CTA_Button_BG_Color : '#6366f1' ); ?>;
-	--urisp-cta-text: <?php echo esc_attr( ! empty( $RISP_CTA_Button_Text_Color ) ? $RISP_CTA_Button_Text_Color : '#ffffff' ); ?>;
-	--urisp-cta-hover-bg: <?php echo esc_attr( ! empty( $RISP_CTA_Button_Hover_Color ) ? $RISP_CTA_Button_Hover_Color : '#4f46e5' ); ?>;
+	--urisp-cta-bg: <?php echo esc_attr( ! empty( $RISP_CTA_Button_BG_Color ) ? $RISP_CTA_Button_BG_Color : '#ffffff' ); ?>;
+	--urisp-cta-text: <?php echo esc_attr( ! empty( $RISP_CTA_Button_Text_Color ) ? $RISP_CTA_Button_Text_Color : '#000000' ); ?>;
+	--urisp-cta-hover-bg: <?php echo esc_attr( ! empty( $RISP_CTA_Button_Hover_Color ) ? $RISP_CTA_Button_Hover_Color : '#000000' ); ?>;
 	--urisp-cta-hover-text: <?php echo esc_attr( ! empty( $RISP_CTA_Button_Hover_Text_Color ) ? $RISP_CTA_Button_Hover_Text_Color : '#ffffff' ); ?>;
 	font-family: 'Open Sans', Arial;
+<?php if ( isset( $current_width_mode ) && ( $current_width_mode === 'fullWidth' || $current_width_mode === 'fullWindow' ) ) : ?>
+	/* Override theme container max-width constraints (e.g., Astra/block layouts) in Full Width mode. */
+	max-width: none !important;
+<?php endif; ?>
 }
 <?php echo esc_attr( $s_id ); ?> .urisp-slide-caption-card,
 <?php echo esc_attr( $s_cls ); ?> .urisp-slide-caption-card {
@@ -373,12 +398,12 @@ ob_start();
 	display: inline-flex !important;
 	<?php if ( ! empty( $RISP_CTA_Button_Style ) && $RISP_CTA_Button_Style === 'text' ) { ?>
 	background: transparent !important;
-	color: <?php echo esc_attr( ! empty( $RISP_CTA_Button_BG_Color ) ? $RISP_CTA_Button_BG_Color : '#6366f1' ); ?> !important;
+	color: <?php echo esc_attr( ! empty( $RISP_CTA_Button_BG_Color ) ? $RISP_CTA_Button_BG_Color : '#ffffff' ); ?> !important;
 	border: 2px solid transparent !important;
 	<?php } else { ?>
-	background-color: <?php echo esc_attr( ! empty( $RISP_CTA_Button_BG_Color ) ? $RISP_CTA_Button_BG_Color : '#6366f1' ); ?> !important;
-	color: <?php echo esc_attr( ! empty( $RISP_CTA_Button_Text_Color ) ? $RISP_CTA_Button_Text_Color : '#ffffff' ); ?> !important;
-	border: 2px solid <?php echo esc_attr( ! empty( $RISP_CTA_Button_BG_Color ) ? $RISP_CTA_Button_BG_Color : '#6366f1' ); ?> !important;
+	background-color: <?php echo esc_attr( ! empty( $RISP_CTA_Button_BG_Color ) ? $RISP_CTA_Button_BG_Color : '#ffffff' ); ?> !important;
+	color: <?php echo esc_attr( ! empty( $RISP_CTA_Button_Text_Color ) ? $RISP_CTA_Button_Text_Color : '#000000' ); ?> !important;
+	border: 2px solid <?php echo esc_attr( ! empty( $RISP_CTA_Button_BG_Color ) ? $RISP_CTA_Button_BG_Color : '#ffffff' ); ?> !important;
 	<?php } ?>
 }
 
@@ -386,12 +411,12 @@ ob_start();
 <?php echo esc_attr( $s_cls ); ?> .urisp-slide-caption-card a.read-more-color.urisp-cta-btn:hover {
 	<?php if ( ! empty( $RISP_CTA_Button_Style ) && $RISP_CTA_Button_Style === 'text' ) { ?>
 	background: transparent !important;
-	color: <?php echo esc_attr( ! empty( $RISP_CTA_Button_Hover_Color ) ? $RISP_CTA_Button_Hover_Color : '#4f46e5' ); ?> !important;
+	color: <?php echo esc_attr( ! empty( $RISP_CTA_Button_Hover_Color ) ? $RISP_CTA_Button_Hover_Color : '#000000' ); ?> !important;
 	border-color: transparent !important;
 	<?php } else { ?>
-	background-color: <?php echo esc_attr( ! empty( $RISP_CTA_Button_Hover_Color ) ? $RISP_CTA_Button_Hover_Color : '#4f46e5' ); ?> !important;
+	background-color: <?php echo esc_attr( ! empty( $RISP_CTA_Button_Hover_Color ) ? $RISP_CTA_Button_Hover_Color : '#000000' ); ?> !important;
 	color: <?php echo esc_attr( ! empty( $RISP_CTA_Button_Hover_Text_Color ) ? $RISP_CTA_Button_Hover_Text_Color : '#ffffff' ); ?> !important;
-	border-color: <?php echo esc_attr( ! empty( $RISP_CTA_Button_Hover_Color ) ? $RISP_CTA_Button_Hover_Color : '#4f46e5' ); ?> !important;
+	border-color: <?php echo esc_attr( ! empty( $RISP_CTA_Button_Hover_Color ) ? $RISP_CTA_Button_Hover_Color : '#000000' ); ?> !important;
 	<?php } ?>
 }
 

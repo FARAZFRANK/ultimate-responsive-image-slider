@@ -345,13 +345,19 @@ Visit our [upgrade page](http://wpfrank.com/account/signup/ultimate-responsive-i
 == Changelog ==
 
 = 4.0.0 =
-* Feature: Unlocked and restored full JSON Import & Export in Global Settings for selective and bulk slider migration and backups.
+* Feature: Re-architected Slider Dimensions & Responsive Engine with dedicated Sizing Modes (Boxed, Full Width, Full Screen Window), Height Modes (Responsive Aspect Ratio, Auto Height Dynamic, Fixed Height), and Variable Slide Widths.
+* Feature: Added 1-click Canvas Dimension Quick Presets (16:9 1920x1080, 16:9 1280x720, 4:3 1024x768, Ultrawide Banner 1920x600, Square 800x800) with a live dynamic Aspect Ratio badge and context-aware hints.
+* Feature: Unlocked and restored full JSON Import & Export tools in Global Settings for selective and bulk slider migration and backups.
+* Fix: Resolved huge blank gap between slide image and thumbnail strip in Full Width mode by properly passing base canvas dimensions and aspect ratio to the slider engine.
+* Fix: Resolved slide title and description font auto-scaling issues when slider dimensions change using no-scale overrides for consistent typography across all screens.
+* Fix: Fixed HTML5 constraint validation notice when saving non-multiple-of-10 dimensions (such as 1024x768) by refining input step increments.
 * Fix: Resolved Slider Transition Effect issue where "Slide Animation" was overridden by fade effect due to PHP empty check.
 * Enhancement: Added sticky settings tab navigation bar and persistent active tab state on save/reload.
 * UI/UX: Beautified all admin confirmation alerts and prompts with modern custom modal dialogs and toast notices.
 * Styling: Set default selected thumbnail active border color to black (#000000) with legacy pointer color synchronization.
+* Styling: Updated Button & Link default color scheme to high-contrast monochrome (White button with Black text, inverted on hover).
 * Architecture & Performance: Modernized modular architecture with anti-FOUC loading guards, eliminated multi-loader flickering, and optimized responsive scaling.
-* Release date: November 10, 2026
+* Release date: November 13, 2026
 
 = 3.5.20 =
 * Enhancement: Added seamless database version tracking and upgrade migration hooks for future updates.
@@ -439,6 +445,9 @@ Visit our [upgrade page](http://wpfrank.com/account/signup/ultimate-responsive-i
 For the complete changelog of earlier versions, please visit our [website](http://wpfrank.com/).
 
 == Upgrade Notice ==
+
+= 4.0.0 =
+Major release: Completely redesigned Slider Dimensions & Responsive Engine, unlocked JSON Import & Export tools, fixed slide transition animations and caption scaling, and modern admin UI. 100% backward compatible.
 
 = 3.5.20 =
 Important update: Title/description layout overlap fix, bullet navigation styling improvements, and theme layout conflict resolution. 100% backward compatible.

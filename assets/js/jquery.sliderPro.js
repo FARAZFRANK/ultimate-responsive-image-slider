@@ -284,6 +284,19 @@
 				}, 200 );
 			});
 
+			// Re-sync fullWidth/fullWindow sizing if vertical scrollbar appears/disappears without a window resize event.
+			if ( typeof ResizeObserver !== 'undefined' ) {
+				this._fullWidthObserver = new ResizeObserver(function() {
+					if ( that.settings.responsive === true && ( that.settings.forceSize === 'fullWidth' || that.settings.forceSize === 'fullWindow' ) ) {
+						var currentWinWidth = $( window ).width();
+						if ( that._lastFullWidthViewport !== currentWinWidth ) {
+							that.resize();
+						}
+					}
+				});
+				this._fullWidthObserver.observe( document.documentElement );
+			}
+
 			// Resize the slider when the 'update' method is called.
 			this.on( 'update.' + NS, function() {
 
@@ -546,6 +559,21 @@
 			}
 		},
 
+		// Expand slider to exact viewport width without theme max-width clamping or stale left offset.
+		_applyFullWidthSize: function() {
+			var viewportWidth = $( window ).width();
+			this._lastFullWidthViewport = viewportWidth;
+
+			this.$slider.css({
+				'margin': 0,
+				'marginLeft': 0,
+				'width': viewportWidth,
+				'max-width': 'none'
+			});
+
+			this.$slider.css( 'marginLeft', - this.$slider.offset().left );
+		},
+
 		// Called when the slider needs to resize
 		resize: function() {
 			var that = this;
@@ -588,8 +616,7 @@
 				if ( ( this.settings.forceSize === 'fullWidth' || this.settings.forceSize === 'fullWindow' ) &&
 					( this.settings.visibleSize === 'auto' || this.settings.visibleSize !== 'auto' && this.settings.orientation === 'vertical' )
 				) {
-					this.$slider.css( 'margin', 0 );
-					this.$slider.css({ 'width': $( window ).width(), 'max-width': '', 'marginLeft': - this.$slider.offset().left });
+					this._applyFullWidthSize();
 				} else {
 					this.$slider.css({ 'width': '100%', 'max-width': this.settings.width, 'marginLeft': '' });
 				}
@@ -658,8 +685,7 @@
 					// If the size is forced to full width or full window, the 'visibleSize' option will be
 					// ignored and the slider will become as wide as the browser window.
 					if ( this.settings.forceSize === 'fullWidth' || this.settings.forceSize === 'fullWindow' ) {
-						this.$slider.css( 'margin', 0 );
-						this.$slider.css({ 'width': $( window ).width(), 'max-width': '', 'marginLeft': - this.$slider.offset().left });
+						this._applyFullWidthSize();
 					} else {
 						this.$slider.css({ 'width': this.settings.visibleSize, 'max-width': '100%', 'marginLeft': 0 });
 					}
@@ -923,6 +949,10 @@
 			// Remove event listeners
 			this.off( 'update.' + NS );
 			$( window ).off( 'resize.' + this.uniqueId + '.' + NS );
+			if ( this._fullWidthObserver ) {
+				this._fullWidthObserver.disconnect();
+				this._fullWidthObserver = null;
+			}
 
 			// Destroy modules
 			var modules = $.SliderPro.modules;

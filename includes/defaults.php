@@ -29,6 +29,7 @@ function uris_get_default_settings() {
 		'width_mode'               => 'custom',
 		'slider_height'            => 720,
 		'height_mode'              => 'custom',
+		'auto_slide_size'          => 0,
 
 		// Layout 1 & 3 specific
 		'text_alignment'           => 'bottomCenter',
@@ -63,7 +64,7 @@ function uris_get_default_settings() {
 		'bg_color_opacity'         => '0.7',
 		'read_more_link_on'        => 'text',
 		'read_more_link_text'      => 'Read More',
-		'read_more_link_color'     => '#0080FF',
+		'read_more_link_color'     => '#ffffff',
 		'read_more_link_open'      => '_new',
 		'navigation_button_color'  => '#0080FF',
 		'navigation_button_size'   => 10,
@@ -107,9 +108,9 @@ function uris_get_default_settings() {
 
 		// CTA Button Settings
 		'cta_button_style'         => 'filled',
-		'cta_button_bg_color'      => '#6366f1',
-		'cta_button_text_color'    => '#ffffff',
-		'cta_button_hover_color'   => '#4f46e5',
+		'cta_button_bg_color'      => '#ffffff',
+		'cta_button_text_color'    => '#000000',
+		'cta_button_hover_color'   => '#000000',
 		'cta_button_hover_text_color' => '#ffffff',
 
 		// Fullscreen & Lightbox
@@ -347,6 +348,7 @@ function uris_get_sanitization_rules() {
 		'width_mode'               => 'sanitize_text_field',
 		'slider_height'            => 'sanitize_text_field',
 		'height_mode'              => 'sanitize_text_field',
+		'auto_slide_size'          => 'absint',
 		'text_alignment'           => 'sanitize_text_field',
 		'title_transition'         => 'sanitize_text_field',
 		'description_transition'   => 'sanitize_text_field',
@@ -580,6 +582,12 @@ function uris_clean_loaded_settings( $settings ) {
 		if ( empty( $settings['slider_width'] ) || ( is_numeric( str_replace( '%', '', $settings['slider_width'] ) ) && (int) str_replace( '%', '', $settings['slider_width'] ) <= 100 ) ) {
 			$settings['slider_width'] = 1280;
 		}
+	}
+	if ( isset( $settings['width_mode'] ) && ! in_array( $settings['width_mode'], array( 'custom', 'fullWidth', 'fullWindow' ), true ) ) {
+		$settings['width_mode'] = 'custom';
+	}
+	if ( isset( $settings['height_mode'] ) && ! in_array( $settings['height_mode'], array( 'custom', 'auto', 'fixed' ), true ) ) {
+		$settings['height_mode'] = 'custom';
 	}
 
 	if ( isset( $settings['image_size'] ) && ! in_array( $settings['image_size'], array( 'full', 'large', 'medium_large', 'medium' ), true ) ) {

@@ -801,45 +801,135 @@ if ( ! function_exists( 'urisp_toggle_html' ) ) {
         </div>
     </div>
     
-    <!-- Card 3: Dimensions & Scaling -->
+    <!-- Card 3: Dimensions & Scaling Engine -->
     <div class="urisp-card">
-        <h3><?php esc_html_e('Slider Dimensions & Scaling', 'ultimate-responsive-image-slider'); ?></h3>
+        <h3><?php esc_html_e('Slider Dimensions & Responsive Engine', 'ultimate-responsive-image-slider'); ?></h3>
         
+        <!-- Sizing Mode (Width Mode / forceSize) -->
         <div class="urisp-setting-row">
             <div class="urisp-setting-label">
-                <h5><i class="dashicons dashicons-editor-expand"></i> <?php esc_html_e('Slider Dimensions', 'ultimate-responsive-image-slider'); ?></h5>
+                <h5><i class="dashicons dashicons-editor-expand"></i> <?php esc_html_e('Slider Sizing Mode', 'ultimate-responsive-image-slider'); ?></h5>
+                <p><?php esc_html_e('Choose how the slider expands across the page: inside your theme container, edge-to-edge full width, or full window.', 'ultimate-responsive-image-slider'); ?></p>
+            </div>
+            <div class="urisp-setting-field">
+                <div class="urisp-segmented-control" id="urisp-width-mode-control">
+                    <input type="radio" id="width_mode_custom" name="urisp_settings[width_mode]" value="custom" <?php checked(empty($settings['width_mode']) || ($settings['width_mode'] !== 'fullWidth' && $settings['width_mode'] !== 'fullWindow'), true); ?>>
+                    <label for="width_mode_custom" title="<?php esc_attr_e('Fits within your theme page container (Max Width)', 'ultimate-responsive-image-slider'); ?>">
+                        <span class="dashicons dashicons-align-center" style="font-size:16px; width:16px; height:16px; vertical-align:middle; margin-right:4px;"></span>
+                        <span><?php esc_html_e('Boxed (Container)', 'ultimate-responsive-image-slider'); ?></span>
+                    </label>
+
+                    <input type="radio" id="width_mode_fullWidth" name="urisp_settings[width_mode]" value="fullWidth" <?php checked(!empty($settings['width_mode']) && $settings['width_mode'] === 'fullWidth', true); ?>>
+                    <label for="width_mode_fullWidth" title="<?php esc_attr_e('Expands 100% edge-to-edge across browser width', 'ultimate-responsive-image-slider'); ?>">
+                        <span class="dashicons dashicons-editor-expand" style="font-size:16px; width:16px; height:16px; vertical-align:middle; margin-right:4px;"></span>
+                        <span><?php esc_html_e('Full Width', 'ultimate-responsive-image-slider'); ?></span>
+                    </label>
+
+                    <input type="radio" id="width_mode_fullWindow" name="urisp_settings[width_mode]" value="fullWindow" <?php checked(!empty($settings['width_mode']) && $settings['width_mode'] === 'fullWindow', true); ?>>
+                    <label for="width_mode_fullWindow" title="<?php esc_attr_e('Fills 100% of browser window width & height', 'ultimate-responsive-image-slider'); ?>">
+                        <span class="dashicons dashicons-fullscreen-alt" style="font-size:16px; width:16px; height:16px; vertical-align:middle; margin-right:4px;"></span>
+                        <span><?php esc_html_e('Full Screen (Window)', 'ultimate-responsive-image-slider'); ?></span>
+                    </label>
+                </div>
+                <p id="urisp-width-mode-hint" class="description" style="margin-top:8px; font-size:12px; color:#64748b; line-height:1.5;">
+                    <!-- Updated dynamically via JS -->
+                </p>
+            </div>
+        </div>
+
+        <!-- Base Canvas Dimensions & Aspect Ratio -->
+        <div class="urisp-setting-row">
+            <div class="urisp-setting-label">
+                <h5><i class="dashicons dashicons-image-rotate"></i> <?php esc_html_e('Base Canvas Dimensions & Aspect Ratio', 'ultimate-responsive-image-slider'); ?></h5>
                 <p id="urisp-dimensions-hint">
                     <?php 
                     $is_l2 = isset( $settings['slider_layout'] ) && (int) $settings['slider_layout'] === 2;
                     if ( $is_l2 ) {
-                        esc_html_e('Configure width and height (Recommended size: 480x320 px for Layout 2).', 'ultimate-responsive-image-slider');
+                        esc_html_e('Configure base width and height (Recommended: 480×320 px for Layout 2).', 'ultimate-responsive-image-slider');
                     } else {
-                        esc_html_e('Configure width and height (Recommended size: 1280x720 px).', 'ultimate-responsive-image-slider');
+                        esc_html_e('Configure base width and height. In Full Width mode, this defines the aspect ratio so height scales proportionally on all screens with zero blank spaces.', 'ultimate-responsive-image-slider');
                     }
                     ?>
                 </p>
             </div>
             <div class="urisp-setting-field">
-                <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
-                    <input type="number" name="urisp_settings[slider_width]" id="urisp_slider_width" value="<?php echo esc_attr( ! empty( $settings['slider_width'] ) && absint( $settings['slider_width'] ) > 100 ? absint( $settings['slider_width'] ) : ( $is_l2 ? 480 : 1280 ) ); ?>" style="width:85px; text-align:center; border-radius:6px; border:1px solid #ccc; padding:6px;" min="200" max="3840" step="10">
-                    <select name="urisp_settings[width_mode]" id="urisp_width_mode">
-                        <option value="custom" <?php selected( $settings['width_mode'] !== 'fullWidth', true ); ?>><?php esc_html_e( 'px', 'ultimate-responsive-image-slider' ); ?></option>
-                        <option value="fullWidth" <?php selected( $settings['width_mode'], 'fullWidth' ); ?>><?php esc_html_e( 'Full Width', 'ultimate-responsive-image-slider' ); ?></option>
-                    </select>
-                    <span style="font-weight:bold; color:#888;">X</span>
-                    <input type="number" name="urisp_settings[slider_height]" id="urisp_slider_height" value="<?php echo esc_attr( ! empty( $settings['slider_height'] ) ? absint( $settings['slider_height'] ) : ( $is_l2 ? 320 : 720 ) ); ?>" style="width:85px; text-align:center; border-radius:6px; border:1px solid #ccc; padding:6px;" min="100" max="2160" step="10">
-                    <select name="urisp_settings[height_mode]" id="urisp_height_mode">
-                        <option value="custom" <?php selected( $settings['height_mode'], 'custom' ); ?>><?php esc_html_e( 'px', 'ultimate-responsive-image-slider' ); ?></option>
-                        <option value="auto" <?php selected( $settings['height_mode'], 'auto' ); ?>><?php esc_html_e( 'Auto', 'ultimate-responsive-image-slider' ); ?></option>
-                    </select>
-                    <button type="button" id="urisp-apply-recommended-dims" class="button button-small" style="margin-left:5px; height:32px; border-radius:6px; line-height:30px; font-size:12px; display:inline-flex; align-items:center; gap:4px;" title="<?php esc_attr_e( 'Click to apply recommended dimensions for this layout', 'ultimate-responsive-image-slider' ); ?>">
-                        <i class="dashicons dashicons-image-rotate" style="font-size:14px; width:14px; height:14px; line-height:14px;"></i>
-                        <span id="urisp-recommended-btn-text"><?php echo $is_l2 ? esc_html__( 'Use 480x320', 'ultimate-responsive-image-slider' ) : esc_html__( 'Use 1280x720', 'ultimate-responsive-image-slider' ); ?></span>
+                <div style="display:flex; gap:12px; align-items:center; flex-wrap:wrap;">
+                    <div style="display:inline-flex; align-items:center; background:#f8fafc; border:1px solid #cbd5e1; border-radius:8px; padding:4px 10px;">
+                        <span style="font-size:12px; font-weight:700; color:#475569; margin-right:6px;"><?php esc_html_e('Width:', 'ultimate-responsive-image-slider'); ?></span>
+                        <input type="number" name="urisp_settings[slider_width]" id="urisp_slider_width" value="<?php echo esc_attr( ! empty( $settings['slider_width'] ) && absint( $settings['slider_width'] ) >= 100 ? absint( $settings['slider_width'] ) : ( $is_l2 ? 480 : 1280 ) ); ?>" style="width:75px; text-align:center; border:none; background:transparent; font-weight:700; font-size:14px; padding:2px; color:#1e293b;" min="100" max="3840" step="1">
+                        <span style="font-size:12px; color:#94a3b8; font-weight:500;">px</span>
+                    </div>
+
+                    <span style="font-weight:700; color:#94a3b8; font-size:16px;">×</span>
+
+                    <div style="display:inline-flex; align-items:center; background:#f8fafc; border:1px solid #cbd5e1; border-radius:8px; padding:4px 10px;">
+                        <span style="font-size:12px; font-weight:700; color:#475569; margin-right:6px;"><?php esc_html_e('Height:', 'ultimate-responsive-image-slider'); ?></span>
+                        <input type="number" name="urisp_settings[slider_height]" id="urisp_slider_height" value="<?php echo esc_attr( ! empty( $settings['slider_height'] ) && absint( $settings['slider_height'] ) >= 50 ? absint( $settings['slider_height'] ) : ( $is_l2 ? 320 : 720 ) ); ?>" style="width:75px; text-align:center; border:none; background:transparent; font-weight:700; font-size:14px; padding:2px; color:#1e293b;" min="50" max="2160" step="1">
+                        <span style="font-size:12px; color:#94a3b8; font-weight:500;">px</span>
+                    </div>
+
+                    <span id="urisp-aspect-ratio-badge" style="background:#e0e7ff; color:#4338ca; font-weight:700; padding:6px 14px; border-radius:20px; font-size:12px; display:inline-flex; align-items:center; gap:5px; border:1px solid #c7d2fe;">
+                        <span class="dashicons dashicons-visibility" style="font-size:14px; width:14px; height:14px; line-height:14px;"></span>
+                        <span id="urisp-aspect-ratio-text">16:9 Widescreen (1.78)</span>
+                    </span>
+                </div>
+
+                <!-- Quick Presets -->
+                <div style="display:flex; gap:6px; align-items:center; flex-wrap:wrap; margin-top:10px;">
+                    <span style="font-size:11px; font-weight:700; text-transform:uppercase; color:#64748b; margin-right:2px;"><?php esc_html_e('Quick Presets:', 'ultimate-responsive-image-slider'); ?></span>
+                    <button type="button" class="button button-small urisp-dim-preset" data-w="1920" data-h="1080" style="border-radius:6px; font-size:11.5px; height:28px;">16:9 Full HD (1920×1080)</button>
+                    <button type="button" class="button button-small urisp-dim-preset" data-w="1280" data-h="720" style="border-radius:6px; font-size:11.5px; height:28px;">16:9 HD (1280×720)</button>
+                    <button type="button" class="button button-small urisp-dim-preset" data-w="1024" data-h="768" style="border-radius:6px; font-size:11.5px; height:28px;">4:3 Classic (1024×768)</button>
+                    <button type="button" class="button button-small urisp-dim-preset" data-w="1920" data-h="600" style="border-radius:6px; font-size:11.5px; height:28px;">Banner (1920×600)</button>
+                    <button type="button" class="button button-small urisp-dim-preset" data-w="800" data-h="800" style="border-radius:6px; font-size:11.5px; height:28px;">Square 1:1 (800×800)</button>
+                    <button type="button" id="urisp-apply-recommended-dims" class="button button-small" style="border-radius:6px; font-size:11.5px; height:28px; background:#eff6ff; border-color:#bfdbfe; color:#1d4ed8; font-weight:600;">
+                        <i class="dashicons dashicons-image-rotate" style="font-size:13px; width:13px; height:13px; line-height:13px; vertical-align:middle;"></i>
+                        <span id="urisp-recommended-btn-text"><?php echo $is_l2 ? esc_html__( 'Use 480×320', 'ultimate-responsive-image-slider' ) : esc_html__( 'Use 1280×720', 'ultimate-responsive-image-slider' ); ?></span>
                     </button>
                 </div>
-                <p class="description" style="margin-top:6px; font-size:12px; color:#666;">
-                    <?php esc_html_e( 'Sliders are fully responsive and automatically adapt down to tablet and mobile screens.', 'ultimate-responsive-image-slider' ); ?>
+            </div>
+        </div>
+
+        <!-- Height Sizing Mode -->
+        <div class="urisp-setting-row">
+            <div class="urisp-setting-label">
+                <h5><i class="dashicons dashicons-editor-expand"></i> <?php esc_html_e('Height Sizing Mode', 'ultimate-responsive-image-slider'); ?></h5>
+                <p><?php esc_html_e('Choose how the slider height adapts on different screens and devices.', 'ultimate-responsive-image-slider'); ?></p>
+            </div>
+            <div class="urisp-setting-field">
+                <div class="urisp-segmented-control" id="urisp-height-mode-control">
+                    <input type="radio" id="height_mode_custom" name="urisp_settings[height_mode]" value="custom" <?php checked(empty($settings['height_mode']) || ($settings['height_mode'] !== 'auto' && $settings['height_mode'] !== 'fixed'), true); ?>>
+                    <label for="height_mode_custom" title="<?php esc_attr_e('Scales height proportionally maintaining aspect ratio on all devices (Recommended)', 'ultimate-responsive-image-slider'); ?>">
+                        <span class="dashicons dashicons-image-crop" style="font-size:16px; width:16px; height:16px; vertical-align:middle; margin-right:4px;"></span>
+                        <span><?php esc_html_e('Responsive (Aspect Ratio)', 'ultimate-responsive-image-slider'); ?></span>
+                    </label>
+
+                    <input type="radio" id="height_mode_auto" name="urisp_settings[height_mode]" value="auto" <?php checked(!empty($settings['height_mode']) && $settings['height_mode'] === 'auto', true); ?>>
+                    <label for="height_mode_auto" title="<?php esc_attr_e('Height dynamically adjusts to match each slide image', 'ultimate-responsive-image-slider'); ?>">
+                        <span class="dashicons dashicons-update" style="font-size:16px; width:16px; height:16px; vertical-align:middle; margin-right:4px;"></span>
+                        <span><?php esc_html_e('Auto Height (Dynamic)', 'ultimate-responsive-image-slider'); ?></span>
+                    </label>
+
+                    <input type="radio" id="height_mode_fixed" name="urisp_settings[height_mode]" value="fixed" <?php checked(!empty($settings['height_mode']) && $settings['height_mode'] === 'fixed', true); ?>>
+                    <label for="height_mode_fixed" title="<?php esc_attr_e('Maintains exact fixed pixel height', 'ultimate-responsive-image-slider'); ?>">
+                        <span class="dashicons dashicons-marker" style="font-size:16px; width:16px; height:16px; vertical-align:middle; margin-right:4px;"></span>
+                        <span><?php esc_html_e('Fixed Height', 'ultimate-responsive-image-slider'); ?></span>
+                    </label>
+                </div>
+                <p id="urisp-height-mode-hint" class="description" style="margin-top:8px; font-size:12px; color:#64748b; line-height:1.5;">
+                    <!-- Updated dynamically via JS -->
                 </p>
+            </div>
+        </div>
+
+        <!-- Variable Slide Widths (Auto Slide Size) -->
+        <div class="urisp-setting-row">
+            <div class="urisp-setting-label">
+                <h5><i class="dashicons dashicons-image-flip-horizontal"></i> <?php esc_html_e('Variable Slide Widths', 'ultimate-responsive-image-slider'); ?></h5>
+                <p><?php esc_html_e('Maintain uniform height while allowing slide widths to adjust automatically to content (SliderPro autoSlideSize).', 'ultimate-responsive-image-slider'); ?></p>
+            </div>
+            <div class="urisp-setting-field">
+                <?php echo urisp_toggle_html('auto_slide_size', ! empty($settings['auto_slide_size']) ? 1 : 0); ?>
             </div>
         </div>
 
@@ -1137,18 +1227,18 @@ if ( ! function_exists( 'urisp_toggle_html' ) ) {
                     <div class="urisp-color-item">
                         <label><?php esc_html_e('Button Background / Link Color', 'ultimate-responsive-image-slider'); ?></label>
                         <?php 
-                        $link_color_val = ! empty( $settings['cta_button_bg_color'] ) ? $settings['cta_button_bg_color'] : ( ! empty( $settings['read_more_link_color'] ) ? $settings['read_more_link_color'] : '#6366f1' );
+                        $link_color_val = ! empty( $settings['cta_button_bg_color'] ) ? $settings['cta_button_bg_color'] : ( ! empty( $settings['read_more_link_color'] ) ? $settings['read_more_link_color'] : '#ffffff' );
                         ?>
-                        <input name="urisp_settings[cta_button_bg_color]" type="text" value="<?php echo esc_attr($link_color_val); ?>" class="my-color-field" data-default-color="#6366f1" />
+                        <input name="urisp_settings[cta_button_bg_color]" type="text" value="<?php echo esc_attr($link_color_val); ?>" class="my-color-field" data-default-color="#ffffff" />
                         <input type="hidden" name="urisp_settings[read_more_link_color]" value="<?php echo esc_attr($link_color_val); ?>" />
                     </div>
                     <div class="urisp-color-item">
                         <label><?php esc_html_e('Button Text Color', 'ultimate-responsive-image-slider'); ?></label>
-                        <input name="urisp_settings[cta_button_text_color]" type="text" value="<?php echo esc_attr(!empty($settings['cta_button_text_color']) ? $settings['cta_button_text_color'] : '#ffffff'); ?>" class="my-color-field" data-default-color="#ffffff" />
+                        <input name="urisp_settings[cta_button_text_color]" type="text" value="<?php echo esc_attr(!empty($settings['cta_button_text_color']) ? $settings['cta_button_text_color'] : '#000000'); ?>" class="my-color-field" data-default-color="#000000" />
                     </div>
                     <div class="urisp-color-item">
                         <label><?php esc_html_e('Hover Background / Link Color', 'ultimate-responsive-image-slider'); ?></label>
-                        <input name="urisp_settings[cta_button_hover_color]" type="text" value="<?php echo esc_attr(!empty($settings['cta_button_hover_color']) ? $settings['cta_button_hover_color'] : '#4f46e5'); ?>" class="my-color-field" data-default-color="#4f46e5" />
+                        <input name="urisp_settings[cta_button_hover_color]" type="text" value="<?php echo esc_attr(!empty($settings['cta_button_hover_color']) ? $settings['cta_button_hover_color'] : '#000000'); ?>" class="my-color-field" data-default-color="#000000" />
                     </div>
                     <div class="urisp-color-item">
                         <label><?php esc_html_e('Hover Text Color', 'ultimate-responsive-image-slider'); ?></label>
@@ -2507,18 +2597,92 @@ jQuery(document).ready(function($) {
         }
     });
 
+    // Live Aspect Ratio Calculator & Dimensions Sizing Engine
+    function urispUpdateAspectRatioBadge() {
+        var w = parseInt($('#urisp_slider_width').val(), 10) || 1280;
+        var h = parseInt($('#urisp_slider_height').val(), 10) || 720;
+        if (w <= 0 || h <= 0) return;
+        
+        var ratio = (w / h).toFixed(2);
+        var label = '';
+        
+        if (Math.abs(ratio - 1.78) <= 0.05) {
+            label = '16:9 Widescreen (' + ratio + ')';
+        } else if (Math.abs(ratio - 1.33) <= 0.05) {
+            label = '4:3 Classic (' + ratio + ')';
+        } else if (Math.abs(ratio - 2.33) <= 0.1 || Math.abs(ratio - 2.4) <= 0.1 || Math.abs(ratio - 3.2) <= 0.1) {
+            label = 'Banner / Ultrawide (' + ratio + ')';
+        } else if (Math.abs(ratio - 1.6) <= 0.05) {
+            label = '16:10 (' + ratio + ')';
+        } else if (Math.abs(ratio - 1.0) <= 0.05) {
+            label = '1:1 Square (' + ratio + ')';
+        } else if (Math.abs(ratio - 0.56) <= 0.05) {
+            label = '9:16 Story (' + ratio + ')';
+        } else {
+            label = 'Aspect Ratio: ' + ratio + ':1';
+        }
+        
+        $('#urisp-aspect-ratio-text').text(label);
+
+        // Update width mode hint
+        var widthMode = $('input[name="urisp_settings[width_mode]"]:checked').val() || 'custom';
+        var heightMode = $('input[name="urisp_settings[height_mode]"]:checked').val() || 'custom';
+        
+        var wHint = '';
+        if (widthMode === 'fullWidth') {
+            wHint = '<span class="dashicons dashicons-yes-alt" style="color:#10b981; vertical-align:middle;"></span> <strong>Full Width Mode:</strong> Slider expands edge-to-edge across 100% of the screen. Base dimensions (' + w + '×' + h + ' px) define the <em>' + label + '</em> so height scales cleanly on desktop, tablet, and mobile with zero gaps.';
+        } else if (widthMode === 'fullWindow') {
+            wHint = '<span class="dashicons dashicons-yes-alt" style="color:#10b981; vertical-align:middle;"></span> <strong>Full Screen Window:</strong> Slider fills 100% of both browser viewport width and height.';
+        } else {
+            wHint = '<span class="dashicons dashicons-info" style="color:#6366f1; vertical-align:middle;"></span> <strong>Boxed Mode:</strong> Slider stays centered in your page content (max width ' + w + 'px). Automatically responsive on smaller screens.';
+        }
+        $('#urisp-width-mode-hint').html(wHint);
+
+        var hHint = '';
+        if (heightMode === 'auto') {
+            hHint = '<span class="dashicons dashicons-yes-alt" style="color:#10b981; vertical-align:middle;"></span> <strong>Auto Height (Dynamic):</strong> Height automatically expands or shrinks to fit each slide image\'s natural proportions (SliderPro autoHeight).';
+        } else if (heightMode === 'fixed') {
+            hHint = '<span class="dashicons dashicons-info" style="color:#6366f1; vertical-align:middle;"></span> <strong>Fixed Height:</strong> Slider maintains exact ' + h + 'px height on desktop screens.';
+        } else {
+            hHint = '<span class="dashicons dashicons-yes-alt" style="color:#10b981; vertical-align:middle;"></span> <strong>Responsive (Aspect Ratio):</strong> Height scales proportionally with width (' + label + ') across all devices for clean presentation without blank spaces.';
+        }
+        $('#urisp-height-mode-hint').html(hHint);
+    }
+
+    // Trigger on width, height, or mode changes
+    $(document).on('input change', '#urisp_slider_width, #urisp_slider_height', function() {
+        urispUpdateAspectRatioBadge();
+    });
+    $(document).on('change', 'input[name="urisp_settings[width_mode]"], input[name="urisp_settings[height_mode]"]', function() {
+        urispUpdateAspectRatioBadge();
+    });
+
+    // Handle Quick Preset buttons
+    $(document).on('click', '.urisp-dim-preset', function(e) {
+        e.preventDefault();
+        var w = $(this).data('w');
+        var h = $(this).data('h');
+        $('#urisp_slider_width').val(w).trigger('input').trigger('change');
+        $('#urisp_slider_height').val(h).trigger('input').trigger('change');
+        urispUpdateAspectRatioBadge();
+    });
+
     // Handle "Use Recommended" button click
     $(document).on('click', '#urisp-apply-recommended-dims', function(e) {
         e.preventDefault();
         var selectedLayout = $('input[name="urisp_settings[slider_layout]"]:checked').val() || '3';
         if (String(selectedLayout) === '2') {
-            $('#urisp_slider_width').val(480).trigger('change');
-            $('#urisp_slider_height').val(320).trigger('change');
+            $('#urisp_slider_width').val(480).trigger('input').trigger('change');
+            $('#urisp_slider_height').val(320).trigger('input').trigger('change');
         } else {
-            $('#urisp_slider_width').val(1280).trigger('change');
-            $('#urisp_slider_height').val(720).trigger('change');
+            $('#urisp_slider_width').val(1280).trigger('input').trigger('change');
+            $('#urisp_slider_height').val(720).trigger('input').trigger('change');
         }
+        urispUpdateAspectRatioBadge();
     });
+
+    // Initial run
+    urispUpdateAspectRatioBadge();
 
     // Dynamic Source Visibility Toggle
     function urispUpdateWooVisibility() {
